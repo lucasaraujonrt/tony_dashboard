@@ -1,0 +1,93 @@
+.transparent-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  outline: 0 !important;
+  width: auto;
+  height: auto;
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+.form-actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-top: 30px;
+  border-top: 1px solid @border-color;
+  padding-top: 30px;
+
+  &__single {
+    margin-right: 30px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.MuiDataGrid-colCell {
+  .MuiDataGrid-columnSeparator {
+    display: none !important;
+  }
+}
+
+.MuiDataGrid-cell {
+  border-right: none !important;
+}
+
+.MuiDataGrid-row.Mui-even {
+  padding-right: 0 !important;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.report {
+  &__header {
+  }
+  &__table {
+    &__inner {
+      height: 680px;
+    }
+  }
+}
+
+.details {
+  &__title {
+    padding-top: 30px;
+
+    &__text {
+      font-size: 15pt;
+      font-weight: bold;
+      margin-bottom: 0;
+    }
+
+    &__description {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__form {
+    &__actions {
+      border-top: 1px solid @gray-border;
+      margin-top: 15px;
+      padding-top: 30px;
+    }
+
+    &__subtitle {
+      padding-top: 15px;
+      margin-bottom: 15px;
+      border-bottom: 1px solid @gray-border;
+    }
+
+    &__item {
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+  }
+}

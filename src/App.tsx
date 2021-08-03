@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import 'bootstrap/dist/css/bootstrap-grid.min.css';
+import { useDispatch, useSelector } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+import * as AuthActions from '~/actions/auth';
+
+import Router from './router';
+
+const App = () => {
+  const dispatch = useDispatch();
+
+  const checkLogged: boolean = useSelector(
+    (state: reducers.rootReducer) => state.auth.checkLogged
   );
-}
+
+  const isLogged: boolean = useSelector(
+    (state: reducers.rootReducer) =>
+      (state.auth.authToken && state.auth.authToken.token && true) || false
+  );
+
+  useEffect(() => dispatch(AuthActions.checkIsLogged()), []);
+
+  return <div>{checkLogged && <Router isLogged={isLogged} />}</div>;
+};
 
 export default App;
