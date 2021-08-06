@@ -39,6 +39,13 @@ const ptBr = {
       FILTER: 'Filtrar',
       CLEAN: 'limpar',
     },
+    ADVANCED_BUTTON: {
+      SIGN_IN: 'Entrar',
+      CLEAN: 'limpar',
+    },
+    LINK: {
+      FORGOT_PASSWORD: 'Esqueci minha senha'
+    },
     SEARCH_BAR: {
       SEARCH: {
         LABEL: 'O que deseja procurar?',
@@ -82,4 +89,23 @@ const ptBr = {
       },
     },
   },
+
+  PAGES: {
+    LOGIN: {
+      TITLE: 'Tony dashboard',
+      DESCRIPTION: 'Faça seu login',
+      FIELDS: {
+        EMAIL:{
+          LABEL: 'E-mail',
+          PLACEHOLDER: 'Digite seu email'
+        },
+        PASSWORD:{
+          LABEL: 'Senha',
+          PLACEHOLDER: 'Digite seu senha'
+        },
+      },
+    },
+  },
 }
+
+export default ptBr;

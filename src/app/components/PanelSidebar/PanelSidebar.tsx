@@ -5,8 +5,6 @@ import { Link, useLocation } from 'react-router-dom';
 import { getRouteStackPath } from '@portal/config/routes';
 import { WL_COMPANY_PANEL_LOGO } from '~/config/env';
 import { routeExist } from '~/config/routes';
-import { ProfileType } from '~/enum/profileType';
-
 import PanelSidebarMenu from '../PanelSidebarMenu/PanelSidebarMenu';
 import { useReduxState } from '@portal/hooks/useReduxState';
 
@@ -21,17 +19,13 @@ const PanelSidebar = (props: IPanelSidebar) => {
 
   const validatePath = () => {
     if (!routeExist(location.pathname)) {
-      // window.location.href = getRouteStackPath('DASHBOARD', 'DETAILS');
+      window.location.href = getRouteStackPath('DASHBOARD', 'DETAILS');
     }
   };
 
   useEffect(() => {
     validatePath();
   }, []);
-
-  const loggedUser = useSelector(
-    (state: reducers.rootReducer) => state.auth.me
-  );
 
   return (
     <div className="panel-sidebar">
@@ -46,16 +40,12 @@ const PanelSidebar = (props: IPanelSidebar) => {
       </div>
       <div className="panel-sidebar__name">
         <span className="panel-sidebar__name__span">
-          {user.me?.synod ? user.me?.synod.name : user.me?.user.name}
+          {/* {user.me?.synod ? user.me?.synod.name : user.me?.user.name} */}
+          Lucas Trocar
         </span>
       </div>
       <div className="panel-sidebar__menu">
-        <PanelSidebarMenu
-          access={(accessType: ProfileType) =>
-            !loggedUser?.profileType || loggedUser?.profileType === accessType
-          }
-          routes={props.routes}
-        />
+        <PanelSidebarMenu routes={props.routes} />
       </div>
     </div>
   );

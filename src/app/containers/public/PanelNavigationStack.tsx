@@ -8,8 +8,7 @@ import PanelContentTopBar from '~/components/PanelContentTopBar/PanelContentTopB
 import PanelSidebar from '~/components/PanelSidebar/PanelSidebar';
 
 //stacks
-import UserNavigationStack from '~/pages/User/UserNavigationStack';
-import NotFound from '~/pages/NotFound/NotFound';
+// import UserNavigationStack from '~/pages/User/UserNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
 
@@ -19,9 +18,16 @@ const PanelNavigationStack: React.FC = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  const loggedUser = useSelector(
-    (state: reducers.rootReducer) => state.auth.me
-  );
+  // const loggedUser = useSelector(
+  //   (state: reducers.rootReducer) => state.auth.me
+  // );
+
+  const mock: models.User = {
+    id: '1',
+    name: 'Lucas',
+    email: 'lucasaraujo8186@gmail.com',
+    password: '123123'
+  }
 
   return (
     <div className="panel-navigation-stack">
@@ -30,17 +36,12 @@ const PanelNavigationStack: React.FC = () => {
       </div>
 
       <div className="panel-navigation-stack__content">
-        <PanelContentTopBar user={loggedUser} />
+        <PanelContentTopBar user={mock} />
         <Switch>
 
-          <Route path={getStackPath('USER')}>
+          {/* <Route path={getStackPath('USER')}>
             <UserNavigationStack />
-          </Route>
-
-          <Route>
-            <NotFound />
-          </Route>
-
+          </Route> */}
         </Switch>
       </div>
     </div>

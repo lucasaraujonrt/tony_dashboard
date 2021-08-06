@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { Popover } from 'antd';
-import { connect, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import UserIcon from '~/assets/svg/ic_user.svg';
 import { translate } from '~/services/i18n';
@@ -73,8 +73,5 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
   );
 };
 
-const mapDispatchToProps = (dispatch: any) => ({
-  logout: () => dispatch(AuthActions.logout()),
-});
+export default PanelContentTopBar;
 
-export default connect(null, mapDispatchToProps)(PanelContentTopBar);

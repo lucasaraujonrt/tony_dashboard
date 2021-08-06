@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 // import { getMe } from '~/actions/user';
-import PanelNavigationStack from '~/containers/Panel/PanelNavigationStack';
+import PanelNavigationStack from '~/containers/public/PanelNavigationStack';
 import AuthNavigationStack from '~/pages/Auth/AuthNavigationStack';
 
 interface IRouter {

@@ -1,0 +1,46 @@
+.advanced-filter {
+  padding: 15px 0;
+
+  &__wrapper {
+    padding-bottom: 25px;
+  }
+
+  &__fields {
+    display: grid;
+    grid-template-areas: '. . .';
+    grid-auto-rows: auto;
+    grid-column-gap: 15px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-row-gap: 15px;
+
+    &__single {
+      &__inner {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        .advanced-select,
+        .advanced-checkbox,
+        .advanced-date-time-picker,
+        .advanced-input {
+          padding-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__search {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #f8f8f8;
+
+    &__clean {
+      padding-right: 15px;
+    }
+  }
+}

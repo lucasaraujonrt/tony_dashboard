@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="26" height="25.75" viewBox="0 0 26 25.75">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_82" data-name="Rectangle 82" width="11" height="9" fill="#fff" stroke="#2851a0" stroke-width="1.5"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <rect id="Rectangle_83" data-name="Rectangle 83" width="10" height="9" fill="#fff" stroke="#2851a0" stroke-width="1.5"/>
+    </clipPath>
+  </defs>
+  <g id="Group_5741" data-name="Group 5741" transform="translate(-8476 5771.75)">
+    <g id="Rectangle_79" data-name="Rectangle 79" transform="translate(8476 -5763)" fill="none" stroke="#2851a0" stroke-width="1.5">
+      <path d="M0,0H26a0,0,0,0,1,0,0V17a0,0,0,0,1,0,0H5a5,5,0,0,1-5-5V0A0,0,0,0,1,0,0Z" stroke="none"/>
+      <path d="M1.5.75h23a.75.75,0,0,1,.75.75v14a.75.75,0,0,1-.75.75H5A4.25,4.25,0,0,1,.75,12V1.5A.75.75,0,0,1,1.5.75Z" fill="none"/>
+    </g>
+    <g id="Rectangle_81" data-name="Rectangle 81" transform="translate(8495 -5758)" fill="none" stroke="#2851a0" stroke-width="1.5">
+      <path d="M3.5,0H7A0,0,0,0,1,7,0V7A0,0,0,0,1,7,7H3.5A3.5,3.5,0,0,1,0,3.5v0A3.5,3.5,0,0,1,3.5,0Z" stroke="none"/>
+      <path d="M3.5.75H5.615a.635.635,0,0,1,.635.635V5.615a.635.635,0,0,1-.635.635H3.5A2.75,2.75,0,0,1,.75,3.5v0A2.75,2.75,0,0,1,3.5.75Z" fill="none"/>
+    </g>
+    <g id="Mask_Group_2" data-name="Mask Group 2" transform="translate(8476 -5770)" clip-path="url(#clip-path)">
+      <g id="Path_7118" data-name="Path 7118" transform="translate(0 1.064)" fill="none">
+        <path d="M3,0H24V7.449H0V3.193A3.1,3.1,0,0,1,3,0Z" stroke="none"/>
+        <path d="M 3 1.500001430511475 C 2.17289924621582 1.500001430511475 1.5 2.259311676025391 1.5 3.192631244659424 L 1.5 5.949461460113525 L 22.5 5.949461460113525 L 22.5 1.500001430511475 L 16.52505111694336 1.500001430511475 L 11.52077960968018 1.500001430511475 L 3 1.500001430511475 M 3 1.430511474609375e-06 L 11.52077960968018 1.430511474609375e-06 L 16.52505111694336 1.430511474609375e-06 L 24 1.430511474609375e-06 L 24 7.449461460113525 L 0 7.449461460113525 L 0 3.192631244659424 C 0 1.429391384124756 1.3431396484375 1.430511474609375e-06 3 1.430511474609375e-06 Z" stroke="none" fill="#2851a0"/>
+      </g>
+    </g>
+    <g id="Mask_Group_1" data-name="Mask Group 1" transform="translate(8491 -5770)" clip-path="url(#clip-path-2)">
+      <g id="Path_7119" data-name="Path 7119" transform="translate(-15 1.064)" fill="none">
+        <path d="M3,0H24V7.449H0V3.193A3.1,3.1,0,0,1,3,0Z" stroke="none"/>
+        <path d="M 3 1.500001430511475 C 2.17289924621582 1.500001430511475 1.5 2.259311676025391 1.5 3.192631244659424 L 1.5 5.949461460113525 L 22.5 5.949461460113525 L 22.5 1.500001430511475 L 16.52505111694336 1.500001430511475 L 11.52077960968018 1.500001430511475 L 3 1.500001430511475 M 3 1.430511474609375e-06 L 11.52077960968018 1.430511474609375e-06 L 16.52505111694336 1.430511474609375e-06 L 24 1.430511474609375e-06 L 24 7.449461460113525 L 0 7.449461460113525 L 0 3.192631244659424 C 0 1.429391384124756 1.3431396484375 1.430511474609375e-06 3 1.430511474609375e-06 Z" stroke="none" fill="#2851a0"/>
+      </g>
+    </g>
+    <g id="prefix__arrow-right" transform="translate(8491.33 -5763.559) rotate(90)">
+      <path id="Line_39" data-name="Line 39" d="M0,0H6.61" transform="translate(-7.441 2.056)" fill="none" stroke="#ff396f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+      <path id="Path_104" data-name="Path 104" d="M0,4.113,2.056,2.056,0,0" transform="translate(-2.888 0)" fill="none" stroke="#ff396f" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    </g>
+  </g>
+</svg>
