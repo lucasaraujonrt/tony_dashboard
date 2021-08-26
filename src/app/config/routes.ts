@@ -1,11 +1,35 @@
 const routes: models.route[] = [
   {
-    id: 'DASHBOARD',
-    name: 'PAGES.PANEL.DASHBOARD.SIDEBAR_TITLE',
-    route: '/dashboard',
-    icon: '/assets/svg/panel-sidebar/ic_dashboard.svg',
-    iconAlt: 'Dashboard',
+    id: 'USER',
+    name: 'PAGES.PANEL.USER.SIDEBAR_TITLE',
+    route: '/usuarios',
+    icon: '/assets/svg/panel-sidebar/ic_users.svg',
+    iconAlt: 'Usuários',
     items: [
+      {
+        id: 'REPORT',
+        name: 'Lista de usuários',
+        route: '/lista',
+      },
+      {
+        id: 'DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+      },
+    ],
+  },
+  {
+    id: 'EMPRESAS',
+    name: 'Empresas',
+    route: '/empresas',
+    icon: '/assets/svg/panel-sidebar/ic_users.svg',
+    iconAlt: 'Empresas',
+    items: [
+      {
+        id: 'REPORT',
+        name: 'Lista de empresas',
+        route: '/lista',
+      },
       {
         id: 'DETAILS',
         name: 'Informações Gerais',
@@ -43,6 +67,6 @@ export const routeExist = (route: string): boolean => {
 
 export const getRouteStackPath = (stackId: string, routeId: string): string => {
   const route = routes.find((o) => o.id === stackId);
-
+  
   return `${route?.route}${route?.items.find((o) => o.id === routeId)?.route}`;
 };

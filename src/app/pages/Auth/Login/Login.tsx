@@ -14,7 +14,7 @@ import AdvancedInput from '~/components/AdvancedInput/AdvancedInput';
 import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
 import { translate } from '~/services/i18n';
 import { validateEmail } from '~/services/validation';
-import Loading from '@portal/components/Loading/Loading';
+import { getRouteStackPath } from '@portal/config/routes';
 
 const initialValues: models.AuthRequest = {
   password: '',
@@ -43,6 +43,7 @@ const Login: React.FC = () => {
     }
 
     // dispatch(AuthActions.authenticate(form));
+    window.location.href = getRouteStackPath('USER', 'REPORT')
   };
 
   return (

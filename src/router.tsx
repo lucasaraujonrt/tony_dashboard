@@ -23,7 +23,7 @@ const Router = ({ isLogged }: IRouter) => {
     <BrowserRouter>
       <div>
         <Switch>
-          {isLogged ? (
+          {!isLogged ? (
             <Route path="/">
               <PanelNavigationStack />
             </Route>

@@ -13,9 +13,9 @@ interface IProps {
 }
 
 const PanelContent: React.FC<IProps> = (props: IProps) => {
-  const isLoading = useSelector(
-    (state: reducers.rootReducer) => state.loading.amount
-  );
+  // const isLoading = useSelector(
+  //   (state: reducers.rootReducer) => state.loading.amount
+  // );
 
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +33,7 @@ const PanelContent: React.FC<IProps> = (props: IProps) => {
         <title>{`${props.pageTitle} - ${REACT_APP_APPLICATION_NAME}`}</title>
       </Helmet>
 
-      {(loading || isLoading > 0) && <Loading />}
+      {/* {(loading || isLoading > 0) && <Loading />} */}
 
       <div className="panel-content">
         <div className="panel-content__inner">{props.children}</div>

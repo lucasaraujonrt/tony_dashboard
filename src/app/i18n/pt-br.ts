@@ -101,10 +101,15 @@ const ptBr = {
         },
         PASSWORD:{
           LABEL: 'Senha',
-          PLACEHOLDER: 'Digite seu senha'
+          PLACEHOLDER: 'Digite sua senha'
         },
       },
     },
+    PANEL: {
+      USER: {
+        SIDEBAR_TITLE: 'Usuários',
+      },
+    }
   },
 }
 
