@@ -19,7 +19,7 @@ const UserStack: React.FC = () => {
           <UserReport />
         </PanelContent>
       </Route>
-      <Route path={`${getRouteStackPath('USER', 'USER_DETAILS')}/:id`}>
+      <Route path={`${getRouteStackPath('USER', 'USER_DETAILS')}`}>
         <PanelContent
           pageTitle={translate(
             `PAGES.PANEL.USER.DETAILS.TITLE.${
