@@ -1,9 +1,14 @@
-import { i18nReducer } from 'react-redux-i18n';
 import { applyMiddleware, combineReducers, compose, createStore } from 'redux';
+import { i18nReducer } from 'react-redux-i18n';
 import thunk from 'redux-thunk';
+
+import authReducer from './Auth/reducer';
+import loadingReducer from './Loading/reducer';
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
+  loading: loadingReducer,
+  auth: authReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

@@ -3,6 +3,7 @@ export as namespace reducers;
 export type AuthReducer = {
   checkLogged: boolean;
   authToken: models.AuthResponse;
+  me: null,
 };
 
 export type AdminReducer = {

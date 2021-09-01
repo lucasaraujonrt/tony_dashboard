@@ -44,6 +44,12 @@
       "~/actions/*": [
         "app/actions/*"
       ],
+      "~/controllers": [
+        "app/controllers"
+      ],
+      "~/controllers/*": [
+        "app/controllers"
+      ],
       "~/containers": [
         "app/containers"
       ],

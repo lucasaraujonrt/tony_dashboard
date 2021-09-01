@@ -15,6 +15,7 @@ import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
 import { translate } from '~/services/i18n';
 import { validateEmail } from '~/services/validation';
 import { getRouteStackPath } from '@portal/config/routes';
+import { authenticate } from '@portal/store/Auth/action';
 
 const initialValues: models.AuthRequest = {
   password: '',
@@ -42,8 +43,8 @@ const Login: React.FC = () => {
       return MessageService.error('PAGES.AUTH.LOGIN.ERRORS.INVALID_PASSWORD');
     }
 
-    // dispatch(AuthActions.authenticate(form));
-    window.location.href = getRouteStackPath('USER', 'REPORT')
+    dispatch(authenticate(form));
+    // window.location.href = getRouteStackPath('USER', 'REPORT')
   };
 
   return (
@@ -56,7 +57,6 @@ const Login: React.FC = () => {
           <Col>
             <div className="login__form">
               <div className="login__form__inner">
-                {/* <Loading /> */}
                 <AdvancedForm onSubmit={onFormSubmit}>
                   <Row className="justify-content-center">
                     <Col lg={4}>

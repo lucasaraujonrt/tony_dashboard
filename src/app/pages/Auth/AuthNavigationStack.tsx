@@ -8,8 +8,12 @@ import { useSelector } from 'react-redux';
 import Loading from '~/components/Loading/Loading';
 
 const AuthNavigationStack: React.FC = () => {
+  const loadingAmount = useSelector(
+    (state: reducers.rootReducer) => state.loading.amount
+  );
   return (
     <div>
+      {(loadingAmount > 0) && <Loading />}
       <Switch>
         <Route
           path="/"
