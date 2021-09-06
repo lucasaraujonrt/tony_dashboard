@@ -106,4 +106,12 @@ export type User = {
   name?: string;
   email?: string;
   password?: string;
+};
+
+export interface UserForm {
+  name: string;
+  email: string;
+  password: string;
+  cellphone: string;
+  profileType: number;
 }
