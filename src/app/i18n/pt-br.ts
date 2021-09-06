@@ -124,6 +124,18 @@ const ptBr = {
         },
       },
     },
+    USER_DETAILS: {
+      TITLE: 'Usuário',
+      DESCRIPTION: 'Criar usuário',
+      LABEL_NAME: 'Nome do usuário',
+      PLACEHOLDER: 'Digite aqui',
+      LABEL_PHONE: 'Telefone do usuário',
+      LABEL_PROFILE_TYPE: 'Administrador',
+      LABEL_EMAIL: 'E-mail do usuário',
+      LABEL_PASSWORD: 'Senha do usuário',
+      LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
+      LABEL_BUTTON: 'Salvar',
+    },
   },
 };
 //"Lista de usuários"

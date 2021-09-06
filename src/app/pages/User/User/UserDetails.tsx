@@ -6,6 +6,7 @@ import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
 import { maskPhone } from '@portal/services/masks';
 import AdvancedCheckbox from '@portal/components/AdvancedCheckbox/AdvancedCheckbox';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
+import { translate } from '@portal/services/i18n';
 
 // import { Container } from './styles';
 
@@ -36,8 +37,8 @@ const UserDetails: React.FC = () => {
       <Row>
         <Col>
           <PanelContentHeader
-            pageTitle="Usuário"
-            pageDescription="Criar usuário"
+            pageTitle={translate('PAGES.USER_DETAILS.TITLE')}
+            pageDescription={translate('PAGES.USER_DETAILS.DESCRIPTION')}
           />
         </Col>
       </Row>
@@ -50,16 +51,16 @@ const UserDetails: React.FC = () => {
                 <Col>
                   <AdvancedInput
                     value={form.name}
-                    label="Nome do usuário"
-                    placeholder="Digite aqui"
+                    label={translate('PAGES.USER_DETAILS.LABEL_NAME')}
+                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('name', value)}
                   />
                 </Col>
                 <Col>
                   <AdvancedInput
                     value={maskPhone(form.cellphone)}
-                    label="Telefone do usuário"
-                    placeholder="Digite aqui"
+                    label={translate('PAGES.USER_DETAILS.LABEL_PHONE')}
+                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('cellphone', value)
                     }
@@ -68,7 +69,7 @@ const UserDetails: React.FC = () => {
                 <Col>
                   <AdvancedCheckbox
                     value={form.profileType}
-                    label="Administrador"
+                    label={translate('PAGES.USER_DETAILS.LABEL_PROFILE_TYPE')}
                     onChange={(value: boolean) =>
                       onFormChange('profileType', value)
                     }
@@ -80,8 +81,8 @@ const UserDetails: React.FC = () => {
                 <Col>
                   <AdvancedInput
                     value={form.email}
-                    label="E-mail do usuário"
-                    placeholder="Digite aqui"
+                    label={translate('PAGES.USER_DETAILS.LABEL_EMAIL')}
+                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('email', value)}
                   />
                 </Col>
@@ -91,8 +92,8 @@ const UserDetails: React.FC = () => {
                 <Col>
                   <AdvancedInput
                     value={form.password}
-                    label="Senha do usuário"
-                    placeholder="Digite aqui"
+                    label={translate('PAGES.USER_DETAILS.LABEL_PASSWORD')}
+                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('password', value)
                     }
@@ -102,8 +103,10 @@ const UserDetails: React.FC = () => {
                 <Col>
                   <AdvancedInput
                     value={confirmPassword}
-                    label="Confirme a senha"
-                    placeholder="Digite aqui"
+                    label={translate(
+                      'PAGES.USER_DETAILS.LABEL_CONFIRM_PASSWORD'
+                    )}
+                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
                     onChange={setConfirmPassword}
                     type="password"
                   />
@@ -113,7 +116,10 @@ const UserDetails: React.FC = () => {
               <div className="details__form__actions">
                 <Row>
                   <Col className="text-right">
-                    <AdvancedButton type="submit" text="Salvar" />
+                    <AdvancedButton
+                      type="submit"
+                      text={translate('PAGES.USER_DETAILS.LABEL_BUTTON')}
+                    />
                   </Col>
                 </Row>
               </div>
