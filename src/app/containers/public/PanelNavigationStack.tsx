@@ -25,7 +25,7 @@ const PanelNavigationStack: React.FC = () => {
     email: 'lucasaraujo8186@gmail.com',
     password: '123123'
   }
-  console.log('getRoutes', getRoutes())
+  
   return (
     <div className="panel-navigation-stack">
       <div className="panel-navigation-stack__sidebar">

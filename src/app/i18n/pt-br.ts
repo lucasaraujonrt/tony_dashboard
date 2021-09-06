@@ -44,7 +44,7 @@ const ptBr = {
       CLEAN: 'limpar',
     },
     LINK: {
-      FORGOT_PASSWORD: 'Esqueci minha senha'
+      FORGOT_PASSWORD: 'Esqueci minha senha',
     },
     SEARCH_BAR: {
       SEARCH: {
@@ -95,22 +95,36 @@ const ptBr = {
       TITLE: 'Tony dashboard',
       DESCRIPTION: 'Faça seu login',
       FIELDS: {
-        EMAIL:{
+        EMAIL: {
           LABEL: 'E-mail',
-          PLACEHOLDER: 'Digite seu email'
+          PLACEHOLDER: 'Digite seu email',
         },
-        PASSWORD:{
+        PASSWORD: {
           LABEL: 'Senha',
-          PLACEHOLDER: 'Digite sua senha'
+          PLACEHOLDER: 'Digite sua senha',
         },
       },
     },
     PANEL: {
       USER: {
         SIDEBAR_TITLE: 'Usuários',
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar usuário',
+            ADD: 'Adicionar usuário',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar o usuário',
+            ADD: 'Preencha os campos para criar o usuário',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de usuários',
+          DESCRIPTION: 'Usuários ativos no chatbot',
+        },
       },
-    }
+    },
   },
-}
-
+};
+//"Lista de usuários"
 export default ptBr;

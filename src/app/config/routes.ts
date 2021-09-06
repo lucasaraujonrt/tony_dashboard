@@ -12,9 +12,10 @@ const routes: models.route[] = [
         route: '/lista',
       },
       {
-        id: 'DETAILS',
+        id: 'USER_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
+        sidebarHidden: true,
       },
     ],
   },
@@ -67,6 +68,6 @@ export const routeExist = (route: string): boolean => {
 
 export const getRouteStackPath = (stackId: string, routeId: string): string => {
   const route = routes.find((o) => o.id === stackId);
-  
+
   return `${route?.route}${route?.items.find((o) => o.id === routeId)?.route}`;
 };
