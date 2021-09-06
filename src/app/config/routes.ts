@@ -20,7 +20,7 @@ const routes: models.route[] = [
     ],
   },
   {
-    id: 'EMPRESAS',
+    id: 'COMPANY',
     name: 'Empresas',
     route: '/empresas',
     icon: '/assets/svg/panel-sidebar/ic_users.svg',
@@ -32,7 +32,7 @@ const routes: models.route[] = [
         route: '/lista',
       },
       {
-        id: 'DETAILS',
+        id: 'COMPANY_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
       },
