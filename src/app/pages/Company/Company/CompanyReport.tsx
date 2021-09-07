@@ -74,7 +74,7 @@ const CompanyReport: React.FC = () => {
         <Col lg={6} className="text-right">
           <Link to={getRouteStackPath('COMPANY', 'COMPANY_DETAILS')}>
             <AdvancedButton
-              text="Adicionar empresa"
+              text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}
             />
           </Link>

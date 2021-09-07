@@ -90,6 +90,10 @@ const ptBr = {
     },
   },
 
+  SHARED: {
+    ADD: 'Adicionar',
+  },
+
   PAGES: {
     LOGIN: {
       TITLE: 'Tony dashboard',
