@@ -115,3 +115,19 @@ export interface UserForm {
   cellphone: string;
   profileType: number;
 }
+
+export interface CompanyForm {
+  name: string;
+  fantasyName: string;
+  cellphone: string;
+  email: string;
+  segment: string;
+  address: string;
+  number: string;
+  cep: string;
+  district: string;
+  city: string;
+  uf: string;
+  area: string;
+  cnpj: string;
+}

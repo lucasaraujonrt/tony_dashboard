@@ -6,9 +6,9 @@ import { getRoutes, getStackPath } from '~/config/routes';
 import PanelContentTopBar from '~/components/PanelContentTopBar/PanelContentTopBar';
 import PanelSidebar from '~/components/PanelSidebar/PanelSidebar';
 import UserNavigationStack from '@portal/pages/User/UserNavigationStack';
+import CompanyNavigationStack from '@portal/pages/Company/CompanyNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
-
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -23,9 +23,9 @@ const PanelNavigationStack: React.FC = () => {
     id: '1',
     name: 'Lucas',
     email: 'lucasaraujo8186@gmail.com',
-    password: '123123'
-  }
-  
+    password: '123123',
+  };
+
   return (
     <div className="panel-navigation-stack">
       <div className="panel-navigation-stack__sidebar">
@@ -37,6 +37,10 @@ const PanelNavigationStack: React.FC = () => {
         <Switch>
           <Route path={getStackPath('USER')}>
             <UserNavigationStack />
+          </Route>
+
+          <Route path={getStackPath('COMPANY')}>
+            <CompanyNavigationStack />
           </Route>
         </Switch>
       </div>

@@ -90,6 +90,10 @@ const ptBr = {
     },
   },
 
+  SHARED: {
+    ADD: 'Adicionar',
+  },
+
   PAGES: {
     LOGIN: {
       TITLE: 'Tony dashboard',
@@ -123,6 +127,41 @@ const ptBr = {
           DESCRIPTION: 'Usuários ativos no chatbot',
         },
       },
+      COMPANY: {
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar empresa',
+            ADD: 'Adicionar empresa',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar a empresa',
+            ADD: 'Preencha os campos para criar a empresa',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de empresas',
+          DESCRIPTION: 'Empresas ativas',
+        },
+      },
+    },
+    COMPANY_DETAILS: {
+      TITLE: 'Empresa',
+      DESCRIPTION: 'Criar empresa',
+      LABEL_NAME: 'Nome da empresa',
+      PLACEHOLDER: 'Digite aqui',
+      LABEL_FANTASY: 'Nome fantasia',
+      LABEL_PHONE: 'Telefone',
+      LABEL_EMAIL: 'E-mail',
+      LABEL_SEGMENT: 'Segmento',
+      LABEL_ADDRESS: 'Endereço',
+      LABEL_NUMBER: 'Número',
+      LABEL_CEP: 'CEP',
+      LABEL_DISTRICT: 'Bairro',
+      LABEL_CITY: 'Cidade',
+      LABEL_UF: 'UF',
+      LABEL_AREA: 'Área de atuação',
+      LABEL_CNPJ: 'CNPJ',
+      LABEL_BUTTON: 'Salvar',
     },
     USER_DETAILS: {
       TITLE: 'Usuário',
