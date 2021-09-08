@@ -23,7 +23,7 @@ const routes: models.route[] = [
     id: 'COMPANY',
     name: 'Empresas',
     route: '/empresas',
-    icon: '/assets/svg/panel-sidebar/ic_users.svg',
+    icon: '/assets/svg/panel-sidebar/ic_company.svg',
     iconAlt: 'Empresas',
     items: [
       {
@@ -35,6 +35,7 @@ const routes: models.route[] = [
         id: 'COMPANY_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
+        sidebarHidden: true,
       },
     ],
   },

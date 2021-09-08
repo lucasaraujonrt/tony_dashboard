@@ -26,6 +26,7 @@ const PanelNavigationStack: React.FC = () => {
     password: '123123',
   };
 
+
   return (
     <div className="panel-navigation-stack">
       <div className="panel-navigation-stack__sidebar">

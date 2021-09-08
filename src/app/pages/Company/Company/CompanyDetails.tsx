@@ -3,11 +3,12 @@ import PanelContentHeader from '@portal/components/PanelContentHeader/PanelConte
 import { Col, Container, Row } from 'react-bootstrap';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
-import { maskPhone } from '@portal/services/masks';
+import { maskCEP, maskCnpj, maskPhone } from '@portal/services/masks';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
+import { states } from '@portal/utils/states';
 
 // import { Container } from './styles';
 
@@ -107,6 +108,14 @@ const CompanyDetails: React.FC = () => {
               </Row>
 
               <Row>
+                <Col md={4}>
+                  <AdvancedInput
+                    value={maskCEP(form.cep)}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CEP')}
+                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    onChange={(value: string) => onFormChange('cep', value)}
+                  />
+                </Col>
                 <Col>
                   <AdvancedInput
                     value={form.address}
@@ -121,14 +130,6 @@ const CompanyDetails: React.FC = () => {
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_NUMBER')}
                     placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('number', value)}
-                  />
-                </Col>
-                <Col md={4}>
-                  <AdvancedInput
-                    value={form.cep}
-                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CEP')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
-                    onChange={(value: string) => onFormChange('cep', value)}
                   />
                 </Col>
               </Row>
@@ -152,11 +153,12 @@ const CompanyDetails: React.FC = () => {
                     onChange={(value: string) => onFormChange('city', value)}
                   />
                 </Col>
-                <Col md={1}>
+                <Col md={3}>
                   <AdvancedSelect
                     value={form.uf}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_UF')}
                     onChange={(value: string) => onFormChange('uf', value)}
+                    options={states}
                   />
                 </Col>
               </Row>
@@ -172,7 +174,7 @@ const CompanyDetails: React.FC = () => {
                 </Col>
                 <Col>
                   <AdvancedInput
-                    value={form.cnpj}
+                    value={maskCnpj(form.cnpj)}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_CNPJ')}
                     placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('cnpj', value)}
