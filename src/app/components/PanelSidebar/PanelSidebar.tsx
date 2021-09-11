@@ -19,7 +19,7 @@ const PanelSidebar = (props: IPanelSidebar) => {
 
   const validatePath = () => {
     if (!routeExist(location.pathname)) {
-      window.location.href = getRouteStackPath('USER', 'DETAILS');
+      window.location.href = getRouteStackPath('USER', 'REPORT');
     }
   };
 

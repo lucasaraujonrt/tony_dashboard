@@ -22,6 +22,13 @@ const searchFields: utils.SearchParams[] = [
     defaultValue: '',
   },
   {
+    name: 'document',
+    placeholder: 'CNPJ',
+    type: AdvancedFilterType.TEXT,
+    defaultValue: '',
+    format: '99.999.999/9999-99',
+  },
+  {
     name: 'startDate',
     placeholder: 'Mês/Ano',
     type: AdvancedFilterType.DATE_PICKER,
@@ -30,7 +37,7 @@ const searchFields: utils.SearchParams[] = [
   },
   {
     name: 'profile',
-    placeholder: 'Admin',
+    placeholder: 'Administrador',
     type: AdvancedFilterType.CHECKBOX,
     defaultValue: '',
   },
