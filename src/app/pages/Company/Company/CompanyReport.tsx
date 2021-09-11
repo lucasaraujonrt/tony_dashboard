@@ -22,6 +22,12 @@ const searchFields: utils.SearchParams[] = [
     defaultValue: '',
   },
   {
+    name: 'nameFantasy',
+    placeholder: 'Nome fantasia',
+    type: AdvancedFilterType.TEXT,
+    defaultValue: '',
+  },
+  {
     name: 'document',
     placeholder: 'CNPJ',
     type: AdvancedFilterType.TEXT,
