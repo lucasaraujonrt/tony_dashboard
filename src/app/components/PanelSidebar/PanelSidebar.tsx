@@ -19,7 +19,7 @@ const PanelSidebar = (props: IPanelSidebar) => {
 
   const validatePath = () => {
     if (!routeExist(location.pathname)) {
-      window.location.href = getRouteStackPath('DASHBOARD', 'DETAILS');
+      window.location.href = getRouteStackPath('USER', 'REPORT');
     }
   };
 
@@ -40,7 +40,7 @@ const PanelSidebar = (props: IPanelSidebar) => {
       </div>
       <div className="panel-sidebar__name">
         <span className="panel-sidebar__name__span">
-          {/* {user.me?.synod ? user.me?.synod.name : user.me?.user.name} */}
+          {/* {user.name} */}
           Lucas Trocar
         </span>
       </div>

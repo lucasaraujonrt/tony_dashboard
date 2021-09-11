@@ -1,17 +1,14 @@
 import React, { useEffect } from 'react';
-import { useSelector } from 'react-redux';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { getRoutes, getStackPath } from '~/config/routes';
 
 // components
 import PanelContentTopBar from '~/components/PanelContentTopBar/PanelContentTopBar';
 import PanelSidebar from '~/components/PanelSidebar/PanelSidebar';
-
-//stacks
-// import UserNavigationStack from '~/pages/User/UserNavigationStack';
+import UserNavigationStack from '@portal/pages/User/UserNavigationStack';
+import CompanyNavigationStack from '@portal/pages/Company/CompanyNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
-
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -26,8 +23,9 @@ const PanelNavigationStack: React.FC = () => {
     id: '1',
     name: 'Lucas',
     email: 'lucasaraujo8186@gmail.com',
-    password: '123123'
-  }
+    password: '123123',
+  };
+
 
   return (
     <div className="panel-navigation-stack">
@@ -38,10 +36,13 @@ const PanelNavigationStack: React.FC = () => {
       <div className="panel-navigation-stack__content">
         <PanelContentTopBar user={mock} />
         <Switch>
-
-          {/* <Route path={getStackPath('USER')}>
+          <Route path={getStackPath('USER')}>
             <UserNavigationStack />
-          </Route> */}
+          </Route>
+
+          <Route path={getStackPath('COMPANY')}>
+            <CompanyNavigationStack />
+          </Route>
         </Switch>
       </div>
     </div>

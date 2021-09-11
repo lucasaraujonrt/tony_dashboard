@@ -140,6 +140,10 @@ export const maskCnpj = (value: string) => {
   return value ? Masker.toPattern(value, '99.999.999/9999-99') : '';
 };
 
+export const maskCEP = (value: string) => {
+  return value ? Masker.toPattern(value, '99999-999') : '';
+};
+
 export const maskDate = (value: string | null | undefined) => {
   return value ? Masker.toPattern(value, '99/99/9999') : '';
 };

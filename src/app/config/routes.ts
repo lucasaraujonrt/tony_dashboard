@@ -1,15 +1,41 @@
 const routes: models.route[] = [
   {
-    id: 'DASHBOARD',
-    name: 'PAGES.PANEL.DASHBOARD.SIDEBAR_TITLE',
-    route: '/dashboard',
-    icon: '/assets/svg/panel-sidebar/ic_dashboard.svg',
-    iconAlt: 'Dashboard',
+    id: 'USER',
+    name: 'PAGES.PANEL.USER.SIDEBAR_TITLE',
+    route: '/usuarios',
+    icon: '/assets/svg/panel-sidebar/ic_users.svg',
+    iconAlt: 'Usuários',
     items: [
       {
-        id: 'DETAILS',
+        id: 'REPORT',
+        name: 'Lista de usuários',
+        route: '/lista',
+      },
+      {
+        id: 'USER_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
+        sidebarHidden: true,
+      },
+    ],
+  },
+  {
+    id: 'COMPANY',
+    name: 'Empresas',
+    route: '/empresas',
+    icon: '/assets/svg/panel-sidebar/ic_company.svg',
+    iconAlt: 'Empresas',
+    items: [
+      {
+        id: 'REPORT',
+        name: 'Lista de empresas',
+        route: '/lista',
+      },
+      {
+        id: 'COMPANY_DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+        sidebarHidden: true,
       },
     ],
   },

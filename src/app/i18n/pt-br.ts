@@ -44,7 +44,7 @@ const ptBr = {
       CLEAN: 'limpar',
     },
     LINK: {
-      FORGOT_PASSWORD: 'Esqueci minha senha'
+      FORGOT_PASSWORD: 'Esqueci minha senha',
     },
     SEARCH_BAR: {
       SEARCH: {
@@ -90,22 +90,92 @@ const ptBr = {
     },
   },
 
+  SHARED: {
+    ADD: 'Adicionar',
+  },
+
   PAGES: {
     LOGIN: {
       TITLE: 'Tony dashboard',
       DESCRIPTION: 'Faça seu login',
       FIELDS: {
-        EMAIL:{
+        EMAIL: {
           LABEL: 'E-mail',
-          PLACEHOLDER: 'Digite seu email'
+          PLACEHOLDER: 'Digite seu email',
         },
-        PASSWORD:{
+        PASSWORD: {
           LABEL: 'Senha',
-          PLACEHOLDER: 'Digite seu senha'
+          PLACEHOLDER: 'Digite sua senha',
         },
       },
     },
+    PANEL: {
+      USER: {
+        SIDEBAR_TITLE: 'Usuários',
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar usuário',
+            ADD: 'Adicionar usuário',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar o usuário',
+            ADD: 'Preencha os campos para criar o usuário',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de usuários',
+          DESCRIPTION: 'Usuários ativos no chatbot',
+        },
+      },
+      COMPANY: {
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar empresa',
+            ADD: 'Adicionar empresa',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar a empresa',
+            ADD: 'Preencha os campos para criar a empresa',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de empresas',
+          DESCRIPTION: 'Empresas ativas',
+        },
+      },
+    },
+    COMPANY_DETAILS: {
+      TITLE: 'Empresa',
+      DESCRIPTION: 'Criar empresa',
+      LABEL_NAME: 'Nome da empresa',
+      PLACEHOLDER: 'Digite aqui',
+      LABEL_FANTASY: 'Nome fantasia',
+      LABEL_PHONE: 'Telefone',
+      LABEL_EMAIL: 'E-mail',
+      LABEL_SEGMENT: 'Segmento',
+      LABEL_ADDRESS: 'Endereço',
+      LABEL_NUMBER: 'Número',
+      LABEL_CEP: 'CEP',
+      LABEL_DISTRICT: 'Bairro',
+      LABEL_CITY: 'Cidade',
+      LABEL_UF: 'UF',
+      LABEL_AREA: 'Área de atuação',
+      LABEL_CNPJ: 'CNPJ',
+      LABEL_BUTTON: 'Salvar',
+    },
+    USER_DETAILS: {
+      TITLE: 'Usuário',
+      DESCRIPTION: 'Criar usuário',
+      LABEL_NAME: 'Nome do usuário',
+      PLACEHOLDER: 'Digite aqui',
+      LABEL_PHONE: 'Telefone do usuário',
+      LABEL_PROFILE_TYPE: 'Administrador',
+      LABEL_EMAIL: 'E-mail do usuário',
+      LABEL_PASSWORD: 'Senha do usuário',
+      LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
+      LABEL_BUTTON: 'Salvar',
+    },
   },
-}
-
+};
+//"Lista de usuários"
 export default ptBr;
