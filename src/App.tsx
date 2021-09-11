@@ -17,7 +17,7 @@ const App = () => {
       (state.auth.authToken && state.auth.authToken.token && true) || false
   );
 
-  useEffect(() => void dispatch(checkIsLogged()), []);
+  useEffect(() => void dispatch(checkIsLogged()), [dispatch]);
 
   return <div>{checkLogged && <Router isLogged={isLogged} />}</div>;
 };

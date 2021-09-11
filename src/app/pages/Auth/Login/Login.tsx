@@ -11,10 +11,9 @@ import * as MessageService from '~/services/message';
 import AdvancedButton from '~/components/AdvancedButton/AdvancedButton';
 import AdvancedForm from '~/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '~/components/AdvancedInput/AdvancedInput';
-import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
+// import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
 import { translate } from '~/services/i18n';
 import { validateEmail } from '~/services/validation';
-import { getRouteStackPath } from '@portal/config/routes';
 import { authenticate } from '@portal/store/Auth/action';
 
 const initialValues: models.AuthRequest = {
@@ -44,7 +43,6 @@ const Login: React.FC = () => {
     }
 
     dispatch(authenticate(form));
-    // window.location.href = getRouteStackPath('USER', 'REPORT')
   };
 
   return (
