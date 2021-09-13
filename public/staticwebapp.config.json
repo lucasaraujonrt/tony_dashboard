@@ -1,6 +1,10 @@
 {
     "routes": [
-      { "route": "/usuarios/lista" }
+      { "route": "/" },
+      { "route": "/usuarios/lista" },
+      { "route": "/usuarios/detalhes" },
+      { "route": "/empresas/lista" },
+      { "route": "/empresas/detalhes" }
     ],
     "responseOverrides": {
       "401": {
