@@ -131,3 +131,12 @@ export interface CompanyForm {
   area: string;
   cnpj: string;
 }
+
+export interface ServiceCallForm {
+  priority: string;
+  status: string;
+  description: string;
+  sectorId: string;
+  clientId: string;
+  employeeId: string;
+}

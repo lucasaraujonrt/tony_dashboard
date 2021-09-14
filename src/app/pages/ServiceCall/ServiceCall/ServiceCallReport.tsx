@@ -13,26 +13,35 @@ import NavigationService from '@portal/services/navigation';
 import { CellParams } from '@material-ui/data-grid';
 import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
+import { priority } from '@portal/utils/priority';
+import { status } from '@portal/utils/status';
 
 const searchFields: utils.SearchParams[] = [
   {
-    name: 'name',
-    placeholder: 'Nome',
-    type: AdvancedFilterType.TEXT,
+    name: 'status',
+    placeholder: 'Status',
+    type: AdvancedFilterType.SELECT,
+    defaultValue: '',
+    options: status,
+  },
+  {
+    name: 'clientId',
+    placeholder: 'Cliente',
+    type: AdvancedFilterType.SELECT,
     defaultValue: '',
   },
   {
-    name: 'nameFantasy',
-    placeholder: 'Nome fantasia',
-    type: AdvancedFilterType.TEXT,
+    name: 'priority',
+    placeholder: 'Prioridade',
+    type: AdvancedFilterType.SELECT,
     defaultValue: '',
+    options: priority,
   },
   {
-    name: 'document',
-    placeholder: 'CNPJ',
-    type: AdvancedFilterType.TEXT,
+    name: 'sectorId',
+    placeholder: 'Setor',
+    type: AdvancedFilterType.SELECT,
     defaultValue: '',
-    format: '99.999.999/9999-99',
   },
   {
     name: 'startDate',
@@ -40,12 +49,6 @@ const searchFields: utils.SearchParams[] = [
     type: AdvancedFilterType.DATE_PICKER,
     defaultValue: '',
     format: 'dd/MM/yyyy',
-  },
-  {
-    name: 'profile',
-    placeholder: 'Administrador',
-    type: AdvancedFilterType.CHECKBOX,
-    defaultValue: '',
   },
 ];
 
@@ -58,7 +61,7 @@ const initialValues = {
   limit: 10,
 };
 
-const CompanyReport: React.FC = () => {
+const ServiceCallReport: React.FC = () => {
   const [advancedFilters, setAdvancedFilters] = useState(initialValues);
 
   const onSearch = (filters: any) => {
@@ -78,14 +81,14 @@ const CompanyReport: React.FC = () => {
       <Row>
         <Col>
           <PanelContentHeader
-            pageTitle={translate('PAGES.PANEL.COMPANY.REPORT.TITLE')}
+            pageTitle={translate('PAGES.PANEL.SERVICE_CALL.REPORT.TITLE')}
             pageDescription={translate(
-              'PAGES.PANEL.COMPANY.REPORT.DESCRIPTION'
+              'PAGES.PANEL.SERVICE_CALL.REPORT.DESCRIPTION'
             )}
           />
         </Col>
         <Col lg={6} className="text-right">
-          <Link to={getRouteStackPath('COMPANY', 'COMPANY_DETAILS')}>
+          <Link to={getRouteStackPath('SERVICE_CALL', 'SERVICE_CALL_DETAILS')}>
             <AdvancedButton
               text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}
@@ -135,8 +138,8 @@ const CompanyReport: React.FC = () => {
                         <DataTableActions
                           row={o.row}
                           basePath={getRouteStackPath(
-                            'COMPANY',
-                            'COMPANY_DETAILS'
+                            'SERVICE_CALL',
+                            'SERVICE_CALL_DETAILS'
                           )}
                           onRemove={onRemove}
                         />
@@ -165,4 +168,4 @@ const CompanyReport: React.FC = () => {
   );
 };
 
-export default CompanyReport;
+export default ServiceCallReport;

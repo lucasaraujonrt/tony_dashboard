@@ -1,5 +1,25 @@
 const routes: models.route[] = [
   {
+    id: 'SERVICE_CALL',
+    name: 'Chamados',
+    route: '/chamado',
+    icon: '/assets/svg/panel-sidebar/ic_service_call.svg',
+    iconAlt: 'Chamado',
+    items: [
+      {
+        id: 'REPORT',
+        name: 'Lista de chamados',
+        route: '/lista',
+      },
+      {
+        id: 'SERVICE_CALL_DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+        sidebarHidden: true,
+      },
+    ],
+  },
+  {
     id: 'USER',
     name: 'PAGES.PANEL.USER.SIDEBAR_TITLE',
     route: '/usuarios',

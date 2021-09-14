@@ -143,6 +143,22 @@ const ptBr = {
           DESCRIPTION: 'Empresas ativas',
         },
       },
+      SERVICE_CALL: {
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar chamado',
+            ADD: 'Adicionar chamado',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar o chamado',
+            ADD: 'Preencha os campos para criar o chamado',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de chamados',
+          DESCRIPTION: 'Chamados ativos',
+        },
+      },
     },
     COMPANY_DETAILS: {
       TITLE: 'Empresa',
@@ -175,7 +191,19 @@ const ptBr = {
       LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
       LABEL_BUTTON: 'Salvar',
     },
+    SERVICE_CALL_DETAILS: {
+      TITLE: 'Chamado',
+      DESCRIPTION: 'Criar chamado',
+      LABEL_PRIORITY: 'Prioridade',
+      PLACEHOLDER: 'Digite aqui',
+      LABEL_STATUS: 'Status',
+      LABEL_DESCRIPTION: 'Descrição',
+      LABEL_SECTOR: 'Setor',
+      LABEL_CLIENT: 'Cliente',
+      LABEL_EMPLOYEE: 'Colaborador',
+      LABEL_BUTTON: 'Salvar',
+    },
   },
 };
-//"Lista de usuários"
+
 export default ptBr;

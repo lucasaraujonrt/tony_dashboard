@@ -1,5 +1,5 @@
 import React from 'react';
-import { useReduxState } from '~/hooks/useReduxState';
+// import { useReduxState } from '~/hooks/useReduxState';
 import { Link, useLocation } from 'react-router-dom';
 
 import { translate } from '~/services/i18n';
@@ -10,7 +10,7 @@ export interface IProps {
 
 const PanelSidebarMenu: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
-  const { user } = useReduxState();
+  // const { user } = useReduxState();
 
   const isActive = (path: string) => path === location.pathname;
 

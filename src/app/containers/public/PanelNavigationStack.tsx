@@ -7,6 +7,7 @@ import PanelContentTopBar from '~/components/PanelContentTopBar/PanelContentTopB
 import PanelSidebar from '~/components/PanelSidebar/PanelSidebar';
 import UserNavigationStack from '@portal/pages/User/UserNavigationStack';
 import CompanyNavigationStack from '@portal/pages/Company/CompanyNavigationStack';
+import ServiceCallNavigationStack from '@portal/pages/ServiceCall/ServiceCallNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
   const { pathname } = useLocation();
@@ -26,7 +27,6 @@ const PanelNavigationStack: React.FC = () => {
     password: '123123',
   };
 
-
   return (
     <div className="panel-navigation-stack">
       <div className="panel-navigation-stack__sidebar">
@@ -42,6 +42,10 @@ const PanelNavigationStack: React.FC = () => {
 
           <Route path={getStackPath('COMPANY')}>
             <CompanyNavigationStack />
+          </Route>
+
+          <Route path={getStackPath('SERVICE_CALL')}>
+            <ServiceCallNavigationStack />
           </Route>
         </Switch>
       </div>

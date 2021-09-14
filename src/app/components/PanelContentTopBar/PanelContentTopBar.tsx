@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
-import { useReduxState } from '@portal/hooks/useReduxState';
+import React from 'react';
+// import { useReduxState } from '@portal/hooks/useReduxState';
 import { Popover } from 'antd';
-import { useDispatch } from 'react-redux';
+// import { useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import UserIcon from '~/assets/svg/ic_user.svg';
 import { translate } from '~/services/i18n';
@@ -12,7 +12,7 @@ interface IProps {
 
 const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const onLogout = () => {
     // dispatch(AuthActions.logout());

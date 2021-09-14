@@ -20,7 +20,7 @@ axiosInstance.interceptors.response.use(
   async (err) => {
     if (err.response.status === 401) {
       try {
-        const payload: any = StorageService.getItem('session-token');
+        StorageService.getItem('session-token');
         // await storeCreator.dispatch(AuthActions.refreshToken(payload));
         window.location.reload();
         await Axios(err.config);
