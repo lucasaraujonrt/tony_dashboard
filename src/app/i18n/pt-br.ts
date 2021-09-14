@@ -92,6 +92,8 @@ const ptBr = {
 
   SHARED: {
     ADD: 'Adicionar',
+    PLACEHOLDER: 'Digite aqui',
+    SAVE: 'Salvar',
   },
 
   PAGES: {
@@ -159,12 +161,27 @@ const ptBr = {
           DESCRIPTION: 'Chamados ativos',
         },
       },
+      SECTOR: {
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar setor',
+            ADD: 'Adicionar setor',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar o setor',
+            ADD: 'Preencha os campos para criar o setor',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de setores',
+          DESCRIPTION: 'Setores ativos',
+        },
+      },
     },
     COMPANY_DETAILS: {
       TITLE: 'Empresa',
       DESCRIPTION: 'Criar empresa',
       LABEL_NAME: 'Nome da empresa',
-      PLACEHOLDER: 'Digite aqui',
       LABEL_FANTASY: 'Nome fantasia',
       LABEL_PHONE: 'Telefone',
       LABEL_EMAIL: 'E-mail',
@@ -177,31 +194,31 @@ const ptBr = {
       LABEL_UF: 'UF',
       LABEL_AREA: 'Área de atuação',
       LABEL_CNPJ: 'CNPJ',
-      LABEL_BUTTON: 'Salvar',
     },
     USER_DETAILS: {
       TITLE: 'Usuário',
       DESCRIPTION: 'Criar usuário',
       LABEL_NAME: 'Nome do usuário',
-      PLACEHOLDER: 'Digite aqui',
       LABEL_PHONE: 'Telefone do usuário',
       LABEL_PROFILE_TYPE: 'Administrador',
       LABEL_EMAIL: 'E-mail do usuário',
       LABEL_PASSWORD: 'Senha do usuário',
       LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
-      LABEL_BUTTON: 'Salvar',
     },
     SERVICE_CALL_DETAILS: {
       TITLE: 'Chamado',
       DESCRIPTION: 'Criar chamado',
       LABEL_PRIORITY: 'Prioridade',
-      PLACEHOLDER: 'Digite aqui',
       LABEL_STATUS: 'Status',
       LABEL_DESCRIPTION: 'Descrição',
       LABEL_SECTOR: 'Setor',
       LABEL_CLIENT: 'Cliente',
       LABEL_EMPLOYEE: 'Colaborador',
-      LABEL_BUTTON: 'Salvar',
+    },
+    SECTOR_DETAILS: {
+      TITLE: 'Setor',
+      DESCRIPTION: 'Criar setor',
+      LABEL_NAME: 'Nome do setor',
     },
   },
 };

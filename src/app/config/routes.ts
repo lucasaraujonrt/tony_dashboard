@@ -59,6 +59,26 @@ const routes: models.route[] = [
       },
     ],
   },
+  {
+    id: 'SECTOR',
+    name: 'Setores',
+    route: '/setores',
+    icon: '/assets/svg/panel-sidebar/ic_sector.svg',
+    iconAlt: 'Setores',
+    items: [
+      {
+        id: 'REPORT',
+        name: 'Lista de setores',
+        route: '/lista',
+      },
+      {
+        id: 'SECTOR_DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+        sidebarHidden: true,
+      },
+    ],
+  },
 ];
 
 export const getRoutes = (): models.route[] => routes;

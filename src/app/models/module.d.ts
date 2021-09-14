@@ -140,3 +140,7 @@ export interface ServiceCallForm {
   clientId: string;
   employeeId: string;
 }
+
+export interface SectorForm {
+  name: string;
+}

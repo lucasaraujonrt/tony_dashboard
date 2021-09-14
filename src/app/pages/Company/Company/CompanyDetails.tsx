@@ -59,7 +59,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.name}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_NAME')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('name', value)}
                   />
                 </Col>
@@ -68,7 +68,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.fantasyName}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_FANTASY')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('fantasyName', value)
                     }
@@ -78,7 +78,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={maskPhone(form.cellphone)}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_PHONE')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('cellphone', value)
                     }
@@ -91,7 +91,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.email}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_EMAIL')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('email', value)}
                   />
                 </Col>
@@ -99,7 +99,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={maskCnpj(form.cnpj)}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_CNPJ')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('cnpj', value)}
                   />
                 </Col>
@@ -110,7 +110,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={maskCEP(form.cep)}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_CEP')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('cep', value)}
                   />
                 </Col>
@@ -118,7 +118,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.address}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_ADDRESS')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('address', value)}
                   />
                 </Col>
@@ -126,7 +126,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.number}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_NUMBER')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('number', value)}
                   />
                 </Col>
@@ -137,7 +137,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.district}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_DISTRICT')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('district', value)
                     }
@@ -147,7 +147,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.city}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_CITY')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('city', value)}
                   />
                 </Col>
@@ -166,7 +166,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.area}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_AREA')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('area', value)}
                   />
                 </Col>
@@ -174,7 +174,7 @@ const CompanyDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.segment}
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_SEGMENT')}
-                    placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('segment', value)}
                   />
                 </Col>
@@ -185,7 +185,7 @@ const CompanyDetails: React.FC = () => {
                   <Col className="text-right">
                     <AdvancedButton
                       type="submit"
-                      text={translate('PAGES.COMPANY_DETAILS.LABEL_BUTTON')}
+                      text={translate('SHARED.SAVE')}
                     />
                   </Col>
                 </Row>

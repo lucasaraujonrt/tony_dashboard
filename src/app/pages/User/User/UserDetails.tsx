@@ -54,7 +54,7 @@ const UserDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.name}
                     label={translate('PAGES.USER_DETAILS.LABEL_NAME')}
-                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('name', value)}
                   />
                 </Col>
@@ -62,7 +62,7 @@ const UserDetails: React.FC = () => {
                   <AdvancedInput
                     value={maskPhone(form.cellphone)}
                     label={translate('PAGES.USER_DETAILS.LABEL_PHONE')}
-                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('cellphone', value)
                     }
@@ -84,7 +84,7 @@ const UserDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.email}
                     label={translate('PAGES.USER_DETAILS.LABEL_EMAIL')}
-                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('email', value)}
                   />
                 </Col>
@@ -95,7 +95,7 @@ const UserDetails: React.FC = () => {
                   <AdvancedInput
                     value={form.password}
                     label={translate('PAGES.USER_DETAILS.LABEL_PASSWORD')}
-                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('password', value)
                     }
@@ -108,7 +108,7 @@ const UserDetails: React.FC = () => {
                     label={translate(
                       'PAGES.USER_DETAILS.LABEL_CONFIRM_PASSWORD'
                     )}
-                    placeholder={translate('PAGES.USER_DETAILS.PLACEHOLDER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={setConfirmPassword}
                     type="password"
                   />
@@ -120,7 +120,7 @@ const UserDetails: React.FC = () => {
                   <Col className="text-right">
                     <AdvancedButton
                       type="submit"
-                      text={translate('PAGES.USER_DETAILS.LABEL_BUTTON')}
+                      text={translate('SHARED.SAVE')}
                     />
                   </Col>
                 </Row>
