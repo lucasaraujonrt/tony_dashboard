@@ -10,8 +10,6 @@ import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
 import { states } from '@portal/utils/states';
 
-// import { Container } from './styles';
-
 const initialValues: models.CompanyForm = {
   name: '',
   fantasyName: '',
@@ -99,10 +97,10 @@ const CompanyDetails: React.FC = () => {
                 </Col>
                 <Col>
                   <AdvancedInput
-                    value={form.segment}
-                    label={translate('PAGES.COMPANY_DETAILS.LABEL_SEGMENT')}
+                    value={maskCnpj(form.cnpj)}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CNPJ')}
                     placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
-                    onChange={(value: string) => onFormChange('segment', value)}
+                    onChange={(value: string) => onFormChange('cnpj', value)}
                   />
                 </Col>
               </Row>
@@ -174,10 +172,10 @@ const CompanyDetails: React.FC = () => {
                 </Col>
                 <Col>
                   <AdvancedInput
-                    value={maskCnpj(form.cnpj)}
-                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CNPJ')}
+                    value={form.segment}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_SEGMENT')}
                     placeholder={translate('PAGES.COMPANY_DETAILS.PLACEHOLDER')}
-                    onChange={(value: string) => onFormChange('cnpj', value)}
+                    onChange={(value: string) => onFormChange('segment', value)}
                   />
                 </Col>
               </Row>

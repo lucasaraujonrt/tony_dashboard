@@ -7,6 +7,7 @@ import { maskPhone } from '@portal/services/masks';
 import AdvancedCheckbox from '@portal/components/AdvancedCheckbox/AdvancedCheckbox';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { translate } from '@portal/services/i18n';
+import { Divider } from 'antd';
 
 // import { Container } from './styles';
 
@@ -46,6 +47,7 @@ const UserDetails: React.FC = () => {
       <Row>
         <Col lg={8}>
           <AdvancedForm onSubmit={onFormSubmit}>
+            <Divider />
             <div className="details__form">
               <Row>
                 <Col>
