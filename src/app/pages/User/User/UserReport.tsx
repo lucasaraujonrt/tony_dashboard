@@ -30,7 +30,7 @@ const searchFields: utils.SearchParams[] = [
   },
   {
     name: 'profile',
-    placeholder: 'Admin',
+    placeholder: 'Administrador',
     type: AdvancedFilterType.CHECKBOX,
     defaultValue: '',
   },

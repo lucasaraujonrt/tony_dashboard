@@ -57,9 +57,7 @@ const ServiceCallDetails: React.FC = () => {
                     label={translate(
                       'PAGES.SERVICE_CALL_DETAILS.LABEL_DESCRIPTION'
                     )}
-                    placeholder={translate(
-                      'PAGES.SERVICE_CALL_DETAILS.PLACEHOLDER'
-                    )}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('description', value)
                     }
@@ -130,9 +128,7 @@ const ServiceCallDetails: React.FC = () => {
                   <Col className="text-right">
                     <AdvancedButton
                       type="submit"
-                      text={translate(
-                        'PAGES.SERVICE_CALL_DETAILS.LABEL_BUTTON'
-                      )}
+                      text={translate('SHARED.SAVE')}
                     />
                   </Col>
                 </Row>
