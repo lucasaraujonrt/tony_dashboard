@@ -125,7 +125,7 @@ const ptBr = {
           },
         },
         REPORT: {
-          TITLE: 'Lista de usuários',
+          TITLE: 'Lista de usuários comuns',
           DESCRIPTION: 'Usuários ativos no chatbot',
         },
       },
@@ -177,6 +177,22 @@ const ptBr = {
           DESCRIPTION: 'Setores ativos',
         },
       },
+      EMPLOYEE: {
+        DETAILS: {
+          TITLE: {
+            EDIT: 'Editar colaborador',
+            ADD: 'Adicionar colaborador',
+          },
+          DESCRIPTION: {
+            EDIT: 'Altere os campos para editar o colaborador',
+            ADD: 'Preencha os campos para criar o colaborador',
+          },
+        },
+        REPORT: {
+          TITLE: 'Lista de colaboradores',
+          DESCRIPTION: 'Colaboradores ativos',
+        },
+      },
     },
     COMPANY_DETAILS: {
       TITLE: 'Empresa',
@@ -198,11 +214,22 @@ const ptBr = {
     USER_DETAILS: {
       TITLE: 'Usuário',
       DESCRIPTION: 'Criar usuário',
-      LABEL_NAME: 'Nome do usuário',
-      LABEL_PHONE: 'Telefone do usuário',
+      LABEL_NAME: 'Nome',
+      LABEL_PHONE: 'Telefone',
       LABEL_PROFILE_TYPE: 'Administrador',
-      LABEL_EMAIL: 'E-mail do usuário',
-      LABEL_PASSWORD: 'Senha do usuário',
+      LABEL_EMAIL: 'E-mail',
+      LABEL_PASSWORD: 'Senha',
+      LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
+    },
+    EMPLOYEE_DETAILS: {
+      TITLE: 'Colaborador',
+      DESCRIPTION: 'Criar colaborador',
+      LABEL_NAME: 'Nome',
+      LABEL_TYPE: 'Tipo de perfil',
+      LABEL_PHONE: 'Telefone',
+      LABEL_EMAIL: 'E-mail',
+      LABEL_COMPANY: 'Empresa',
+      LABEL_PASSWORD: 'Senha',
       LABEL_CONFIRM_PASSWORD: 'Confirme a senha',
     },
     SERVICE_CALL_DETAILS: {
