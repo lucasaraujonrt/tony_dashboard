@@ -28,13 +28,24 @@ const routes: models.route[] = [
     items: [
       {
         id: 'REPORT',
-        name: 'Lista de usuários',
+        name: 'Lista de usuários comuns',
         route: '/lista',
       },
       {
         id: 'USER_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
+        sidebarHidden: true,
+      },
+      {
+        id: 'EMPLOYEE_REPORT',
+        name: 'Lista de colaboradores',
+        route: '/colaboradores/lista',
+      },
+      {
+        id: 'EMPLOYEE_DETAILS',
+        name: 'Informações Gerais',
+        route: '/colaboradores/detalhes',
         sidebarHidden: true,
       },
     ],

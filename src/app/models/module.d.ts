@@ -116,6 +116,15 @@ export interface UserForm {
   profileType: number;
 }
 
+export interface EmployeeForm {
+  name: string;
+  email: string;
+  password: string;
+  cellphone: string;
+  company: string;
+  profileType: string;
+}
+
 export interface CompanyForm {
   name: string;
   fantasyName: string;

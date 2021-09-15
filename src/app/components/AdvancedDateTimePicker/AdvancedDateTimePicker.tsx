@@ -1,5 +1,8 @@
 import React from 'react';
-import { KeyboardDateTimePicker, KeyboardTimePicker } from '@material-ui/pickers';
+import {
+  KeyboardDateTimePicker,
+  KeyboardTimePicker,
+} from '@material-ui/pickers';
 
 const AdvancedDateTimePicker = ({
   value,
@@ -8,6 +11,7 @@ const AdvancedDateTimePicker = ({
   onChange,
   time,
   hint,
+  InputProps,
 }: any) => {
   return (
     <div className="advanced-date-time-picker">
@@ -34,6 +38,7 @@ const AdvancedDateTimePicker = ({
           format="dd/MM/yyyy HH:mm"
           inputVariant={variant}
           autoOk
+          InputProps={InputProps}
         />
       )}
       {hint}
