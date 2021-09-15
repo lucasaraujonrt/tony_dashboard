@@ -15,9 +15,9 @@ import { DownOutlined, SearchOutlined } from '@ant-design/icons';
 import AdvancedForm from '~/components/AdvancedForm/AdvancedForm';
 
 type IProps = {
-  fields?: any[],
-  onSearch?: any,
-  defaultFields?: any,
+  fields?: any[];
+  onSearch?: any;
+  defaultFields?: any;
 };
 
 export const defaultFields = {
@@ -30,7 +30,9 @@ export const defaultFields = {
 
 const AdvancedFilter: React.FC<IProps> = (props: IProps) => {
   const parseValues = () => {
-    const formattedFields: any = props.fields?.map(o => ({ [o.name]: o.defaultValue || '' }));
+    const formattedFields: any = props.fields?.map((o) => ({
+      [o.name]: o.defaultValue || '',
+    }));
     return formattedFields.reduce((result: any, item: any) => {
       const key: any = Object.keys(item)[0];
       result[key] = item[key];
@@ -87,23 +89,37 @@ const AdvancedFilter: React.FC<IProps> = (props: IProps) => {
   };
 
   const meetsCondition = (field: any) => {
-    return (!field.conditionalField || (field.conditionalField && form[field.conditionalField]));
+    return (
+      !field.conditionalField ||
+      (field.conditionalField && form[field.conditionalField])
+    );
   };
-  
+
   return (
     <div className="advanced-filter__wrapper">
-      <Accordion style={{ boxShadow: 'none', border: '1px solid rgba(224, 224, 224, 1)' }}>
+      <Accordion
+        style={{
+          boxShadow: 'none',
+          border: '1px solid rgba(224, 224, 224, 1)',
+        }}
+      >
         <AccordionSummary
           expandIcon={<DownOutlined style={{ fontSize: 12 }} />}
           aria-controls="panel1a-content"
           id="panel1a-header"
         >
-          <strong>{props.fields && props.fields?.length > 1 ? 'Filtros avançados' : 'Filtro avançado'}</strong>
+          <strong>
+            {props.fields && props.fields?.length > 1
+              ? 'Filtros avançados'
+              : 'Filtro avançado'}
+          </strong>
         </AccordionSummary>
         <AccordionDetails>
           <AdvancedForm
             className="advanced-filter"
-            onSubmit={() => props.onSearch ? props.onSearch(cleanResponse(form)) : {}}
+            onSubmit={() =>
+              props.onSearch ? props.onSearch(cleanResponse(form)) : {}
+            }
           >
             <div className="advanced-filter__fields">
               {props.fields?.map((field, fieldIndex) => (
@@ -111,46 +127,60 @@ const AdvancedFilter: React.FC<IProps> = (props: IProps) => {
                   key={fieldIndex.toString()}
                   className="advanced-filter__fields__single"
                 >
-                  {field.type === AdvancedFilterType.TEXT && meetsCondition(field) && (
-                    <div className="advanced-filter__fields__single__inner">
-                      <AdvancedInput
-                        label={field.placeholder || 'Digite um valor'}
-                        onChange={(val: string) => onFormChange(field.name, field.formatter ? field.formatter(val) : val)}
-                        value={(form && form[field.name]) || ''}
-                      />
-                    </div>
-                  )}
-                  {field.type === AdvancedFilterType.SELECT && meetsCondition(field) && (
-                    <div className="advanced-filter__fields__single__inner">
-                      <AdvancedSelect
-                        label={field.placeholder || 'Selecione um valor'}
-                        onChange={(val: string) => onFormChange(field.name, val)}
-                        value={(form && form[field.name]) || ''}
-                        options={field.options}
-                        showEmpty
-                      />
-                    </div>
-                  )}
-                  {field.type === AdvancedFilterType.DATE_PICKER && meetsCondition(field) && (
-                    <div className="advanced-filter__fields__single__inner">
-                      <AdvancedDateTimePicker
-                        label={field.placeholder || 'Selecione uma data'}
-                        onChange={(val: any) => onFormChange(field.name, formatISO(val))}
-                        value={(form && form[field.name]) || null}
-                        format={field.format}
-                      />
-                    </div>
-                  )}
-                  {field.type === AdvancedFilterType.CHECKBOX && meetsCondition(field) && (
-                    <div className="advanced-filter__fields__single__inner">
-                      <AdvancedCheckbox
-                        label={field.placeholder}
-                        onChange={(val: any) => onFormChange(field.name, val)}
-                        value={(form && form[field.name]) || false}
-                        format={field.format}
-                      />
-                    </div>
-                  )}
+                  {field.type === AdvancedFilterType.TEXT &&
+                    meetsCondition(field) && (
+                      <div className="advanced-filter__fields__single__inner">
+                        <AdvancedInput
+                          label={field.placeholder || 'Digite um valor'}
+                          onChange={(val: string) =>
+                            onFormChange(
+                              field.name,
+                              field.formatter ? field.formatter(val) : val
+                            )
+                          }
+                          value={(form && form[field.name]) || ''}
+                        />
+                      </div>
+                    )}
+                  {field.type === AdvancedFilterType.SELECT &&
+                    meetsCondition(field) && (
+                      <div className="advanced-filter__fields__single__inner">
+                        <AdvancedSelect
+                          label={field.placeholder || 'Selecione um valor'}
+                          onChange={(val: string) =>
+                            onFormChange(field.name, val)
+                          }
+                          value={(form && form[field.name]) || ''}
+                          options={field.options}
+                          showEmpty
+                        />
+                      </div>
+                    )}
+                  {field.type === AdvancedFilterType.DATE_PICKER &&
+                    meetsCondition(field) && (
+                      <div className="advanced-filter__fields__single__inner">
+                        <AdvancedDateTimePicker
+                          label={field.placeholder || 'Selecione uma data'}
+                          onChange={(val: any) =>
+                            onFormChange(field.name, formatISO(val))
+                          }
+                          value={(form && form[field.name]) || null}
+                          format={field.format}
+                          InputProps={{ readOnly: true }}
+                        />
+                      </div>
+                    )}
+                  {field.type === AdvancedFilterType.CHECKBOX &&
+                    meetsCondition(field) && (
+                      <div className="advanced-filter__fields__single__inner">
+                        <AdvancedCheckbox
+                          label={field.placeholder}
+                          onChange={(val: any) => onFormChange(field.name, val)}
+                          value={(form && form[field.name]) || false}
+                          format={field.format}
+                        />
+                      </div>
+                    )}
                 </div>
               ))}
             </div>
@@ -164,7 +194,9 @@ const AdvancedFilter: React.FC<IProps> = (props: IProps) => {
               </div>
               <AdvancedButton
                 text="Filtrar"
-                onClick={() => props.onSearch ? props.onSearch(cleanResponse(form)) : {}}
+                onClick={() =>
+                  props.onSearch ? props.onSearch(cleanResponse(form)) : {}
+                }
                 endIcon={<SearchOutlined />}
                 type="submit"
               />

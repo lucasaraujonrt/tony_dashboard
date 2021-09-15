@@ -13,6 +13,7 @@ import NavigationService from '@portal/services/navigation';
 import { CellParams } from '@material-ui/data-grid';
 import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
+import { profileType } from '@portal/utils/profileType';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -26,6 +27,13 @@ const searchFields: utils.SearchParams[] = [
     placeholder: 'Empresa',
     type: AdvancedFilterType.SELECT,
     defaultValue: '',
+  },
+  {
+    name: 'profileType',
+    placeholder: 'Tipo de perfil',
+    type: AdvancedFilterType.SELECT,
+    defaultValue: '',
+    options: profileType,
   },
   {
     name: 'startDate',
