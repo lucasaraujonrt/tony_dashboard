@@ -9,6 +9,7 @@ import UserNavigationStack from '@portal/pages/User/UserNavigationStack';
 import CompanyNavigationStack from '@portal/pages/Company/CompanyNavigationStack';
 import ServiceCallNavigationStack from '@portal/pages/ServiceCall/ServiceCallNavigationStack';
 import SectorNavigationStack from '@portal/pages/Sector/SectorNavigationStack';
+import KanbanNavigationStack from '@portal/pages/Kanban/KanbanNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
   const { pathname } = useLocation();
@@ -51,6 +52,10 @@ const PanelNavigationStack: React.FC = () => {
 
           <Route path={getStackPath('SECTOR')}>
             <SectorNavigationStack />
+          </Route>
+
+          <Route path={getStackPath('KANBAN')}>
+            <KanbanNavigationStack />
           </Route>
         </Switch>
       </div>
