@@ -19,10 +19,11 @@ const PanelSidebar = (props: IPanelSidebar) => {
 
   useEffect(() => {
     const validatePath = () => {
-    if (!routeExist(location.pathname)) {
-      window.location.href = getRouteStackPath('USER', 'REPORT');
-    }
-  };
+      if (!routeExist(location.pathname)) {
+        // window.location.href = getRouteStackPath('USER', 'REPORT');
+      }
+      console.log(!routeExist(location.pathname));
+    };
     validatePath();
   }, [location.pathname]);
 

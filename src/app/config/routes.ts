@@ -20,6 +20,22 @@ const routes: models.route[] = [
     ],
   },
   {
+    id: 'KANBAN',
+    name: 'Kanban',
+    route: '/kanban',
+    hide: true,
+    icon: '/assets/svg/panel-sidebar/ic_service_call.svg',
+    iconAlt: 'Kanban',
+    items: [
+      {
+        id: 'KANBAN_DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+        sidebarHidden: true,
+      },
+    ],
+  },
+  {
     id: 'USER',
     name: 'PAGES.PANEL.USER.SIDEBAR_TITLE',
     route: '/usuarios',

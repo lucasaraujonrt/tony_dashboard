@@ -193,6 +193,10 @@ const ptBr = {
           DESCRIPTION: 'Colaboradores ativos',
         },
       },
+      KANBAN: {
+        TITLE: 'Kanban',
+        DESCRIPTION: 'Chamados no Kanban',
+      },
     },
     COMPANY_DETAILS: {
       TITLE: 'Empresa',
