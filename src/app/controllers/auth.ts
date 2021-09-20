@@ -5,21 +5,21 @@ import getInstance from '../api/instance';
 const AuthApi = {
   login: async (user: models.AuthRequest) => {
     const instance = getInstance();
-    const { data } = await instance.post('/auth', user);
-
-    return data;
-  },
-
-  me: async () => {
-    const instance = getInstance();
-    const { data } = await instance.get(`${API_URL}/user/me`);
+    const { data } = await instance.post('/dashAuth', user);
 
     return data;
   },
 
   refreshToken: async (user: any) => {
     const instance = getInstance();
-    const { data } = await instance.post(`${LOGIN_API_URL}/refresh`, user);
+    const { data } = await instance.post('/dashAuth/refresh', user);
+
+    return data;
+  },
+
+  logout: async (user: any) => {
+    const instance = getInstance();
+    const { data } = await instance.post('/dashAuth/revoke', user);
 
     return data;
   },

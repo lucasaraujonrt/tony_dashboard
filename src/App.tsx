@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import Router from './router';
 import { checkIsLogged } from '@portal/store/Auth/action';
+import { useReduxState } from '@portal/hooks/useReduxState';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -12,14 +13,20 @@ const App = () => {
     (state: reducers.rootReducer) => state.auth.checkLogged
   );
 
-  const isLogged: boolean = useSelector(
-    (state: reducers.rootReducer) =>
-      (state.auth.authToken && state.auth.authToken.token && true) || false
-  );
+  let logged = false;
+  const isLogged = useReduxState().auth.authToken
+  if (isLogged.accessToken) {
+    logged = true
+  }
 
-  useEffect(() => void dispatch(checkIsLogged()), [dispatch]);
+  useEffect(() => {
+    const handleCheck = () => {
+       dispatch(checkIsLogged())
+    }
+    handleCheck();
+  }, []);
 
-  return <div>{checkLogged && <Router isLogged={isLogged} />}</div>;
+  return <div>{checkLogged && <Router isLogged={logged} />}</div>;
 };
 
 export default App;

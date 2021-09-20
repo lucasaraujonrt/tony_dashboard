@@ -5,6 +5,7 @@ import * as MessageService from '~/services/message';
 import * as StorageService from '~/services/storage';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { AUTH_CHECK_LOGGED, AUTH_LOGIN, AUTH_LOGOUT } from '../actionTypes';
+import { getMe } from '../User/action';
 
 export const authenticate = (userData: models.AuthRequest) => async (
   dispatch: any
@@ -28,7 +29,7 @@ export const authenticate = (userData: models.AuthRequest) => async (
     MessageService.success('PAGES.AUTH.LOGIN.MESSAGES.WELCOME');
 
     window.location.href = getRouteStackPath('USER', 'REPORT');
-    // dispatch(getMe());
+    dispatch(getMe());
   } catch (err) {
     if (err && err.response) {
       MessageService.error(err.response.message);
@@ -64,8 +65,9 @@ export const refreshToken = (userData: any) => async (dispatch: any) => {
 export const logout = () => async (dispatch: any) => {
   dispatch(increaseLoading());
   try {
+    const accessToken = await StorageService.getItem('session-token');
+    await AuthRequests.logout(accessToken)
     StorageService.removeItem('session-token');
-
     dispatch({
       type: AUTH_LOGOUT,
     });
@@ -78,10 +80,11 @@ export const logout = () => async (dispatch: any) => {
   }
 };
 
-export const checkIsLogged = () => async (dispatch: any) => {
+export const checkIsLogged = () => (dispatch: any) => {
   dispatch(increaseLoading());
   try {
     const token = StorageService.getItem('session-token');
+    console.log('token', token)
     if (token) {
       setAuthorizationHeader(token.accessToken as string);
       dispatch({
@@ -92,8 +95,8 @@ export const checkIsLogged = () => async (dispatch: any) => {
   } finally {
     dispatch({
       type: AUTH_CHECK_LOGGED,
+      payload: true,
     });
-
     dispatch(decreaseLoading());
   }
 };

@@ -27,6 +27,7 @@ const AdvancedInput = ({
         type={type}
         InputLabelProps={InputLabelProps}
         disabled={disabled}
+        
       />
     </div>
   );

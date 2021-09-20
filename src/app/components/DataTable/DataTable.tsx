@@ -88,7 +88,7 @@ const DataTable: React.FC<IProps> = (props: IProps) => {
         disableSelectionOnClick
         disableColumnMenu
         disableMultipleColumnsSorting
-        disableExtendRowFullWidth
+        // disableExtendRowFullWidth
         pagination
         localeText={{
           footerPaginationRowsPerPage: translate('COMPONENTS.DATA_TABLE.FOOTER.ROWS_PER_PAGE'),

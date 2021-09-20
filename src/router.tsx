@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { getMe } from '@portal/store/User/action';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import PanelNavigationStack from '~/containers/public/PanelNavigationStack';
@@ -10,19 +11,21 @@ interface IRouter {
 }
 
 const Router = ({ isLogged }: IRouter) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isLogged) {
-      // dispatch(getMe());
+      dispatch(getMe());
     }
   }, [isLogged]);
+
+  console.log('isLogged', isLogged)
 
   return (
     <BrowserRouter>
       <div>
         <Switch>
-          {!isLogged ? (
+          {isLogged ? (
             <Route path="/">
               <PanelNavigationStack />
             </Route>

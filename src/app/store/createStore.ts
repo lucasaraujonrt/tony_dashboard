@@ -4,11 +4,13 @@ import thunk from 'redux-thunk';
 
 import authReducer from './Auth/reducer';
 import loadingReducer from './Loading/reducer';
+import userReducer from './User/reducer';
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
   loading: loadingReducer,
   auth: authReducer,
+  user: userReducer,
 });
 
 const rootReducer = (state: any, action: any) => {
