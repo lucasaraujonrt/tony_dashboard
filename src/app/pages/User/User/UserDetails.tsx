@@ -1,13 +1,20 @@
-import React, { useState } from 'react';
-import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
+import React, { useEffect, useState } from 'react';
+import { Divider } from 'antd';
 import { Col, Container, Row } from 'react-bootstrap';
+
+import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
 import { maskPhone } from '@portal/services/masks';
 import AdvancedCheckbox from '@portal/components/AdvancedCheckbox/AdvancedCheckbox';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { translate } from '@portal/services/i18n';
-import { Divider } from 'antd';
+import { getPageType } from '@portal/utils/page';
+import { useLocation, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { PAGE_TYPE } from '@portal/enum/pageType';
+import * as UserActions from '@portal/store/User/action';
+import { useReduxState } from '@portal/hooks/useReduxState';
 
 // import { Container } from './styles';
 
@@ -21,8 +28,30 @@ const initialValues: models.UserForm = {
 
 const UserDetails: React.FC = () => {
   const [form, setForm] = useState(initialValues);
+  const dispatch = useDispatch();
+  const [pageType] = useState(getPageType());
+  const params = useParams() as { id: string };
+  const { pathname } = useLocation();
+  const { details } = useReduxState().user;
 
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+
+  useEffect(() => {
+    if (pageType === PAGE_TYPE.EDIT) {
+      dispatch(UserActions.getDetail(params.id));
+    } else {
+      dispatch(UserActions.cleanDetails());
+    }
+  }, [pathname, pageType]);
+
+  useEffect(() => {
+    if (details) {
+      //@ts-ignore
+      setForm(details);
+    } else {
+      setForm(initialValues);
+    }
+  }, [])
 
   const onFormSubmit = () => {};
 

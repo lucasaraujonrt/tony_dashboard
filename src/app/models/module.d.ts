@@ -45,6 +45,7 @@ export type route = {
   id: string;
   items: routeInner[];
   accessType?: number;
+  hide?: boolean;
 };
 
 export type PaginationResponse<T> = {

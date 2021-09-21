@@ -22,10 +22,11 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
     <div className="panel-content-top-bar">
       <div className="panel-content-top-bar__menu">
         <div
-          className={`panel-content-top-bar__menu__item ${pathname === '/dashboard/detalhes'
-            ? 'panel-content-top-bar__menu__item--active'
-            : ''
-            }`}
+          className={`panel-content-top-bar__menu__item ${
+            pathname === '/dashboard/detalhes'
+              ? 'panel-content-top-bar__menu__item--active'
+              : ''
+          }`}
         >
           <Link
             className="panel-content-top-bar__menu__item__link"
@@ -38,7 +39,25 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
             </span>
           </Link>
         </div>
+
+        <div
+          className={`panel-content-top-bar__menu__item ${
+            pathname === '/kanban/detalhes'
+              ? 'panel-content-top-bar__menu__item--active'
+              : ''
+          }`}
+        >
+          <Link
+            className="panel-content-top-bar__menu__item__link"
+            to={'/kanban/detalhes'}
+          >
+            <span className="panel-content-top-bar__menu__item__link__title">
+              {translate('PAGES.PANEL.KANBAN.TITLE')}
+            </span>
+          </Link>
+        </div>
       </div>
+
       <div className="panel-content-top-bar__right">
         <div className="panel-content-top-bar__right__user-dropdown">
           <Popover
@@ -74,4 +93,3 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
 };
 
 export default PanelContentTopBar;
-

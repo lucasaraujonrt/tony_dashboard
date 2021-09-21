@@ -44,4 +44,19 @@ export const getReport = (searchParams: any) => async (dispatch: Dispatch) => {
   } finally {
     dispatch(decreaseLoading());
   }
-}
+};
+
+export const getDetail = (id: string) => async (dispatch: Dispatch) => {
+  dispatch(increaseLoading());
+  try {
+    const payload = await UserRequests.details(id);
+    dispatch({
+      payload,
+      type: USER_DETAIL,
+    });
+  } catch (error) {
+    
+  } finally {
+    dispatch(decreaseLoading());
+  }
+};
