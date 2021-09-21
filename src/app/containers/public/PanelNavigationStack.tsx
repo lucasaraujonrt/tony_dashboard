@@ -10,6 +10,7 @@ import CompanyNavigationStack from '@portal/pages/Company/CompanyNavigationStack
 import ServiceCallNavigationStack from '@portal/pages/ServiceCall/ServiceCallNavigationStack';
 import SectorNavigationStack from '@portal/pages/Sector/SectorNavigationStack';
 import KanbanNavigationStack from '@portal/pages/Kanban/KanbanNavigationStack';
+import { useReduxState } from '@portal/hooks/useReduxState';
 
 const PanelNavigationStack: React.FC = () => {
   const { pathname } = useLocation();
@@ -18,16 +19,7 @@ const PanelNavigationStack: React.FC = () => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  // const loggedUser = useSelector(
-  //   (state: reducers.rootReducer) => state.auth.me
-  // );
-
-  const mock: models.User = {
-    id: '1',
-    name: 'Lucas',
-    email: 'lucasaraujo8186@gmail.com',
-    password: '123123',
-  };
+  const { me } = useReduxState().user;
 
   return (
     <div className="panel-navigation-stack">
@@ -36,7 +28,7 @@ const PanelNavigationStack: React.FC = () => {
       </div>
 
       <div className="panel-navigation-stack__content">
-        <PanelContentTopBar user={mock} />
+        <PanelContentTopBar user={me} />
         <Switch>
           <Route path={getStackPath('USER')}>
             <UserNavigationStack />

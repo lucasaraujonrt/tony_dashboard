@@ -24,7 +24,7 @@ const PanelContent: React.FC<IProps> = (props: IProps) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 3000);
+    }, 2000);
   }, [location]);
 
   return (

@@ -29,7 +29,7 @@ const authReducer = (
     case AUTH_CHECK_LOGGED:
       state = {
         ...state,
-        checkLogged: true,
+        checkLogged: action.payload,
       };
       break;
     case AUTH_ME:

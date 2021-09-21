@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
+import { CellParams } from '@material-ui/data-grid';
 
+import * as UserActions from '@portal/store/User/action'
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { getRouteStackPath } from '@portal/config/routes';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
@@ -10,9 +13,10 @@ import AdvancedFilter from '@portal/components/AdvancedFilter/AdvancedFilter';
 import { AdvancedFilterType } from '@portal/enum/advancedFilter';
 import DataTable from '@portal/components/DataTable/DataTable';
 import NavigationService from '@portal/services/navigation';
-import { CellParams } from '@material-ui/data-grid';
 import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { DateTime } from 'luxon';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -22,17 +26,11 @@ const searchFields: utils.SearchParams[] = [
     defaultValue: '',
   },
   {
-    name: 'startDate',
+    name: 'createdAt',
     placeholder: 'Mês/Ano',
     type: AdvancedFilterType.DATE_PICKER,
     defaultValue: '',
     format: 'dd/MM/yyyy',
-  },
-  {
-    name: 'profile',
-    placeholder: 'Administrador',
-    type: AdvancedFilterType.CHECKBOX,
-    defaultValue: '',
   },
 ];
 
@@ -41,15 +39,23 @@ const initialValues = {
   page: 1,
   orderBy: 'createdAt',
   sort: 'desc',
-  offset: 0,
-  limit: 10,
 };
 
 const UserReport: React.FC = () => {
   const [advancedFilters, setAdvancedFilters] = useState(initialValues);
+  const dispatch = useDispatch();
+  const { user } = useReduxState();
+
+  useEffect(() => {
+    const filter = NavigationService.getQuery();
+    onSearch({
+      ...advancedFilters,
+      ...filter,
+    })
+  }, [advancedFilters])
 
   const onSearch = (filters: any) => {
-    console.log('filters', filters);
+    dispatch(UserActions.getReport(filters));
   };
 
   const onRemove = (id: string) => {
@@ -86,15 +92,22 @@ const UserReport: React.FC = () => {
           />
         </Col>
       </Row>
-
+    {console.log('user', user)}
       <div className="report__table">
         <Row>
           <Col>
             <div className="report__table__inner">
               <DataTable
-                rows={[]}
-                rowCount={100}
+                rows={user?.list?.rows || []}
+                rowCount={user?.list?.count || 0}
                 columns={[
+                  {
+                    field: 'id',
+                    headerName: 'id',
+                    flex: 1,
+                    sortable: false,
+                    hide: true,
+                  },
                   {
                     field: 'name',
                     headerName: 'Nome',
@@ -102,28 +115,38 @@ const UserReport: React.FC = () => {
                     sortable: false,
                   },
                   {
-                    field: 'name',
-                    headerName: 'Tipo',
+                    field: 'email',
+                    headerName: 'E-mail',
                     flex: 1,
                   },
                   {
-                    field: 'name',
-                    headerName: 'Empresa',
+                    field: 'cellphone',
+                    headerName: 'Telefone',
                     flex: 1,
+                  },
+                  {
+                    field: 'createdAt',
+                    headerName: 'Criado em',
+                    flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return (
+                        <>
+                          {DateTime.fromISO(o.value as string).toLocaleString(DateTime.DATETIME_SHORT)}
+                        </>
+                      )
+                    }
                   },
                   {
                     align: 'center',
-                    field: 'name',
-                    headerName: 'Empresa',
-                    renderCell: (o: CellParams) => {
-                      return (
-                        <DataTableActions
-                          row={o.row}
-                          basePath={getRouteStackPath('USER', 'DETAILS')}
-                          onRemove={onRemove}
-                        />
-                      );
-                    },
+                    field: 'actions',
+                    headerName: 'Ações',
+                    headerAlign: 'center',
+                    renderCell: (o: CellParams) => 
+                      <DataTableActions
+                        row={o.row}
+                        basePath={getRouteStackPath('USER', 'USER_DETAILS')}
+                        onRemove={onRemove}
+                      />
                   },
                 ]}
                 page={advancedFilters.page}

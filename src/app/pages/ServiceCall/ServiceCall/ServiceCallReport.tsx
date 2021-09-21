@@ -25,12 +25,6 @@ const searchFields: utils.SearchParams[] = [
     options: status,
   },
   {
-    name: 'clientId',
-    placeholder: 'Cliente',
-    type: AdvancedFilterType.SELECT,
-    defaultValue: '',
-  },
-  {
     name: 'priority',
     placeholder: 'Prioridade',
     type: AdvancedFilterType.SELECT,
@@ -38,7 +32,7 @@ const searchFields: utils.SearchParams[] = [
     options: priority,
   },
   {
-    name: 'sectorId',
+    name: 'sector',
     placeholder: 'Setor',
     type: AdvancedFilterType.SELECT,
     defaultValue: '',

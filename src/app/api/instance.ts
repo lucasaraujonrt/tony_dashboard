@@ -5,6 +5,8 @@ import { translate } from '~/services/i18n';
 
 import { API_URL } from '@portal/config/env';
 import { handleAxiosError } from '@portal/services/api';
+import storeCreator from '@portal/store/createStore';
+import { refreshToken } from '@portal/store/Auth/action';
 
 const axiosInstance = Axios.create({
   baseURL: API_URL,
@@ -20,12 +22,12 @@ axiosInstance.interceptors.response.use(
   async (err) => {
     if (err.response.status === 401) {
       try {
-        StorageService.getItem('session-token');
-        // await storeCreator.dispatch(AuthActions.refreshToken(payload));
+        const payload = await StorageService.getItem('session-token');
+        await storeCreator.dispatch(refreshToken(payload));
         window.location.reload();
         await Axios(err.config);
       } catch (e) {
-        // StorageService.removeItem('session-token');
+        StorageService.removeItem('session-token');
       }
     } else if (err.response.status === 403) {
       message.error(translate('errors.instance.login'));
@@ -43,9 +45,10 @@ export const setAuthorizationHeader = (token: string) => {
 export function getInstance() {
   if (
     StorageService.getItem('session-token') &&
-    StorageService.getItem('session-token').token
+    StorageService.getItem('session-token').accessToken
   ) {
-    setAuthorizationHeader(StorageService.getItem('session-token').token);
+    console.log('asdasd')
+    setAuthorizationHeader(StorageService.getItem('session-token').accessToken);
   } else {
     setAuthorizationHeader('undefined');
   }

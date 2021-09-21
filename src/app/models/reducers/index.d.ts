@@ -13,6 +13,8 @@ export type AdminReducer = {
 export type UserReducer = {
   list: models.BaseReport | null;
   allUsers: string[];
+  details: null;
+  me: any;
 };
 
 export type LoadingReducer = {
