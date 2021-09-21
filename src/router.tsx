@@ -19,8 +19,6 @@ const Router = ({ isLogged }: IRouter) => {
     }
   }, [isLogged, dispatch]);
 
-  console.log('isLogged', isLogged)
-
   return (
     <BrowserRouter>
       <div>
