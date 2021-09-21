@@ -1,9 +1,7 @@
-import React, { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-import { getRouteStackPath } from '@portal/config/routes';
 import { WL_COMPANY_PANEL_LOGO } from '~/config/env';
-import { routeExist } from '~/config/routes';
 import PanelSidebarMenu from '../PanelSidebarMenu/PanelSidebarMenu';
 import { useReduxState } from '@portal/hooks/useReduxState';
 
@@ -12,19 +10,7 @@ interface IPanelSidebar {
 }
 
 const PanelSidebar = (props: IPanelSidebar) => {
-  const location = useLocation();
-
   const { me } = useReduxState().user;
-
-  useEffect(() => {
-    const validatePath = () => {
-      if (!routeExist(location.pathname)) {
-        // window.location.href = getRouteStackPath('USER', 'REPORT');
-      }
-      console.log(!routeExist(location.pathname));
-    };
-    validatePath();
-  }, [location.pathname]);
 
   return (
     <div className="panel-sidebar">

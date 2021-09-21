@@ -52,6 +52,7 @@ const UserReport: React.FC = () => {
       ...advancedFilters,
       ...filter,
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [advancedFilters])
 
   const onSearch = (filters: any) => {

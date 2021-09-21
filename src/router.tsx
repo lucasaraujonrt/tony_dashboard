@@ -17,7 +17,7 @@ const Router = ({ isLogged }: IRouter) => {
     if (isLogged) {
       dispatch(getMe());
     }
-  }, [isLogged]);
+  }, [isLogged, dispatch]);
 
   console.log('isLogged', isLogged)
 

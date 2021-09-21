@@ -1,5 +1,3 @@
-import { API_URL, LOGIN_API_URL } from '@portal/config/env';
-
 import getInstance from '../api/instance';
 
 const AuthApi = {

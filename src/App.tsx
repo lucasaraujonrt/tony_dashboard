@@ -24,7 +24,7 @@ const App = () => {
        dispatch(checkIsLogged())
     }
     handleCheck();
-  }, []);
+  }, [dispatch]);
 
   return <div>{checkLogged && <Router isLogged={logged} />}</div>;
 };

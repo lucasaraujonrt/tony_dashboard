@@ -42,7 +42,7 @@ const UserDetails: React.FC = () => {
     } else {
       dispatch(UserActions.cleanDetails());
     }
-  }, [pathname, pageType]);
+  }, [pathname, pageType, dispatch, params.id]);
 
   useEffect(() => {
     if (details) {
@@ -51,7 +51,7 @@ const UserDetails: React.FC = () => {
     } else {
       setForm(initialValues);
     }
-  }, [])
+  }, [details])
 
   const onFormSubmit = () => {};
 

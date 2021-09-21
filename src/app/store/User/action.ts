@@ -1,7 +1,7 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import UserRequests from '@portal/controllers/user';
-import * as MessageService from '~/services/message';
-import * as StorageService from '~/services/storage';
+// import * as MessageService from '~/services/message';
+// import * as StorageService from '~/services/storage';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { USER_DETAIL, USER_REPORT, USER_ME} from '../actionTypes';
 
