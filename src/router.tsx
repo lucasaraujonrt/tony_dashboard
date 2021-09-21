@@ -12,6 +12,7 @@ interface IRouter {
 
 const Router = ({ isLogged }: IRouter) => {
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if (isLogged) {
       dispatch(getMe());
