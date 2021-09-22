@@ -1,0 +1,51 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 330px;
+  height: 180px;
+  border: solid 1px @gray-text-ligher;
+  border-radius: 8px;
+  padding: 24px 28px 20px;
+  box-shadow: 0 4px 10px @gray-text-medium-light;
+
+  .card__inner__title__text {
+    font-size: 18px;
+  }
+
+  .card__inner__tags {
+    display: flex;
+    margin-top: 16px;
+
+    .card__inner__priority {
+      background-color: red;
+      border-radius: 15px;
+      padding: 1px 11px;
+      margin-right: 12px;
+
+      .card__inner__priority__text {
+        color: white;
+      }
+    }
+
+    .card__inner__sector {
+      background-color: teal;
+      border-radius: 15px;
+      padding: 1px 11px;
+
+      .card__inner__sector__text {
+        color: white;
+      }
+    }
+  }
+
+  .card__inner__created {
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+
+    .card__inner__created__text {
+      font-size: 12px;
+      color: @gray-text-medium;
+    }
+  }
+}
