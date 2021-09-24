@@ -197,7 +197,7 @@ const AdvancedFilter: React.FC<IProps> = (props: IProps) => {
                 onClick={() =>
                   props.onSearch ? props.onSearch(cleanResponse(form)) : {}
                 }
-                endIcon={<SearchOutlined />}
+                startIcon={<SearchOutlined />}
                 type="submit"
               />
             </div>

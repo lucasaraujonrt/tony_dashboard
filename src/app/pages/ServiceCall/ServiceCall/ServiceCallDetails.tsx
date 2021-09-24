@@ -9,6 +9,7 @@ import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
 import { status } from '@portal/utils/status';
 import { priority } from '@portal/utils/priority';
+import { SaveOutlined } from '@ant-design/icons';
 
 const initialValues: models.ServiceCallForm = {
   priority: '',
@@ -129,6 +130,7 @@ const ServiceCallDetails: React.FC = () => {
                     <AdvancedButton
                       type="submit"
                       text={translate('SHARED.SAVE')}
+                      startIcon={<SaveOutlined />}
                     />
                   </Col>
                 </Row>

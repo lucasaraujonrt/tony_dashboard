@@ -11,7 +11,7 @@ import * as MessageService from '~/services/message';
 import AdvancedButton from '~/components/AdvancedButton/AdvancedButton';
 import AdvancedForm from '~/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '~/components/AdvancedInput/AdvancedInput';
-// import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
+import { WL_COMPANY_LOGIN_LOGO } from '~/config/env';
 import { translate } from '~/services/i18n';
 import { validateEmail } from '~/services/validation';
 import { authenticate } from '@portal/store/Auth/action';
@@ -60,12 +60,11 @@ const Login: React.FC = () => {
                     <Col lg={4}>
                       <Row>
                         <Col>
-                         {/* todo improve logo */}
-                          {/* <img
+                          <img
                             className="login__form__inner__logo"
                             src={WL_COMPANY_LOGIN_LOGO}
                             alt="login logo"
-                          /> */}
+                          />
                         </Col>
                       </Row>
                       <Row>
@@ -86,9 +85,13 @@ const Login: React.FC = () => {
                           <AdvancedInput
                             className="login__form__input"
                             label={translate('PAGES.LOGIN.FIELDS.EMAIL.LABEL')}
-                            placeholder={translate('PAGES.LOGIN.FIELDS.EMAIL.PLACEHOLDER')}
+                            placeholder={translate(
+                              'PAGES.LOGIN.FIELDS.EMAIL.PLACEHOLDER'
+                            )}
                             value={form.email}
-                            onChange={(value: string) => onFormChange('email', value)}
+                            onChange={(value: string) =>
+                              onFormChange('email', value)
+                            }
                           />
                         </Col>
                       </Row>
@@ -96,10 +99,16 @@ const Login: React.FC = () => {
                         <Col>
                           <AdvancedInput
                             className="login__form__input"
-                            label={translate('PAGES.LOGIN.FIELDS.PASSWORD.LABEL')}
-                            placeholder={translate('PAGES.LOGIN.FIELDS.PASSWORD.PLACEHOLDER')}
+                            label={translate(
+                              'PAGES.LOGIN.FIELDS.PASSWORD.LABEL'
+                            )}
+                            placeholder={translate(
+                              'PAGES.LOGIN.FIELDS.PASSWORD.PLACEHOLDER'
+                            )}
                             value={form.password}
-                            onChange={(value: string) => onFormChange('password', value) }
+                            onChange={(value: string) =>
+                              onFormChange('password', value)
+                            }
                             type="password"
                           />
                         </Col>
@@ -109,7 +118,9 @@ const Login: React.FC = () => {
                           <div className="login__form__inner__button">
                             <AdvancedButton
                               endIcon={<ArrowRightOutlined />}
-                              text={translate('COMPONENTS.ADVANCED_BUTTON.SIGN_IN')}
+                              text={translate(
+                                'COMPONENTS.ADVANCED_BUTTON.SIGN_IN'
+                              )}
                               fullWidth
                               type="submit"
                             />
