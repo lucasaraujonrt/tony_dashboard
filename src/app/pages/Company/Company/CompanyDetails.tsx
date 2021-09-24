@@ -9,6 +9,7 @@ import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
 import { states } from '@portal/utils/states';
+import { SaveOutlined } from '@ant-design/icons';
 
 const initialValues: models.CompanyForm = {
   name: '',
@@ -186,6 +187,7 @@ const CompanyDetails: React.FC = () => {
                     <AdvancedButton
                       type="submit"
                       text={translate('SHARED.SAVE')}
+                      startIcon={<SaveOutlined />}
                     />
                   </Col>
                 </Row>

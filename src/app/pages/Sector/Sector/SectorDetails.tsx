@@ -6,6 +6,7 @@ import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
+import { SaveOutlined } from '@ant-design/icons';
 
 const initialValues: models.SectorForm = {
   name: '',
@@ -56,6 +57,7 @@ const SectorDetails: React.FC = () => {
                     <AdvancedButton
                       type="submit"
                       text={translate('SHARED.SAVE')}
+                      startIcon={<SaveOutlined />}
                     />
                   </Col>
                 </Row>

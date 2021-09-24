@@ -9,6 +9,7 @@ import { translate } from '@portal/services/i18n';
 import { Divider } from 'antd';
 import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { profileType } from '@portal/utils/profileType';
+import { SaveOutlined } from '@ant-design/icons';
 
 // import { Container } from './styles';
 
@@ -132,6 +133,7 @@ const EmployeeDetails: React.FC = () => {
                     <AdvancedButton
                       type="submit"
                       text={translate('SHARED.SAVE')}
+                      startIcon={<SaveOutlined />}
                     />
                   </Col>
                 </Row>

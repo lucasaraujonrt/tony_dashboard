@@ -15,6 +15,7 @@ import { useDispatch } from 'react-redux';
 import { PAGE_TYPE } from '@portal/enum/pageType';
 import * as UserActions from '@portal/store/User/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
+import { SaveOutlined } from '@ant-design/icons';
 
 // import { Container } from './styles';
 
@@ -51,7 +52,7 @@ const UserDetails: React.FC = () => {
     } else {
       setForm(initialValues);
     }
-  }, [details])
+  }, [details]);
 
   const onFormSubmit = () => {};
 
@@ -150,6 +151,7 @@ const UserDetails: React.FC = () => {
                     <AdvancedButton
                       type="submit"
                       text={translate('SHARED.SAVE')}
+                      startIcon={<SaveOutlined />}
                     />
                   </Col>
                 </Row>
