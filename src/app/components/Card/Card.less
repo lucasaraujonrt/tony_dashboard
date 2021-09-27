@@ -1,15 +1,17 @@
 .card {
   display: flex;
   flex-direction: column;
-  width: 330px;
-  height: 180px;
+  width: 290px;
+  height: 160px;
   border: solid 1px @gray-text-ligher;
   border-radius: 8px;
-  padding: 24px 28px 20px;
+  padding: 16px 18px 14px;
   box-shadow: 0 4px 10px @gray-text-medium-light;
+  background-color: @white;
+  margin-bottom: 12px;
 
   .card__inner__title__text {
-    font-size: 18px;
+    font-size: 17px;
   }
 
   .card__inner__tags {
@@ -17,22 +19,28 @@
     margin-top: 16px;
 
     .card__inner__priority {
+      display: flex;
+      align-items: center;
       background-color: red;
       border-radius: 15px;
       padding: 1px 11px;
       margin-right: 12px;
 
       .card__inner__priority__text {
+        font-size: 13px;
         color: white;
       }
     }
 
     .card__inner__sector {
+      display: flex;
+      align-items: center;
       background-color: teal;
       border-radius: 15px;
       padding: 1px 11px;
 
       .card__inner__sector__text {
+        font-size: 13px;
         color: white;
       }
     }
