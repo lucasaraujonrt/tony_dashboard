@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import PanelNavigationStack from '~/containers/public/PanelNavigationStack';
 import AuthNavigationStack from '~/pages/Auth/AuthNavigationStack';
+import NotFound from '@portal/pages/NotFound/NotFound';
 
 interface IRouter {
   isLogged: boolean;
@@ -32,6 +33,7 @@ const Router = ({ isLogged }: IRouter) => {
               <AuthNavigationStack />
             </Route>
           )}
+          
         </Switch>
       </div>
     </BrowserRouter>

@@ -5,10 +5,11 @@ interface CardProps {
   priority: string;
   sector: string;
   createdAt: string;
+  onClick: () => void;
 }
 
-const Card = ({ description, priority, sector, createdAt }: CardProps) => (
-  <div className="card">
+const Card = ({ description, priority, sector, createdAt, onClick }: CardProps) => (
+  <div className="card" onClick={onClick}>
     <div>
       <span className="card__inner__title__text">{description}</span>
     </div>

@@ -22,6 +22,7 @@ import languages from './app/i18n';
 import createStore from './app/store/createStore';
 import './app/styles/index.less';
 import reportWebVitals from './reportWebVitals';
+import { BackTop } from 'antd';
 
 declare global {
   // tslint:disable-next-line: interface-name
@@ -57,6 +58,7 @@ ReactDOM.render(
         <ThemeProvider theme={theme}>
           <MuiPickersUtilsProvider utils={DateFnsUtils} locale={localeMap.pt}>
             <App />
+            <BackTop />
           </MuiPickersUtilsProvider>
         </ThemeProvider>
       </HelmetProvider>
