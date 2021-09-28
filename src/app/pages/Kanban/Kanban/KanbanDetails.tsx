@@ -1,5 +1,12 @@
 import React from 'react';
-import { DragDropContext, Droppable, Draggable, DraggingStyle, NotDraggingStyle, DropResult } from 'react-beautiful-dnd';
+import {
+  DragDropContext,
+  Droppable,
+  Draggable,
+  DraggingStyle,
+  NotDraggingStyle,
+  DropResult,
+} from 'react-beautiful-dnd';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import { translate } from '@portal/services/i18n';
@@ -13,59 +20,59 @@ import Modal from 'antd/lib/modal/Modal';
 
 const mockList = [
   {
-    description: "Problema no encanamento da pia daquele apartamento",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 22 de setembro",
+    description: 'Problema no encanamento da pia daquele apartamento',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 22 de setembro',
     id: 1,
   },
   {
-    description: "Problema no encanamento da pia daquele apartamento",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 23 de setembro",
+    description: 'Problema no encanamento da pia daquele apartamento',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 23 de setembro',
     id: 2,
   },
   {
-    description: "Problema no encanamento da pia daquele apartamento",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 24 de setembro",
+    description: 'Problema no encanamento da pia daquele apartamento',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 24 de setembro',
     id: 3,
   },
   {
-    description: "Problema no encanamento da pia daquele apartamento",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 25 de setembro",
+    description: 'Problema no encanamento da pia daquele apartamento',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 25 de setembro',
     id: 4,
   },
 ];
 
 const mockListSelected = [
   {
-    description: "Problema no encanamento da pia daquele apartament,o",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 22 de setembro",
+    description: 'Problema no encanamento da pia daquele apartament,o',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 22 de setembro',
   },
   {
-    description: "Problema no encanamento da pia daquele apartament,o",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 23 de setembro",
+    description: 'Problema no encanamento da pia daquele apartament,o',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 23 de setembro',
   },
   {
-    description: "Problema no encanamento da pia daquele apartament,o",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 24 de setembro",
+    description: 'Problema no encanamento da pia daquele apartament,o',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 24 de setembro',
   },
   {
-    description: "Problema no encanamento da pia daquele apartament,o",
-    priority: "Alta",
-    sector: "Encanamento",
-    createdAt: "Criado em 25 de setembro",
+    description: 'Problema no encanamento da pia daquele apartament,o',
+    priority: 'Alta',
+    sector: 'Encanamento',
+    createdAt: 'Criado em 25 de setembro',
   },
 ];
 
@@ -79,10 +86,13 @@ const KanbanDetails: React.FC = () => {
 
   const getListStyle = () => ({
     padding: grid,
-    width: 250
+    width: 250,
   });
 
-  const getItemStyle = (isDragging: boolean, draggableStyle: DraggingStyle | NotDraggingStyle | undefined) => ({
+  const getItemStyle = (
+    isDragging: boolean,
+    draggableStyle: DraggingStyle | NotDraggingStyle | undefined
+  ) => ({
     ...draggableStyle,
     padding: grid * 2,
     paddingBottom: '10px',
@@ -101,7 +111,12 @@ const KanbanDetails: React.FC = () => {
     return result;
   };
 
-  const move = (source: any, destination: any, droppableSource: any, droppableDestination: any) => {
+  const move = (
+    source: any,
+    destination: any,
+    droppableSource: any,
+    droppableDestination: any
+  ) => {
     const sourceClone = Array.from(source);
     const destClone = Array.from(destination);
     const [removed] = sourceClone.splice(droppableSource.index, 1);
@@ -120,7 +135,7 @@ const KanbanDetails: React.FC = () => {
 
     // dropped outside the list
     if (!destination) return;
-    
+
     const sInd = +source.droppableId;
     const dInd = +destination.droppableId;
 
@@ -136,14 +151,14 @@ const KanbanDetails: React.FC = () => {
       newState[sInd] = result[sInd];
       newState[dInd] = result[dInd];
       //@ts-ignore
-      setList(newState.filter(group => group.length));
+      setList(newState.filter((group) => group.length));
     }
-  }
+  };
 
   const handlePressCard = (item: any) => {
     setShowModal(true);
-    setItemSelected(item)
-  }
+    setItemSelected(item);
+  };
 
   return (
     <Container fluid className="details">
@@ -172,8 +187,8 @@ const KanbanDetails: React.FC = () => {
                     {list.map((item, index) => (
                       <Draggable
                         index={index}
-                        key={item.id} 
-                        draggableId={item.id.toString()} 
+                        key={item.id}
+                        draggableId={item.id.toString()}
                       >
                         {(provided, snapshot) => (
                           <div
@@ -183,11 +198,12 @@ const KanbanDetails: React.FC = () => {
                             style={getItemStyle(
                               snapshot.isDragging,
                               provided.draggableProps.style
-                            )}>
-                              <Card
-                                onClick={() => handlePressCard(item)}
-                                {...item}
-                              />
+                            )}
+                          >
+                            <Card
+                              onClick={() => handlePressCard(item)}
+                              {...item}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -199,14 +215,14 @@ const KanbanDetails: React.FC = () => {
           </Col>
 
           <Col className="kanban__inner__title">
-            <Divider className="kanban__divider" type="vertical" dashed/>
+            <Divider className="kanban__divider" type="vertical" dashed />
           </Col>
 
           <Col className="kanban__inner__title">
             Em progresso
             <img
               src={IconYellowCircle}
-              alt="Icone círculo criado"
+              alt="Icone círculo em progresso"
               className="kanban__inner__icon"
             />
             <Droppable droppableId="droppableProgress">
@@ -216,8 +232,8 @@ const KanbanDetails: React.FC = () => {
                     {list.map((item, index) => (
                       <Draggable
                         index={index}
-                        key={item.id} 
-                        draggableId={item.id.toString()} 
+                        key={item.id}
+                        draggableId={item.id.toString()}
                       >
                         {(provided, snapshot) => (
                           <div
@@ -227,11 +243,12 @@ const KanbanDetails: React.FC = () => {
                             style={getItemStyle(
                               snapshot.isDragging,
                               provided.draggableProps.style
-                            )}>
-                              <Card
-                                onClick={() => handlePressCard(item)}
-                                {...item}
-                              />
+                            )}
+                          >
+                            <Card
+                              onClick={() => handlePressCard(item)}
+                              {...item}
+                            />
                           </div>
                         )}
                       </Draggable>
@@ -250,7 +267,7 @@ const KanbanDetails: React.FC = () => {
             Finalizados
             <img
               src={IconGreenCircle}
-              alt="Icone círculo criado"
+              alt="Icone círculo finalizado"
               className="kanban__inner__icon"
             />
             <div className="kanban__inner__board">
@@ -294,18 +311,19 @@ const KanbanDetails: React.FC = () => {
           </Col>
         </Row>
       </DragDropContext>
-      <Modal 
+      <Modal
         // @ts-ignore
-        title={itemSelected?.description || ''} 
-        visible={showModal} 
+        title={itemSelected?.description || ''}
+        visible={showModal}
         cancelText="Fechar"
-        onOk={() => setShowModal(false)} 
-        onCancel={() => setShowModal(false)}>
-          <div>
-            <span>bla bla bla bla bla bauhdhuhuas</span>
-            <span>bla bla bla bla bla bauhdhuhuas</span>
-            <span>bla bla bla bla bla bauhdhuhuas</span>
-          </div>
+        onOk={() => setShowModal(false)}
+        onCancel={() => setShowModal(false)}
+      >
+        <div>
+          <span>bla bla bla bla bla bauhdhuhuas</span>
+          <span>bla bla bla bla bla bauhdhuhuas</span>
+          <span>bla bla bla bla bla bauhdhuhuas</span>
+        </div>
       </Modal>
     </Container>
   );

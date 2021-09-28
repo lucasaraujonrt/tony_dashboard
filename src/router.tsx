@@ -13,7 +13,7 @@ interface IRouter {
 
 const Router = ({ isLogged }: IRouter) => {
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     if (isLogged) {
       dispatch(getMe());
@@ -33,7 +33,6 @@ const Router = ({ isLogged }: IRouter) => {
               <AuthNavigationStack />
             </Route>
           )}
-          
         </Switch>
       </div>
     </BrowserRouter>
