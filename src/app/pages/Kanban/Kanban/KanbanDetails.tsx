@@ -10,7 +10,7 @@ import {
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import { translate } from '@portal/services/i18n';
-import { Button, Divider, Result } from 'antd';
+import { Divider } from 'antd';
 import Card from '@portal/components/Card/Card';
 import IconBlueCircle from '~/assets/svg/ic_blue_circle.svg';
 import IconYellowCircle from '~/assets/svg/ic_yellow_circle.svg';
@@ -49,38 +49,10 @@ const mockList = [
   },
 ];
 
-const mockListSelected = [
-  {
-    description: 'Problema no encanamento da pia daquele apartament,o',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 22 de setembro',
-  },
-  {
-    description: 'Problema no encanamento da pia daquele apartament,o',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 23 de setembro',
-  },
-  {
-    description: 'Problema no encanamento da pia daquele apartament,o',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 24 de setembro',
-  },
-  {
-    description: 'Problema no encanamento da pia daquele apartament,o',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 25 de setembro',
-  },
-];
-
 const KanbanDetails: React.FC = () => {
   const [list, setList] = useState(mockList);
   const [showModal, setShowModal] = useState(false);
   const [itemSelected, setItemSelected] = useState();
-  const [listSelected, setListSelected] = useState(mockListSelected);
 
   const grid = 3;
 
