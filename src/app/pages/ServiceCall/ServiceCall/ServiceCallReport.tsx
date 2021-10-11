@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
+import * as ServiceCallActions from '@portal/store/ServiceCall/action';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { getRouteStackPath } from '@portal/config/routes';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
@@ -13,8 +14,11 @@ import NavigationService from '@portal/services/navigation';
 import { CellParams } from '@material-ui/data-grid';
 import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
-import { priority } from '@portal/utils/priority';
-import { status } from '@portal/utils/status';
+import { getCurrentPriority, priority } from '@portal/utils/priority';
+import { getCurrentStatus, status } from '@portal/utils/status';
+import { useDispatch } from 'react-redux';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { DateTime } from 'luxon';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -50,16 +54,24 @@ const initialValues = {
   pageSize: 10,
   page: 1,
   orderBy: 'createdAt',
-  sort: 'desc',
-  offset: 0,
-  limit: 10,
 };
 
 const ServiceCallReport: React.FC = () => {
   const [advancedFilters, setAdvancedFilters] = useState(initialValues);
+  const dispatch = useDispatch();
+  const { serviceCall } = useReduxState();
+
+  useEffect(() => {
+    const filter = NavigationService.getQuery();
+    onSearch({
+      ...advancedFilters,
+      ...filter,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [advancedFilters]);
 
   const onSearch = (filters: any) => {
-    console.log('filters', filters);
+    dispatch(ServiceCallActions.getReport(filters));
   };
 
   const onRemove = (id: string) => {
@@ -104,41 +116,67 @@ const ServiceCallReport: React.FC = () => {
           <Col>
             <div className="report__table__inner">
               <DataTable
-                rows={[]}
-                rowCount={100}
+                rows={serviceCall.list?.rows || []}
+                rowCount={serviceCall.list?.count || 0}
                 columns={[
                   {
-                    field: 'name',
-                    headerName: 'Nome',
+                    field: 'id',
+                    headerName: 'id',
+                    flex: 1,
+                    sortable: false,
+                    hide: true,
+                  },
+                  {
+                    field: 'description',
+                    headerName: 'Descrição',
                     flex: 1,
                     sortable: false,
                   },
                   {
-                    field: 'name',
-                    headerName: 'Tipo',
+                    field: 'status',
+                    headerName: 'Status do chamado',
                     flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return <>{getCurrentStatus(o.value as number)?.name}</>;
+                    },
                   },
                   {
-                    field: 'name',
-                    headerName: 'Empresa',
+                    field: 'priority',
+                    headerName: 'Prioridade do chamado',
                     flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return <>{getCurrentPriority(o.value as number)?.name}</>;
+                    },
+                  },
+                  {
+                    field: 'createdAt',
+                    headerName: 'Criado em',
+                    flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return (
+                        <>
+                          {DateTime.fromISO(o.value as string).toLocaleString(
+                            DateTime.DATETIME_SHORT
+                          )}
+                        </>
+                      );
+                    },
                   },
                   {
                     align: 'center',
-                    field: 'name',
-                    headerName: 'Empresa',
-                    renderCell: (o: CellParams) => {
-                      return (
-                        <DataTableActions
-                          row={o.row}
-                          basePath={getRouteStackPath(
-                            'SERVICE_CALL',
-                            'SERVICE_CALL_DETAILS'
-                          )}
-                          onRemove={onRemove}
-                        />
-                      );
-                    },
+                    field: 'actions',
+                    headerName: 'Ações',
+                    headerAlign: 'center',
+                    renderCell: (o: CellParams) => (
+                      <DataTableActions
+                        row={o.row}
+                        basePath={getRouteStackPath(
+                          'SERVICE_CALL',
+                          'SERVICE_CALL_DETAILS'
+                        )}
+                        onRemove={onRemove}
+                      />
+                    ),
                   },
                 ]}
                 page={advancedFilters.page}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import * as AuthActions from '@portal/store/Auth/action'
+import * as AuthActions from '@portal/store/Auth/action';
 import UserIcon from '~/assets/svg/ic_user.svg';
 import { translate } from '~/services/i18n';
 import { useDispatch } from 'react-redux';
