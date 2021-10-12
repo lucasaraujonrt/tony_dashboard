@@ -76,15 +76,9 @@ const ptBr = {
     },
     PANEL_CONTENT_TOP_BAR: {
       PAGES: {
-        DASHBOARD: {
-          TITLE: 'Dashboard',
+        KPI: {
+          TITLE: 'KPI',
           LOGOUT: 'Sair',
-        },
-        MARKETING: {
-          TITLE: 'Marketing',
-        },
-        TREASURY: {
-          TITLE: 'Tesouraria',
         },
       },
     },
@@ -196,6 +190,10 @@ const ptBr = {
       KANBAN: {
         TITLE: 'Kanban',
         DESCRIPTION: 'Chamados no Kanban',
+      },
+      KPI: {
+        TITLE: 'KPI',
+        DESCRIPTION: 'Indicador-chave de desempenho',
       },
     },
     COMPANY_DETAILS: {

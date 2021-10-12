@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popover } from 'antd';
 import { Link, useLocation } from 'react-router-dom';
-import * as AuthActions from '@portal/store/Auth/action'
+import * as AuthActions from '@portal/store/Auth/action';
 import UserIcon from '~/assets/svg/ic_user.svg';
 import { translate } from '~/services/i18n';
 import { useDispatch } from 'react-redux';
@@ -23,19 +23,17 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
       <div className="panel-content-top-bar__menu">
         <div
           className={`panel-content-top-bar__menu__item ${
-            pathname === '/dashboard/detalhes'
+            pathname === '/kpi/detalhes'
               ? 'panel-content-top-bar__menu__item--active'
               : ''
           }`}
         >
           <Link
             className="panel-content-top-bar__menu__item__link"
-            to={'/dashboard/detalhes'}
+            to={'/kpi/detalhes'}
           >
             <span className="panel-content-top-bar__menu__item__link__title">
-              {translate(
-                'COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.DASHBOARD.TITLE'
-              )}
+              {translate('COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.KPI.TITLE')}
             </span>
           </Link>
         </div>

@@ -16,7 +16,6 @@ const initialValues: models.CompanyForm = {
   fantasyName: '',
   cellphone: '',
   email: '',
-  segment: '',
   address: '',
   number: '',
   cep: '',
@@ -169,14 +168,6 @@ const CompanyDetails: React.FC = () => {
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_AREA')}
                     placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('area', value)}
-                  />
-                </Col>
-                <Col>
-                  <AdvancedInput
-                    value={form.segment}
-                    label={translate('PAGES.COMPANY_DETAILS.LABEL_SEGMENT')}
-                    placeholder={translate('SHARED.PLACEHOLDER')}
-                    onChange={(value: string) => onFormChange('segment', value)}
                   />
                 </Col>
               </Row>

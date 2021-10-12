@@ -131,7 +131,6 @@ export interface CompanyForm {
   fantasyName: string;
   cellphone: string;
   email: string;
-  segment: string;
   address: string;
   number: string;
   cep: string;
