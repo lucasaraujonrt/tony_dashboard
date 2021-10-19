@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { PlusCircleOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
+import * as Employee from '@portal/store/Employee/action';
 import { getRouteStackPath } from '@portal/config/routes';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import AdvancedFilter from '@portal/components/AdvancedFilter/AdvancedFilter';
@@ -14,6 +15,9 @@ import { CellParams } from '@material-ui/data-grid';
 import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
 import { profileType } from '@portal/utils/profileType';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { useDispatch } from 'react-redux';
+import { DateTime } from 'luxon';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -55,10 +59,21 @@ const initialValues = {
 
 const EmployeeReport: React.FC = () => {
   const [advancedFilters, setAdvancedFilters] = useState(initialValues);
+  const dispatch = useDispatch();
+  const { employee } = useReduxState();
 
   const onSearch = (filters: any) => {
-    console.log('filters', filters);
+    dispatch(Employee.getReport(filters));
   };
+
+  useEffect(() => {
+    const filter = NavigationService.getQuery();
+    onSearch({
+      ...advancedFilters,
+      ...filter,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [advancedFilters]);
 
   const onRemove = (id: string) => {
     const filter = NavigationService.getQuery();
@@ -102,9 +117,16 @@ const EmployeeReport: React.FC = () => {
           <Col>
             <div className="report__table__inner">
               <DataTable
-                rows={[]}
-                rowCount={100}
+                rows={employee.list?.rows || []}
+                rowCount={employee.list?.count || 0}
                 columns={[
+                  {
+                    field: 'id',
+                    headerName: 'id',
+                    flex: 1,
+                    sortable: false,
+                    hide: true,
+                  },
                   {
                     field: 'name',
                     headerName: 'Nome',
@@ -112,19 +134,34 @@ const EmployeeReport: React.FC = () => {
                     sortable: false,
                   },
                   {
-                    field: 'name',
-                    headerName: 'Tipo',
+                    field: 'email',
+                    headerName: 'E-mail',
                     flex: 1,
                   },
                   {
-                    field: 'name',
+                    field: 'company',
                     headerName: 'Empresa',
                     flex: 1,
+                  },
+                  {
+                    field: 'createdAt',
+                    headerName: 'Criado em',
+                    flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return (
+                        <>
+                          {DateTime.fromISO(o.value as string).toLocaleString(
+                            DateTime.DATETIME_SHORT
+                          )}
+                        </>
+                      );
+                    },
                   },
                   {
                     align: 'center',
-                    field: 'name',
-                    headerName: 'Empresa',
+                    field: 'actions',
+                    headerName: 'Ações',
+                    headerAlign: 'center',
                     renderCell: (o: CellParams) => {
                       return (
                         <DataTableActions

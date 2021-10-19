@@ -93,7 +93,6 @@ const UserReport: React.FC = () => {
           />
         </Col>
       </Row>
-      {console.log('user', user)}
       <div className="report__table">
         <Row>
           <Col>

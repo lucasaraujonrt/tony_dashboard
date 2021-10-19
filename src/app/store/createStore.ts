@@ -7,6 +7,7 @@ import loadingReducer from './Loading/reducer';
 import userReducer from './User/reducer';
 import serviceCallReducer from './ServiceCall/reducer';
 import companyReducer from './Company/reducer';
+import employeeReducer from './Employee/reducer';
 
 const appReducer = combineReducers({
   i18n: i18nReducer,
@@ -15,6 +16,7 @@ const appReducer = combineReducers({
   user: userReducer,
   serviceCall: serviceCallReducer,
   company: companyReducer,
+  employee: employeeReducer,
 });
 
 const rootReducer = (state: any, action: any) => {

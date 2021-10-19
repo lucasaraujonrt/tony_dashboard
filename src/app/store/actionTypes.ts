@@ -12,6 +12,9 @@ export const USER_REPORT = 'USER_REPORT';
 export const USER_DETAIL = 'USER_DETAIL';
 export const USER_ME = 'USER_ME';
 
+export const EMPLOYEE_REPORT = 'EMPLOYEE_REPORT';
+export const EMPLOYEE_DETAIL = 'EMPLOYEE_DETAIL';
+
 export const COMPANY_REPORT = 'COMPANY_REPORT';
 export const COMPANY_DETAIL = 'COMPANY_DETAIL';
 

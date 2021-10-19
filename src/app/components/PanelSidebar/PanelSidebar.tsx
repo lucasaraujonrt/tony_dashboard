@@ -24,9 +24,7 @@ const PanelSidebar = (props: IPanelSidebar) => {
         </Link>
       </div>
       <div className="panel-sidebar__name">
-        <span className="panel-sidebar__name__span">
-          {me?.name || 'Lucas'}
-        </span>
+        <span className="panel-sidebar__name__span">{me?.name}</span>
       </div>
       <div className="panel-sidebar__menu">
         <PanelSidebarMenu routes={props.routes} />

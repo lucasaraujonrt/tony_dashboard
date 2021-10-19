@@ -17,6 +17,12 @@ export type UserReducer = {
   me: any;
 };
 
+export type EmployeeReducer = {
+  list: models.BaseReport | null;
+  details: null;
+  me: any;
+};
+
 export type CompanyReducer = {
   list: models.BaseReport | null;
   details: null;
@@ -40,4 +46,5 @@ type rootReducer = {
   loading: LoadingReducer;
   company: CompanyReducer;
   serviceCall: ServiceCallReducer;
+  employee: EmployeeReducer;
 };
