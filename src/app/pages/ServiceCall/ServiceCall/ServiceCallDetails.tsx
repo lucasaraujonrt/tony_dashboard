@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
@@ -10,6 +10,12 @@ import { translate } from '@portal/services/i18n';
 import { status } from '@portal/utils/status';
 import { priority } from '@portal/utils/priority';
 import { SaveOutlined } from '@ant-design/icons';
+import { PAGE_TYPE } from '@portal/enum/pageType';
+import * as ServiceCallActions from '@portal/store/ServiceCall/action';
+import { useLocation, useParams } from 'react-router-dom';
+import { getPageType } from '@portal/utils/page';
+import { useDispatch } from 'react-redux';
+import { useReduxState } from '@portal/hooks/useReduxState';
 
 const initialValues: models.ServiceCallForm = {
   priority: '',
@@ -22,6 +28,11 @@ const initialValues: models.ServiceCallForm = {
 
 const ServiceCallDetails: React.FC = () => {
   const [form, setForm] = useState(initialValues);
+  const [pageType] = useState(getPageType());
+  const params = useParams() as { id: string };
+  const { pathname } = useLocation();
+  const { details } = useReduxState().serviceCall;
+  const dispatch = useDispatch();
 
   const onFormSubmit = () => {};
 
@@ -31,6 +42,23 @@ const ServiceCallDetails: React.FC = () => {
       [key]: value,
     }));
   };
+
+  useEffect(() => {
+    if (details) {
+      //@ts-ignore
+      setForm(details);
+    } else {
+      setForm(initialValues);
+    }
+  }, [details]);
+
+  useEffect(() => {
+    if (pageType === PAGE_TYPE.EDIT) {
+      dispatch(ServiceCallActions.getDetail(params.id));
+    } else {
+      dispatch(ServiceCallActions.cleanDetails());
+    }
+  }, [pathname, pageType, dispatch, params.id]);
 
   return (
     <Container fluid className="details">

@@ -16,6 +16,7 @@ import { PAGE_TYPE } from '@portal/enum/pageType';
 import * as UserActions from '@portal/store/User/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { SaveOutlined } from '@ant-design/icons';
+import { removeSpecialChars } from '@portal/services/strings';
 
 // import { Container } from './styles';
 
@@ -54,7 +55,17 @@ const UserDetails: React.FC = () => {
     }
   }, [details]);
 
-  const onFormSubmit = () => {};
+  const onFormSubmit = () => {
+    dispatch(
+      UserActions.createUser({
+        name: form.name,
+        email: form.email,
+        password: form.password,
+        cellphone: removeSpecialChars(form.cellphone),
+        profileType: form.profileType,
+      })
+    );
+  };
 
   const onFormChange = (key: string, value: string | boolean) => {
     setForm((prevState: models.UserForm) => ({

@@ -1,16 +1,16 @@
 import getInstance from '../api/instance';
 
-const UserApi = {
+const EmployeeApi = {
   report: async (params: any) => {
     const instance = getInstance();
-    const { data } = await instance.get('/user', { params });
+    const { data } = await instance.get('/dashuser', { params });
 
     return data;
   },
 
   details: async (id: string) => {
     const instance = getInstance();
-    const { data } = await instance.get(`/user/${id}`);
+    const { data } = await instance.get(`/dashuser/${id}`);
 
     return data;
   },
@@ -21,13 +21,6 @@ const UserApi = {
 
     return data;
   },
-
-  me: async () => {
-    const instance = getInstance();
-    const { data } = await instance.get('/dashUser/me');
-
-    return data;
-  },
 };
 
-export default UserApi;
+export default EmployeeApi;

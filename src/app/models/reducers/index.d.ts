@@ -3,16 +3,34 @@ export as namespace reducers;
 export type AuthReducer = {
   checkLogged: boolean;
   authToken: models.AuthResponse;
-  me: null,
+  me: null;
 };
 
 export type AdminReducer = {
   list: models.BaseReport | null;
-}
+};
 
 export type UserReducer = {
   list: models.BaseReport | null;
   allUsers: string[];
+  details: null;
+  me: any;
+};
+
+export type EmployeeReducer = {
+  list: models.BaseReport | null;
+  details: null;
+  me: any;
+};
+
+export type CompanyReducer = {
+  list: models.BaseReport | null;
+  details: null;
+  me: any;
+};
+
+export type ServiceCallReducer = {
+  list: models.BaseReport | null;
   details: null;
   me: any;
 };
@@ -26,4 +44,7 @@ type rootReducer = {
   auth: AuthReducer;
   user: UserReducer;
   loading: LoadingReducer;
+  company: CompanyReducer;
+  serviceCall: ServiceCallReducer;
+  employee: EmployeeReducer;
 };

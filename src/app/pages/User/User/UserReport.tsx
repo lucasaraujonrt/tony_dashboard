@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 import { CellParams } from '@material-ui/data-grid';
 
-import * as UserActions from '@portal/store/User/action'
+import * as UserActions from '@portal/store/User/action';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { getRouteStackPath } from '@portal/config/routes';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
@@ -51,9 +51,9 @@ const UserReport: React.FC = () => {
     onSearch({
       ...advancedFilters,
       ...filter,
-    })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [advancedFilters])
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [advancedFilters]);
 
   const onSearch = (filters: any) => {
     dispatch(UserActions.getReport(filters));
@@ -93,7 +93,6 @@ const UserReport: React.FC = () => {
           />
         </Col>
       </Row>
-    {console.log('user', user)}
       <div className="report__table">
         <Row>
           <Col>
@@ -132,22 +131,25 @@ const UserReport: React.FC = () => {
                     renderCell: (o: CellParams) => {
                       return (
                         <>
-                          {DateTime.fromISO(o.value as string).toLocaleString(DateTime.DATETIME_SHORT)}
+                          {DateTime.fromISO(o.value as string).toLocaleString(
+                            DateTime.DATETIME_SHORT
+                          )}
                         </>
-                      )
-                    }
+                      );
+                    },
                   },
                   {
                     align: 'center',
                     field: 'actions',
                     headerName: 'Ações',
                     headerAlign: 'center',
-                    renderCell: (o: CellParams) => 
+                    renderCell: (o: CellParams) => (
                       <DataTableActions
                         row={o.row}
                         basePath={getRouteStackPath('USER', 'USER_DETAILS')}
                         onRemove={onRemove}
                       />
+                    ),
                   },
                 ]}
                 page={advancedFilters.page}

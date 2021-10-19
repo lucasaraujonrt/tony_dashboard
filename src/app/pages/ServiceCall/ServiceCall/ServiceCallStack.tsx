@@ -22,7 +22,10 @@ const ServiceCallStack: React.FC = () => {
         </PanelContent>
       </Route>
       <Route
-        path={`${getRouteStackPath('SERVICE_CALL', 'SERVICE_CALL_DETAILS')}`}
+        path={`${getRouteStackPath(
+          'SERVICE_CALL',
+          'SERVICE_CALL_DETAILS'
+        )}/:id`}
       >
         <PanelContent
           pageTitle={translate(

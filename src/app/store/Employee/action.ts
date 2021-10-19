@@ -1,40 +1,26 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import UserRequests from '@portal/controllers/user';
+import EmployeeApi from '@portal/controllers/employee';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
-import { USER_DETAIL, USER_REPORT, USER_ME } from '../actionTypes';
+import { EMPLOYEE_REPORT, EMPLOYEE_DETAIL } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
   dispatch({
     payload: null,
-    type: USER_DETAIL,
+    type: EMPLOYEE_DETAIL,
   });
-};
-
-export const getMe = () => async (dispatch: Dispatch) => {
-  dispatch(increaseLoading());
-  try {
-    const response = await UserRequests.me();
-    dispatch({
-      type: USER_ME,
-      payload: response,
-    });
-  } catch (error) {
-  } finally {
-    dispatch(decreaseLoading());
-  }
 };
 
 export const getReport = (searchParams: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    const payload = await UserRequests.report({
+    const payload = await EmployeeApi.report({
       ...searchParams,
       pageSize: searchParams.pageSize,
     });
     dispatch({
       payload,
-      type: USER_REPORT,
+      type: EMPLOYEE_REPORT,
     });
   } catch (error) {
   } finally {
@@ -45,10 +31,10 @@ export const getReport = (searchParams: any) => async (dispatch: Dispatch) => {
 export const getDetail = (id: string) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    const payload = await UserRequests.details(id);
+    const payload = await EmployeeApi.details(id);
     dispatch({
       payload,
-      type: USER_DETAIL,
+      type: EMPLOYEE_DETAIL,
     });
   } catch (error) {
   } finally {
@@ -60,7 +46,7 @@ export const createUser =
   (body: models.UserForm) => async (dispatch: Dispatch) => {
     dispatch(increaseLoading());
     try {
-      await UserRequests.create(body);
+      await EmployeeApi.create(body);
       NavigationService.back();
     } catch (error) {
     } finally {

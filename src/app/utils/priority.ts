@@ -10,3 +10,6 @@ export const priority: Priority[] = [
   { name: 'Normal', value: PriorityId.NORMAL },
   { name: 'Baixa', value: PriorityId.NOT_URGENT },
 ];
+
+export const getCurrentPriority = (getCurrentPriority: number) =>
+  priority.find((o) => o.value === getCurrentPriority);
