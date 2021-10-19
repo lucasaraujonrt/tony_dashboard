@@ -139,7 +139,7 @@ const EmployeeReport: React.FC = () => {
                     flex: 1,
                   },
                   {
-                    field: 'company',
+                    field: 'company.name',
                     headerName: 'Empresa',
                     flex: 1,
                   },

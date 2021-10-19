@@ -1,7 +1,5 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import EmployeeApi from '@portal/controllers/employee';
-// import * as MessageService from '~/services/message';
-// import * as StorageService from '~/services/storage';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { EMPLOYEE_REPORT, EMPLOYEE_DETAIL } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
