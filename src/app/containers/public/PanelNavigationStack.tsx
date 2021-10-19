@@ -12,6 +12,7 @@ import SectorNavigationStack from '@portal/pages/Sector/SectorNavigationStack';
 import KanbanNavigationStack from '@portal/pages/Kanban/KanbanNavigationStack';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import NotFound from '@portal/pages/NotFound/NotFound';
+import KpiNavigationStack from '@portal/pages/Kpi/KpiNavigationStack';
 
 const PanelNavigationStack: React.FC = () => {
   const { pathname } = useLocation();
@@ -35,7 +36,6 @@ const PanelNavigationStack: React.FC = () => {
             <UserNavigationStack />
           </Route>
 
-
           <Route path={getStackPath('COMPANY')}>
             <CompanyNavigationStack />
           </Route>
@@ -52,8 +52,11 @@ const PanelNavigationStack: React.FC = () => {
             <KanbanNavigationStack />
           </Route>
 
-          <Route component={NotFound}/> 
-          
+          <Route path={getStackPath('KPI')}>
+            <KpiNavigationStack />
+          </Route>
+
+          <Route component={NotFound} />
         </Switch>
       </div>
     </div>

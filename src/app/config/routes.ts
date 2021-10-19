@@ -36,6 +36,22 @@ const routes: models.route[] = [
     ],
   },
   {
+    id: 'KPI',
+    name: 'KPI',
+    route: '/kpi',
+    hide: true,
+    icon: '/assets/svg/panel-sidebar/ic_service_call.svg',
+    iconAlt: 'KPI',
+    items: [
+      {
+        id: 'KPI_DETAILS',
+        name: 'Informações Gerais',
+        route: '/detalhes',
+        sidebarHidden: true,
+      },
+    ],
+  },
+  {
     id: 'USER',
     name: 'PAGES.PANEL.USER.SIDEBAR_TITLE',
     route: '/usuarios',

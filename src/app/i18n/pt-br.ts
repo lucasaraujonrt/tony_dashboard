@@ -76,15 +76,34 @@ const ptBr = {
     },
     PANEL_CONTENT_TOP_BAR: {
       PAGES: {
-        DASHBOARD: {
-          TITLE: 'Dashboard',
+        KPI: {
+          TITLE: 'KPI',
           LOGOUT: 'Sair',
         },
-        MARKETING: {
-          TITLE: 'Marketing',
+      },
+    },
+
+    KPI_CARD: {
+      SERVICE_CALL: {
+        CREATED: {
+          LABEL: 'Realizados',
         },
-        TREASURY: {
-          TITLE: 'Tesouraria',
+        IN_PROGRESS: {
+          LABEL: 'Em andamento',
+        },
+        DONE: {
+          LABEL: 'Finalizados',
+        },
+      },
+      USER: {
+        ACTIVE: {
+          LABEL: 'Ativos no App',
+        },
+        EMPLOYEES: {
+          LABEL: 'Colaboradores',
+        },
+        ADM: {
+          LABEL: 'Administradores',
         },
       },
     },
@@ -196,6 +215,10 @@ const ptBr = {
       KANBAN: {
         TITLE: 'Kanban',
         DESCRIPTION: 'Chamados no Kanban',
+      },
+      KPI: {
+        TITLE: 'KPI',
+        DESCRIPTION: 'Indicador-chave de desempenho',
       },
     },
     COMPANY_DETAILS: {

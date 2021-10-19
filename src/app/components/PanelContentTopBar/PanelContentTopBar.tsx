@@ -25,19 +25,17 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
       <div className="panel-content-top-bar__menu">
         <div
           className={`panel-content-top-bar__menu__item ${
-            pathname === '/dashboard/detalhes'
+            pathname === '/kpi/detalhes'
               ? 'panel-content-top-bar__menu__item--active'
               : ''
           }`}
         >
           <Link
             className="panel-content-top-bar__menu__item__link"
-            to={'/dashboard/detalhes'}
+            to={'/kpi/detalhes'}
           >
             <span className="panel-content-top-bar__menu__item__link__title">
-              {translate(
-                'COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.DASHBOARD.TITLE'
-              )}
+              {translate('COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.KPI.TITLE')}
             </span>
           </Link>
         </div>
