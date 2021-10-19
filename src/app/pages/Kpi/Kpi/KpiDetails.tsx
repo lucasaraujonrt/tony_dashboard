@@ -18,21 +18,23 @@ const KpiDetails: React.FC = () => {
       </Row>
       <Divider />
 
-      <KpiCard
-        title="Usuários"
-        firstValue="235"
-        secondValue="456"
-        thirdValue="809"
-        variant={VariantKpiCard.USER}
-      />
+      <div className="details__kpi__card">
+        <KpiCard
+          title="Usuários"
+          firstValue="235"
+          secondValue="456"
+          thirdValue="809"
+          variant={VariantKpiCard.USER}
+        />
 
-      <KpiCard
-        title="Chamados"
-        firstValue="235"
-        secondValue="456"
-        thirdValue="809"
-        variant={VariantKpiCard.SERVICE_CALL}
-      />
+        <KpiCard
+          title="Chamados"
+          firstValue="235"
+          secondValue="456"
+          thirdValue="809"
+          variant={VariantKpiCard.SERVICE_CALL}
+        />
+      </div>
     </Container>
   );
 };

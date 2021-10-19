@@ -1,8 +1,49 @@
 .kpi__card {
+  border: 1px solid @gray-lighter;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px @gray-lighter;
+  width: 470px;
+  padding: 15px;
+  margin-right: 35px;
+
+  &__divider {
+    height: 70px;
+  }
+
+  &__row {
+    display: flex;
+    background-color: @grey-kpi;
+    justify-content: center;
+    flex-direction: column;
+    padding: 19px 12px;
+    border-radius: 8px;
+  }
+
   &__col {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  &__inner {
+    &__title {
+      font-size: 20px;
+    }
+
+    &__first__span {
+      font-size: 30px;
+      color: @green;
+    }
+
+    &__second__span {
+      font-size: 30px;
+      color: @yellow;
+    }
+
+    &__third__span {
+      font-size: 30px;
+      color: @red;
+    }
   }
 }

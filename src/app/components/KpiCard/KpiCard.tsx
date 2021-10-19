@@ -1,6 +1,7 @@
 import React from 'react';
 import { Divider } from 'antd';
 import { Col, Row } from 'react-bootstrap';
+import { translate } from '@portal/services/i18n';
 
 export enum VariantKpiCard {
   SERVICE_CALL,
@@ -29,21 +30,35 @@ const KpiCard = ({
           <h1 className="kpi__card__inner__title">{title}</h1>
         </div>
 
-        <div>
+        <div className="kpi__card__row">
           <Row>
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Realizados</label>
-              <span className="kpi__card__inner__title">{firstValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate('COMPONENTS.KPI_CARD.SERVICE_CALL.CREATED.LABEL')}
+              </label>
+              <span className="kpi__card__inner__first__span">
+                {firstValue}
+              </span>
             </Col>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="kpi__card__divider" />
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Em andamento</label>
-              <span className="kpi__card__inner__title">{secondValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate(
+                  'COMPONENTS.KPI_CARD.SERVICE_CALL.IN_PROGRESS.LABEL'
+                )}
+              </label>
+              <span className="kpi__card__inner__second__span">
+                {secondValue}
+              </span>
             </Col>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="kpi__card__divider" />
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Finalizados</label>
-              <span className="kpi__card__inner__title">{thirdValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate('COMPONENTS.KPI_CARD.SERVICE_CALL.DONE.LABEL')}
+              </label>
+              <span className="kpi__card__inner__third__span">
+                {thirdValue}
+              </span>
             </Col>
           </Row>
         </div>
@@ -56,21 +71,33 @@ const KpiCard = ({
           <h1 className="kpi__card__inner__title">{title}</h1>
         </div>
 
-        <div>
+        <div className="kpi__card__row">
           <Row>
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Ativos no App</label>
-              <span className="kpi__card__inner__title">{firstValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate('COMPONENTS.KPI_CARD.USER.ACTIVE.LABEL')}
+              </label>
+              <span className="kpi__card__inner__first__span">
+                {firstValue}
+              </span>
             </Col>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="kpi__card__divider" />
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Funcionários</label>
-              <span className="kpi__card__inner__title">{secondValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate('COMPONENTS.KPI_CARD.USER.EMPLOYEES.LABEL')}
+              </label>
+              <span className="kpi__card__inner__second__span">
+                {secondValue}
+              </span>
             </Col>
-            <Divider type="vertical" />
+            <Divider type="vertical" className="kpi__card__divider" />
             <Col className="kpi__card__col">
-              <label className="kpi__card__inner__title">Administradores</label>
-              <span className="kpi__card__inner__title">{thirdValue}</span>
+              <label className="kpi__card__inner__label">
+                {translate('COMPONENTS.KPI_CARD.USER.ADM.LABEL')}
+              </label>
+              <span className="kpi__card__inner__third__span">
+                {thirdValue}
+              </span>
             </Col>
           </Row>
         </div>

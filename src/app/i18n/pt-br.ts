@@ -82,6 +82,31 @@ const ptBr = {
         },
       },
     },
+
+    KPI_CARD: {
+      SERVICE_CALL: {
+        CREATED: {
+          LABEL: 'Realizados',
+        },
+        IN_PROGRESS: {
+          LABEL: 'Em andamento',
+        },
+        DONE: {
+          LABEL: 'Finalizados',
+        },
+      },
+      USER: {
+        ACTIVE: {
+          LABEL: 'Ativos no App',
+        },
+        EMPLOYEES: {
+          LABEL: 'Colaboradores',
+        },
+        ADM: {
+          LABEL: 'Administradores',
+        },
+      },
+    },
   },
 
   SHARED: {
