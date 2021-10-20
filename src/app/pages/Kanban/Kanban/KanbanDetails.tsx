@@ -140,7 +140,7 @@ const KanbanDetails: React.FC = () => {
       const [removed] = copiedItems.splice(source.index, 1);
       copiedItems.splice(destination.index, 0, removed);
       setColumnsFromBack(() => ({
-        ...column,
+        ...columns,
         [source.droppableId]: {
           ...column,
           items: copiedItems,

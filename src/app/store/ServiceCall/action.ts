@@ -47,11 +47,12 @@ export const getAll = (searchParams?: any) => async (dispatch: Dispatch) => {
 };
 
 export const updateCard = (body: any) => async (dispatch: Dispatch) => {
-  dispatch(increaseLoading());
   try {
     await ServiceCallApi.updateStatus(body);
     MessageService.success('COMPONENTS.KPI_CARD.MESSAGES.SUCCESS');
   } catch (error) {
+    // @ts-ignore
+    dispatch(getAll());
     MessageService.error('COMPONENTS.KPI_CARD.MESSAGES.ERROR');
   } finally {
     dispatch(decreaseLoading());
