@@ -16,6 +16,7 @@ import Card from '@portal/components/Card/Card';
 import IconBlueCircle from '~/assets/svg/ic_blue_circle.svg';
 import IconYellowCircle from '~/assets/svg/ic_yellow_circle.svg';
 import IconGreenCircle from '~/assets/svg/ic_green_circle.svg';
+import IconRedCircle from '~/assets/svg/ic_red_circle.svg';
 import { Modal } from 'antd';
 import { getAll, updateCard } from '@portal/store/ServiceCall/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
@@ -53,7 +54,7 @@ const KanbanDetails: React.FC = () => {
     [KanbanColumns.PENDING]: {
       id: KanbanColumnsId.PENDING,
       name: KanbanColumns.PENDING,
-      icon: IconBlueCircle,
+      icon: IconRedCircle,
       items: [],
     },
     [KanbanColumns.CREATED]: {
