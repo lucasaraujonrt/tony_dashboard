@@ -21,20 +21,40 @@ import { Modal } from 'antd';
 import { getAll, updateCard } from '@portal/store/ServiceCall/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { StatusId } from '@portal/enum/statusId';
+import { priority } from '@portal/utils/priority';
 
 enum KanbanColumns {
-  PENDING = 'Pendente',
-  CREATED = 'Criados',
+  PENDING = 'Em criação',
+  CREATED = 'Pendente',
   IN_PROGRESS = 'Em progresso',
   DONE = 'Finalizados',
 }
 
 enum KanbanColumnsId {
-  PENDING = 1,
-  CREATED = 2,
-  IN_PROGRESS = 3,
+  CREATING = 1,
+  PENDING = 2,
+  WORK_IN_PROGRESS = 3,
   DONE = 4,
 }
+
+const columnsStatus: any = [
+  {
+    id: KanbanColumnsId.CREATING,
+    name: 'Pendente',
+  },
+  {
+    id: KanbanColumnsId.PENDING,
+    name: 'Criados',
+  },
+  {
+    id: KanbanColumnsId.WORK_IN_PROGRESS,
+    name: 'Em progresso',
+  },
+  {
+    id: KanbanColumnsId.DONE,
+    name: 'Finalizados',
+  },
+];
 
 const KanbanDetails: React.FC = () => {
   const { kanbanList } = useReduxState().serviceCall;
@@ -44,6 +64,8 @@ const KanbanDetails: React.FC = () => {
     dispatch(getAll());
   }, [dispatch]);
 
+  console.log('kanbanList', kanbanList);
+
   useEffect(() => {
     if (kanbanList) {
       setInitialStates();
@@ -52,19 +74,19 @@ const KanbanDetails: React.FC = () => {
 
   const [columnsFromBack, setColumnsFromBack] = useState({
     [KanbanColumns.PENDING]: {
-      id: KanbanColumnsId.PENDING,
+      id: KanbanColumnsId.CREATING,
       name: KanbanColumns.PENDING,
       icon: IconRedCircle,
       items: [],
     },
     [KanbanColumns.CREATED]: {
-      id: KanbanColumnsId.CREATED,
+      id: KanbanColumnsId.PENDING,
       name: KanbanColumns.CREATED,
       icon: IconBlueCircle,
       items: [],
     },
     [KanbanColumns.IN_PROGRESS]: {
-      id: KanbanColumnsId.IN_PROGRESS,
+      id: KanbanColumnsId.WORK_IN_PROGRESS,
       name: KanbanColumns.IN_PROGRESS,
       icon: IconYellowCircle,
       items: [],
@@ -128,7 +150,7 @@ const KanbanDetails: React.FC = () => {
       dispatch(
         updateCard({
           priority: removed.priority,
-          status: removed.status,
+          status: searchColumn(destination).id,
           description: removed.description,
           sectorId: removed.sectorId,
           employeeId: me.id,
@@ -150,39 +172,48 @@ const KanbanDetails: React.FC = () => {
     }
   };
 
+  const searchColumn = (destination: any) =>
+    columnsStatus.find((o: any) => o.name === destination.droppableId);
+
   const handlePressCard = (item: any) => {
     setShowModal(true);
     setItemSelected(item);
   };
 
   const setInitialStates = () => {
-    setColumnsFromBack((stateList: any) => ({
-      ...stateList,
-      [KanbanColumns.PENDING]: {
-        ...stateList[KanbanColumns.PENDING],
-        items:
-          kanbanList &&
-          kanbanList.filter((o: any) => o.status === StatusId.PENDING),
-      },
-      [KanbanColumns.CREATED]: {
-        ...stateList[KanbanColumns.CREATED],
-        items:
-          kanbanList &&
-          kanbanList.filter((o: any) => o.status === StatusId.CREATING),
-      },
-      [KanbanColumns.IN_PROGRESS]: {
-        ...stateList[KanbanColumns.IN_PROGRESS],
-        items:
-          kanbanList &&
-          kanbanList.filter((o: any) => o.status === StatusId.WORK_IN_PROGRESS),
-      },
-      [KanbanColumns.DONE]: {
-        ...stateList[KanbanColumns.DONE],
-        items:
-          kanbanList &&
-          kanbanList.filter((o: any) => o.status === StatusId.DONE),
-      },
-    }));
+    try {
+      setColumnsFromBack((stateList: any) => ({
+        ...stateList,
+        [KanbanColumns.PENDING]: {
+          ...stateList[KanbanColumns.PENDING],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.CREATING),
+        },
+        [KanbanColumns.CREATED]: {
+          ...stateList[KanbanColumns.CREATED],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.PENDING),
+        },
+        [KanbanColumns.IN_PROGRESS]: {
+          ...stateList[KanbanColumns.IN_PROGRESS],
+          items:
+            kanbanList &&
+            kanbanList.filter(
+              (o: any) => o.status === StatusId.WORK_IN_PROGRESS
+            ),
+        },
+        [KanbanColumns.DONE]: {
+          ...stateList[KanbanColumns.DONE],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.DONE),
+        },
+      }));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -198,7 +229,7 @@ const KanbanDetails: React.FC = () => {
       <Divider />
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <DragDropContext
-          onDragEnd={(result: any) => onDragEnd(result, columnsFromBack)}
+          onDragEnd={(result: DropResult) => onDragEnd(result, columnsFromBack)}
         >
           {columnsFromBack &&
             Object.entries(columnsFromBack).map(([id, column]) => (
@@ -254,8 +285,14 @@ const KanbanDetails: React.FC = () => {
                                 )}
                               >
                                 <Card
-                                  onClick={() => handlePressCard(item)}
                                   {...item}
+                                  priority={
+                                    priority.find(
+                                      (o) => o.value === item.priority
+                                    )?.name
+                                  }
+                                  sector={item.sector.name as string}
+                                  onClick={() => handlePressCard(item)}
                                 />
                               </div>
                             )}
@@ -281,11 +318,7 @@ const KanbanDetails: React.FC = () => {
         onOk={() => setShowModal(false)}
         onCancel={() => setShowModal(false)}
       >
-        <div>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-        </div>
+        <div>{/* <span>{}</span> */}</div>
       </Modal>
     </Container>
   );

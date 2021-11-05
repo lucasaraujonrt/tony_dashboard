@@ -1,5 +1,6 @@
 import React from 'react';
 import { DateTime } from 'luxon';
+import { priorityColors } from '@portal/utils/priority';
 
 interface CardProps {
   description: string;
@@ -15,29 +16,40 @@ const Card = ({
   sector,
   createdAt,
   onClick,
-}: CardProps) => (
-  <div className="card" onClick={onClick}>
-    <div>
-      <span className="card__inner__title__text">{description}</span>
-    </div>
+}: CardProps) => {
+  const colorPriority = (text: string) => {
+    const color = priorityColors.find((o) => o.name === text)?.colors;
 
-    <div className="card__inner__tags">
-      <div className="card__inner__priority">
-        <span className="card__inner__priority__text">{priority}</span>
-      </div>
-      <div className="card__inner__sector">
-        <span className="card__inner__sector__text">{sector}</span>
-      </div>
-    </div>
+    return color;
+  };
 
-    <div className="card__inner__created">
-      <span className="card__inner__created__text">
-        {DateTime.fromISO(createdAt as string).toLocaleString(
-          DateTime.DATETIME_SHORT
-        )}
-      </span>
+  return (
+    <div className="card" onClick={onClick}>
+      <div>
+        <span className="card__inner__title__text">{description}</span>
+      </div>
+
+      <div className="card__inner__tags">
+        <div
+          className="card__inner__priority"
+          style={{ backgroundColor: colorPriority(priority) }}
+        >
+          <span className="card__inner__priority__text">{priority}</span>
+        </div>
+        <div className="card__inner__sector">
+          <span className="card__inner__sector__text">{sector}</span>
+        </div>
+      </div>
+
+      <div className="card__inner__created">
+        <span className="card__inner__created__text">
+          {DateTime.fromISO(createdAt as string).toLocaleString(
+            DateTime.DATETIME_SHORT
+          )}
+        </span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default Card;

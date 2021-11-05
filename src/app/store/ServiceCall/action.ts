@@ -41,6 +41,7 @@ export const getAll = (searchParams?: any) => async (dispatch: Dispatch) => {
       type: SERVICE_CALL_KANBAN,
     });
   } catch (error) {
+    console.log('errrer', error);
   } finally {
     dispatch(decreaseLoading());
   }
