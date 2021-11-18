@@ -27,12 +27,6 @@ const searchFields: utils.SearchParams[] = [
     defaultValue: '',
   },
   {
-    name: 'company',
-    placeholder: 'Empresa',
-    type: AdvancedFilterType.SELECT,
-    defaultValue: '',
-  },
-  {
     name: 'profileType',
     placeholder: 'Tipo de perfil',
     type: AdvancedFilterType.SELECT,
@@ -81,6 +75,17 @@ const EmployeeReport: React.FC = () => {
       ...advancedFilters,
       ...filter,
     });
+  };
+
+  const handleCompanyName = (employee: any) => {
+    let companyName = '';
+    if (employee.company) {
+      companyName = employee.company.fantasyName;
+    } else {
+      companyName = '--';
+    }
+
+    return companyName;
   };
 
   return (
@@ -141,7 +146,11 @@ const EmployeeReport: React.FC = () => {
                   {
                     field: 'company.name',
                     headerName: 'Empresa',
+                    align: 'center',
                     flex: 1,
+                    renderCell: (o: CellParams) => {
+                      return <>{handleCompanyName(o.row)}</>;
+                    },
                   },
                   {
                     field: 'createdAt',

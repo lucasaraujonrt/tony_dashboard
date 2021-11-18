@@ -8,9 +8,16 @@ const ServiceCallApi = {
     return data;
   },
 
-  reportAll: async (params: any) => {
+  reportAll: async (params?: any) => {
     const instance = getInstance();
     const { data } = await instance.get('/serviceCall', { params });
+
+    return data;
+  },
+
+  updateStatus: async (body?: any) => {
+    const instance = getInstance();
+    const { data } = await instance.put('/serviceCall', body);
 
     return data;
   },

@@ -84,6 +84,10 @@ const ptBr = {
     },
 
     KPI_CARD: {
+      MESSAGES: {
+        SUCCESS: 'Status do chamado trocado com sucesso',
+        ERROR: 'Erro ao alterar o status',
+      },
       SERVICE_CALL: {
         CREATED: {
           LABEL: 'Realizados',

@@ -33,6 +33,7 @@ export type ServiceCallReducer = {
   list: models.BaseReport | null;
   details: null;
   me: any;
+  kanbanList: any;
 };
 
 export type LoadingReducer = {

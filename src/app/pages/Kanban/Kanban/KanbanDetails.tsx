@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   DragDropContext,
   Droppable,
@@ -15,42 +16,88 @@ import Card from '@portal/components/Card/Card';
 import IconBlueCircle from '~/assets/svg/ic_blue_circle.svg';
 import IconYellowCircle from '~/assets/svg/ic_yellow_circle.svg';
 import IconGreenCircle from '~/assets/svg/ic_green_circle.svg';
-import { useState } from 'react';
-import Modal from 'antd/lib/modal/Modal';
+import IconRedCircle from '~/assets/svg/ic_red_circle.svg';
+import { Modal } from 'antd';
+import { getAll, updateCard } from '@portal/store/ServiceCall/action';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { StatusId } from '@portal/enum/statusId';
+import { priority } from '@portal/utils/priority';
 
-const mockList = [
+enum KanbanColumns {
+  PENDING = 'Em criação',
+  CREATED = 'Pendente',
+  IN_PROGRESS = 'Em progresso',
+  DONE = 'Finalizados',
+}
+
+enum KanbanColumnsId {
+  CREATING = 1,
+  PENDING = 2,
+  WORK_IN_PROGRESS = 3,
+  DONE = 4,
+}
+
+const columnsStatus: any = [
   {
-    description: 'Problema no encanamento da pia daquele apartamento',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 22 de setembro',
-    id: 1,
+    id: KanbanColumnsId.CREATING,
+    name: 'Pendente',
   },
   {
-    description: 'Problema no encanamento da pia daquele apartamento',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 23 de setembro',
-    id: 2,
+    id: KanbanColumnsId.PENDING,
+    name: 'Criados',
   },
   {
-    description: 'Problema no encanamento da pia daquele apartamento',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 24 de setembro',
-    id: 3,
+    id: KanbanColumnsId.WORK_IN_PROGRESS,
+    name: 'Em progresso',
   },
   {
-    description: 'Problema no encanamento da pia daquele apartamento',
-    priority: 'Alta',
-    sector: 'Encanamento',
-    createdAt: 'Criado em 25 de setembro',
-    id: 4,
+    id: KanbanColumnsId.DONE,
+    name: 'Finalizados',
   },
 ];
 
 const KanbanDetails: React.FC = () => {
-  const [list, setList] = useState(mockList);
+  const { kanbanList } = useReduxState().serviceCall;
+  const { me } = useReduxState().user;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getAll());
+  }, [dispatch]);
+
+  console.log('kanbanList', kanbanList);
+
+  useEffect(() => {
+    if (kanbanList) {
+      setInitialStates();
+    }
+  }, [kanbanList]);
+
+  const [columnsFromBack, setColumnsFromBack] = useState({
+    [KanbanColumns.PENDING]: {
+      id: KanbanColumnsId.CREATING,
+      name: KanbanColumns.PENDING,
+      icon: IconRedCircle,
+      items: [],
+    },
+    [KanbanColumns.CREATED]: {
+      id: KanbanColumnsId.PENDING,
+      name: KanbanColumns.CREATED,
+      icon: IconBlueCircle,
+      items: [],
+    },
+    [KanbanColumns.IN_PROGRESS]: {
+      id: KanbanColumnsId.WORK_IN_PROGRESS,
+      name: KanbanColumns.IN_PROGRESS,
+      icon: IconYellowCircle,
+      items: [],
+    },
+    [KanbanColumns.DONE]: {
+      id: KanbanColumnsId.DONE,
+      name: KanbanColumns.DONE,
+      icon: IconGreenCircle,
+      items: [],
+    },
+  });
   const [showModal, setShowModal] = useState(false);
   const [itemSelected, setItemSelected] = useState();
 
@@ -62,8 +109,8 @@ const KanbanDetails: React.FC = () => {
   });
 
   const getItemStyle = (
-    isDragging: boolean,
-    draggableStyle: DraggingStyle | NotDraggingStyle | undefined
+    isDragging?: boolean,
+    draggableStyle?: DraggingStyle | NotDraggingStyle | undefined
   ) => ({
     ...draggableStyle,
     padding: grid * 2,
@@ -75,65 +122,102 @@ const KanbanDetails: React.FC = () => {
     background: isDragging ? 'lightblue' : 'transparent',
   });
 
-  const reorder = (list: any, startIndex: number, endIndex: number) => {
-    const result = Array.from(list);
-    const [removed] = result.splice(startIndex, 1);
-    result.splice(endIndex, 0, removed);
-
-    return result;
-  };
-
-  const move = (
-    source: any,
-    destination: any,
-    droppableSource: any,
-    droppableDestination: any
-  ) => {
-    const sourceClone = Array.from(source);
-    const destClone = Array.from(destination);
-    const [removed] = sourceClone.splice(droppableSource.index, 1);
-
-    destClone.splice(droppableDestination.index, 0, removed);
-
-    const result: any = {};
-    result[droppableSource.droppableId] = sourceClone;
-    result[droppableDestination.droppableId] = destClone;
-
-    return result;
-  };
-
-  const onDragEnd = (result: DropResult) => {
+  const onDragEnd = (result: DropResult, columns: any) => {
+    if (!result.destination) return undefined;
     const { source, destination } = result;
+    if (source.droppableId !== destination.droppableId) {
+      const sourceColumn = columns[source.droppableId];
+      const destColumn = columns[destination.droppableId];
+      const sourceItems = [...sourceColumn.items];
+      const destItems = [...destColumn.items];
 
-    // dropped outside the list
-    if (!destination) return;
+      const [removed] = sourceItems.splice(source.index, 1);
 
-    const sInd = +source.droppableId;
-    const dInd = +destination.droppableId;
+      destItems.splice(destination.index, 0, removed);
 
-    if (sInd === dInd) {
-      const items = reorder(list[sInd], source.index, destination.index);
-      const newState = [...list];
-      //@ts-ignore
-      newState[sInd] = items;
-      setList(newState);
+      setColumnsFromBack(() => ({
+        ...columns,
+        [source.droppableId]: {
+          ...sourceColumn,
+          items: sourceItems,
+        },
+        [destination.droppableId]: {
+          ...destColumn,
+          items: destItems,
+        },
+      }));
+
+      dispatch(
+        updateCard({
+          priority: removed.priority,
+          status: searchColumn(destination).id,
+          description: removed.description,
+          sectorId: removed.sectorId,
+          employeeId: me.id,
+          id: removed.id,
+        })
+      );
     } else {
-      const result = move(list[sInd], list[dInd], source, destination);
-      const newState = [...list];
-      newState[sInd] = result[sInd];
-      newState[dInd] = result[dInd];
-      //@ts-ignore
-      setList(newState.filter((group) => group.length));
+      const column = columns[source.droppableId];
+      const copiedItems = [...column.items];
+      const [removed] = copiedItems.splice(source.index, 1);
+      copiedItems.splice(destination.index, 0, removed);
+      setColumnsFromBack(() => ({
+        ...columns,
+        [source.droppableId]: {
+          ...column,
+          items: copiedItems,
+        },
+      }));
     }
   };
+
+  const searchColumn = (destination: any) =>
+    columnsStatus.find((o: any) => o.name === destination.droppableId);
 
   const handlePressCard = (item: any) => {
     setShowModal(true);
     setItemSelected(item);
   };
 
+  const setInitialStates = () => {
+    try {
+      setColumnsFromBack((stateList: any) => ({
+        ...stateList,
+        [KanbanColumns.PENDING]: {
+          ...stateList[KanbanColumns.PENDING],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.CREATING),
+        },
+        [KanbanColumns.CREATED]: {
+          ...stateList[KanbanColumns.CREATED],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.PENDING),
+        },
+        [KanbanColumns.IN_PROGRESS]: {
+          ...stateList[KanbanColumns.IN_PROGRESS],
+          items:
+            kanbanList &&
+            kanbanList.filter(
+              (o: any) => o.status === StatusId.WORK_IN_PROGRESS
+            ),
+        },
+        [KanbanColumns.DONE]: {
+          ...stateList[KanbanColumns.DONE],
+          items:
+            kanbanList &&
+            kanbanList.filter((o: any) => o.status === StatusId.DONE),
+        },
+      }));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <Container fluid className="details">
+    <Container fluid className="report">
       <Row>
         <Col>
           <PanelContentHeader
@@ -143,146 +227,89 @@ const KanbanDetails: React.FC = () => {
         </Col>
       </Row>
       <Divider />
-      <DragDropContext onDragEnd={onDragEnd}>
-        <Row>
-          <Col className="kanban__inner__title">
-            Criados
-            <img
-              src={IconBlueCircle}
-              alt="Icone círculo criado"
-              className="kanban__inner__icon"
-            />
-            <Droppable droppableId="droppableCreated">
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle()}>
-                  <div className="kanban__inner__board">
-                    {list.map((item, index) => (
-                      <Draggable
-                        index={index}
-                        key={item.id}
-                        draggableId={item.id.toString()}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
-                            )}
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <DragDropContext
+          onDragEnd={(result: DropResult) => onDragEnd(result, columnsFromBack)}
+        >
+          {columnsFromBack &&
+            Object.entries(columnsFromBack).map(([id, column]) => (
+              <div
+                key={id}
+                style={{
+                  width: '24%',
+                }}
+              >
+                <Droppable droppableId={id}>
+                  {(provided, snapshot) => (
+                    <div
+                      className="droppable"
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      style={{
+                        ...getListStyle(),
+                        padding: '30px',
+                        width: '100%',
+                        height: '100%',
+                      }}
+                    >
+                      <div style={{ marginBottom: 20 }}>
+                        <div style={{ display: 'flex', alignItems: 'center' }}>
+                          <span style={{ fontSize: 14, fontWeight: 'bold' }}>
+                            {column.name}
+                          </span>
+                          <object
+                            data={column.icon}
+                            type="image/svg+xml"
+                            style={{ marginLeft: 15 }}
+                          ></object>
+                        </div>
+                        <span style={{ color: '#bbbbbb' }}>
+                          Quantidade: {column.items && column.items.length}{' '}
+                        </span>
+                      </div>
+                      {column.items &&
+                        column.items.map((item: any, index) => (
+                          <Draggable
+                            key={item.id}
+                            draggableId={item.id}
+                            index={index}
                           >
-                            <Card
-                              onClick={() => handlePressCard(item)}
-                              {...item}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </Droppable>
-          </Col>
-
-          <Col className="kanban__inner__title">
-            <Divider className="kanban__divider" type="vertical" dashed />
-          </Col>
-
-          <Col className="kanban__inner__title">
-            Em progresso
-            <img
-              src={IconYellowCircle}
-              alt="Icone círculo em progresso"
-              className="kanban__inner__icon"
-            />
-            <Droppable droppableId="droppableProgress">
-              {(provided, snapshot) => (
-                <div ref={provided.innerRef} style={getListStyle()}>
-                  <div className="kanban__inner__board">
-                    {list.map((item, index) => (
-                      <Draggable
-                        index={index}
-                        key={item.id}
-                        draggableId={item.id.toString()}
-                      >
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.dragHandleProps}
-                            {...provided.draggableProps}
-                            style={getItemStyle(
-                              snapshot.isDragging,
-                              provided.draggableProps.style
+                            {(providedDraggable, snapshotDraggable) => (
+                              <div
+                                ref={providedDraggable.innerRef}
+                                {...providedDraggable.dragHandleProps}
+                                {...providedDraggable.draggableProps}
+                                style={getItemStyle(
+                                  snapshotDraggable.isDragging,
+                                  providedDraggable.draggableProps.style
+                                )}
+                              >
+                                <Card
+                                  {...item}
+                                  priority={
+                                    priority.find(
+                                      (o) => o.value === item.priority
+                                    )?.name
+                                  }
+                                  sector={item.sector.name as string}
+                                  onClick={() => handlePressCard(item)}
+                                />
+                              </div>
                             )}
-                          >
-                            <Card
-                              onClick={() => handlePressCard(item)}
-                              {...item}
-                            />
-                          </div>
-                        )}
-                      </Draggable>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </Droppable>
-          </Col>
+                          </Draggable>
+                        ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
+                <Col className="kanban__inner__title">
+                  <Divider className="kanban__divider" type="vertical" dashed />
+                </Col>
+              </div>
+            ))}
+        </DragDropContext>
+      </div>
 
-          <Col className="kanban__inner__title">
-            <Divider className="kanban__divider" type="vertical" dashed />
-          </Col>
-
-          <Col className="kanban__inner__title">
-            Finalizados
-            <img
-              src={IconGreenCircle}
-              alt="Icone círculo finalizado"
-              className="kanban__inner__icon"
-            />
-            <div className="kanban__inner__board">
-              <Card
-                onClick={() => {}}
-                description="Problema no encanamento da pia daquele apartamento"
-                priority="Alta"
-                sector="Encanamento"
-                createdAt="Criado em 22 de setembro"
-              />
-
-              <Card
-                onClick={() => {}}
-                description="Problema no encanamento da pia daquele apartamento"
-                priority="Alta"
-                sector="Encanamento"
-                createdAt="Criado em 22 de setembro"
-              />
-              <Card
-                onClick={() => {}}
-                description="Problema no encanamento da pia daquele apartamento"
-                priority="Alta"
-                sector="Encanamento"
-                createdAt="Criado em 22 de setembro"
-              />
-              <Card
-                onClick={() => {}}
-                description="Problema no encanamento da pia daquele apartamento"
-                priority="Alta"
-                sector="Encanamento"
-                createdAt="Criado em 22 de setembro"
-              />
-              <Card
-                onClick={() => {}}
-                description="Problema no encanamento da pia daquele apartamento"
-                priority="Alta"
-                sector="Encanamento"
-                createdAt="Criado em 22 de setembro"
-              />
-            </div>
-          </Col>
-        </Row>
-      </DragDropContext>
       <Modal
         // @ts-ignore
         title={itemSelected?.description || ''}
@@ -291,11 +318,7 @@ const KanbanDetails: React.FC = () => {
         onOk={() => setShowModal(false)}
         onCancel={() => setShowModal(false)}
       >
-        <div>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-          <span>bla bla bla bla bla bauhdhuhuas</span>
-        </div>
+        <div>{/* <span>{}</span> */}</div>
       </Modal>
     </Container>
   );

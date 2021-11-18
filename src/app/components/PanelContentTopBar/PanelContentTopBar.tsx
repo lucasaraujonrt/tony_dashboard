@@ -82,7 +82,7 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
                 />
               </span>
               <span className="panel-content-top-bar__right__user-dropdown__name">
-                {me.name}
+                {me && me.name}
               </span>
             </span>
           </Popover>
