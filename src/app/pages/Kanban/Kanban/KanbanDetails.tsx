@@ -64,8 +64,6 @@ const KanbanDetails: React.FC = () => {
     dispatch(getAll());
   }, [dispatch]);
 
-  console.log('kanbanList', kanbanList);
-
   useEffect(() => {
     if (kanbanList) {
       setInitialStates();
@@ -318,7 +316,23 @@ const KanbanDetails: React.FC = () => {
         onOk={() => setShowModal(false)}
         onCancel={() => setShowModal(false)}
       >
-        <div>{/* <span>{}</span> */}</div>
+        <div>
+          <p>
+            descricao descricao descricao descricao descricao descricao
+            descricao descricao descricao descricao descricao descricao
+          </p>
+
+          <Divider />
+
+          <p>Nome do usuario</p>
+
+          <Col>
+            <Row>Rua Carlos Machado 133</Row>
+            <Row>Barra da Tijuca</Row>
+            <Row>Rio de Janeiro - RJ</Row>
+            <Row>22775042</Row>
+          </Col>
+        </div>
       </Modal>
     </Container>
   );
