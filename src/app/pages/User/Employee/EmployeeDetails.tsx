@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
@@ -10,6 +10,12 @@ import { Divider } from 'antd';
 import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { profileType } from '@portal/utils/profileType';
 import { SaveOutlined } from '@ant-design/icons';
+import * as EmployeeActions from '@portal/store/Employee/action';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { useLocation, useParams } from 'react-router-dom';
+import { getPageType } from '@portal/utils/page';
+import { useDispatch } from 'react-redux';
+import { PAGE_TYPE } from '@portal/enum/pageType';
 
 // import { Container } from './styles';
 
@@ -24,6 +30,12 @@ const initialValues: models.EmployeeForm = {
 
 const EmployeeDetails: React.FC = () => {
   const [form, setForm] = useState(initialValues);
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const [pageType] = useState(getPageType());
+  const params = useParams() as { id: string };
+  const { details } = useReduxState().employee;
+  console.log({ params });
 
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
@@ -35,6 +47,23 @@ const EmployeeDetails: React.FC = () => {
       [key]: value,
     }));
   };
+
+  useEffect(() => {
+    if (pageType === PAGE_TYPE.EDIT) {
+      dispatch(EmployeeActions.getDetail(params.id));
+    } else {
+      dispatch(EmployeeActions.cleanDetails());
+    }
+  }, [pathname, pageType, dispatch, params.id]);
+
+  useEffect(() => {
+    if (details) {
+      //@ts-ignore
+      setForm(details);
+    } else {
+      setForm(initialValues);
+    }
+  }, [details]);
 
   return (
     <Container fluid className="details">

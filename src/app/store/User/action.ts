@@ -56,14 +56,24 @@ export const getDetail = (id: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const createUser =
-  (body: models.UserForm) => async (dispatch: Dispatch) => {
-    dispatch(increaseLoading());
-    try {
-      await UserRequests.create(body);
-      NavigationService.back();
-    } catch (error) {
-    } finally {
-      dispatch(decreaseLoading());
-    }
-  };
+export const createUser = (body: any) => async (dispatch: Dispatch) => {
+  dispatch(increaseLoading());
+  try {
+    await UserRequests.create(body);
+    NavigationService.back();
+  } catch (error) {
+  } finally {
+    dispatch(decreaseLoading());
+  }
+};
+
+export const putUser = (body: any) => async (dispatch: Dispatch) => {
+  dispatch(increaseLoading());
+  try {
+    await UserRequests.create(body);
+    NavigationService.back();
+  } catch (error) {
+  } finally {
+    dispatch(decreaseLoading());
+  }
+};

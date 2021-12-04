@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { Col, Container, Row } from 'react-bootstrap';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
@@ -10,6 +10,13 @@ import { Divider } from 'antd';
 import { translate } from '@portal/services/i18n';
 import { states } from '@portal/utils/states';
 import { SaveOutlined } from '@ant-design/icons';
+import { useLocation, useParams } from 'react-router-dom';
+import { getPageType } from '@portal/utils/page';
+import * as CompanyActions from '@portal/store/Company/action';
+import { useReduxState } from '@portal/hooks/useReduxState';
+import { useDispatch } from 'react-redux';
+import { PAGE_TYPE } from '@portal/enum/pageType';
+import { removeSpecialChars } from '@portal/services/strings';
 
 const initialValues: models.CompanyForm = {
   name: '',
@@ -28,8 +35,31 @@ const initialValues: models.CompanyForm = {
 
 const CompanyDetails: React.FC = () => {
   const [form, setForm] = useState(initialValues);
+  const { pathname } = useLocation();
+  const dispatch = useDispatch();
+  const [pageType] = useState(getPageType());
+  const params = useParams() as { id: string };
+  const { details } = useReduxState().company;
 
-  const onFormSubmit = () => {};
+  const onFormSubmit = () => {
+    if (details) {
+      dispatch(
+        CompanyActions.put({
+          ...form,
+          cep: removeSpecialChars(form.cep),
+          cellphone: removeSpecialChars(form.cellphone),
+        })
+      );
+    } else {
+      dispatch(
+        CompanyActions.create({
+          ...form,
+          cep: removeSpecialChars(form.cep),
+          cellphone: removeSpecialChars(form.cellphone),
+        })
+      );
+    }
+  };
 
   const onFormChange = (key: string, value: string | boolean) => {
     setForm((prevState: models.CompanyForm) => ({
@@ -37,6 +67,23 @@ const CompanyDetails: React.FC = () => {
       [key]: value,
     }));
   };
+
+  useEffect(() => {
+    if (pageType === PAGE_TYPE.EDIT) {
+      dispatch(CompanyActions.getDetail(params.id));
+    } else {
+      dispatch(CompanyActions.cleanDetails());
+    }
+  }, [pathname, pageType, dispatch, params.id]);
+
+  useEffect(() => {
+    if (details) {
+      //@ts-ignore
+      setForm(details);
+    } else {
+      setForm(initialValues);
+    }
+  }, [details]);
 
   return (
     <Container fluid className="details">

@@ -67,9 +67,7 @@ const PanelContentTopBar: React.FC<IProps> = (props: IProps) => {
                 onClick={onLogout}
                 className="panel-content-top-bar__right__user-dropdown__logout"
               >
-                {translate(
-                  'COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.DASHBOARD.LOGOUT'
-                )}
+                {translate('COMPONENTS.PANEL_CONTENT_TOP_BAR.PAGES.KPI.LOGOUT')}
               </div>
             }
           >

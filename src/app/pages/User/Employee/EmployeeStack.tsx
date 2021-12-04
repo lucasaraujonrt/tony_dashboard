@@ -19,17 +19,25 @@ const EmployeeStack: React.FC = () => {
           <EmployeeReport />
         </PanelContent>
       </Route>
-      <Route path={`${getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}`}>
+      <Route path={`${getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}/:id`}>
         <PanelContent
           pageTitle={translate(
-            `PAGES.PANEL.EMPLOYEE.DETAILS.TITLE.${
+            `PAGES.PANEL.EMPLOYEE.DETAILS.TITLE.EDIT${
               getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
             }`
           )}
           pageDescription={translate(
-            `PAGES.PANEL.EMPLOYEE.DETAILS.DESCRIPTION.${
-              getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
-            }`
+            `PAGES.PANEL.EMPLOYEE.DETAILS.DESCRIPTION.EDIT`
+          )}
+        >
+          <EmployeeDetails />
+        </PanelContent>
+      </Route>
+      <Route path={`${getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}`}>
+        <PanelContent
+          pageTitle={translate(`PAGES.PANEL.EMPLOYEE.DETAILS.TITLE.ADD`)}
+          pageDescription={translate(
+            `PAGES.PANEL.EMPLOYEE.DETAILS.DESCRIPTION.ADD`
           )}
         >
           <EmployeeDetails />

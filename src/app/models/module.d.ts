@@ -115,6 +115,12 @@ export interface UserForm {
   password: string;
   cellphone: string;
   profileType: number;
+  cep: string;
+  address: string;
+  number: string;
+  district: string;
+  city: string;
+  uf: string;
 }
 
 export interface EmployeeForm {

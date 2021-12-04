@@ -1,26 +1,26 @@
 import { Dispatch } from '@reduxjs/toolkit';
-import EmployeeApi from '@portal/controllers/employee';
+import CompanyApi from '@portal/controllers/company';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
-import { EMPLOYEE_REPORT, EMPLOYEE_DETAIL } from '../actionTypes';
+import { COMPANY_REPORT, COMPANY_DETAIL } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
   dispatch({
     payload: null,
-    type: EMPLOYEE_DETAIL,
+    type: COMPANY_DETAIL,
   });
 };
 
 export const getReport = (searchParams: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    const payload = await EmployeeApi.report({
+    const payload = await CompanyApi.report({
       ...searchParams,
       pageSize: searchParams.pageSize,
     });
     dispatch({
       payload,
-      type: EMPLOYEE_REPORT,
+      type: COMPANY_REPORT,
     });
   } catch (error) {
   } finally {
@@ -31,10 +31,10 @@ export const getReport = (searchParams: any) => async (dispatch: Dispatch) => {
 export const getDetail = (id: string) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    const payload = await EmployeeApi.details(id);
+    const payload = await CompanyApi.details(id);
     dispatch({
       payload,
-      type: EMPLOYEE_DETAIL,
+      type: COMPANY_DETAIL,
     });
   } catch (error) {
   } finally {
@@ -42,10 +42,10 @@ export const getDetail = (id: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const create = (body: models.UserForm) => async (dispatch: Dispatch) => {
+export const create = (body: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    await EmployeeApi.create(body);
+    await CompanyApi.create(body);
     NavigationService.back();
   } catch (error) {
   } finally {
@@ -56,7 +56,7 @@ export const create = (body: models.UserForm) => async (dispatch: Dispatch) => {
 export const put = (body: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    await EmployeeApi.put(body);
+    await CompanyApi.put(body);
     NavigationService.back();
   } catch (error) {
   } finally {

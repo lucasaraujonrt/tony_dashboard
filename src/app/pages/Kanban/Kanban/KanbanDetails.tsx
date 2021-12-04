@@ -175,6 +175,8 @@ const KanbanDetails: React.FC = () => {
 
   const handlePressCard = (item: any) => {
     setShowModal(true);
+    console.log({ item });
+
     setItemSelected(item);
   };
 
@@ -289,7 +291,7 @@ const KanbanDetails: React.FC = () => {
                                       (o) => o.value === item.priority
                                     )?.name
                                   }
-                                  sector={item.sector.name as string}
+                                  sector={item?.sector?.name as string}
                                   onClick={() => handlePressCard(item)}
                                 />
                               </div>

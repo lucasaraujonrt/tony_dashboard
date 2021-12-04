@@ -17,7 +17,14 @@ const UserApi = {
 
   create: async (body: models.UserForm) => {
     const instance = getInstance();
-    const { data } = await instance.post('/dashuser', body);
+    const { data } = await instance.post('/user', body);
+
+    return data;
+  },
+
+  put: async (body: any) => {
+    const instance = getInstance();
+    const { data } = await instance.put('/user', body);
 
     return data;
   },

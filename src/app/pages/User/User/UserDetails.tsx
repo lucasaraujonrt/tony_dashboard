@@ -5,7 +5,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
-import { maskPhone } from '@portal/services/masks';
+import { maskCEP, maskPhone } from '@portal/services/masks';
 import AdvancedCheckbox from '@portal/components/AdvancedCheckbox/AdvancedCheckbox';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { translate } from '@portal/services/i18n';
@@ -17,6 +17,8 @@ import * as UserActions from '@portal/store/User/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { SaveOutlined } from '@ant-design/icons';
 import { removeSpecialChars } from '@portal/services/strings';
+import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
+import { states } from '@portal/utils/states';
 
 // import { Container } from './styles';
 
@@ -26,6 +28,12 @@ const initialValues: models.UserForm = {
   password: '',
   cellphone: '',
   profileType: 0,
+  cep: '',
+  address: '',
+  number: '',
+  district: '',
+  city: '',
+  uf: '',
 };
 
 const UserDetails: React.FC = () => {
@@ -56,15 +64,27 @@ const UserDetails: React.FC = () => {
   }, [details]);
 
   const onFormSubmit = () => {
-    dispatch(
-      UserActions.createUser({
-        name: form.name,
-        email: form.email,
-        password: form.password,
-        cellphone: removeSpecialChars(form.cellphone),
-        profileType: form.profileType,
-      })
-    );
+    if (details) {
+      dispatch(
+        UserActions.putUser({
+          ...form,
+          cep: removeSpecialChars(form.cep),
+          cellphone: removeSpecialChars(form.cellphone),
+        })
+      );
+    } else {
+      dispatch(
+        UserActions.createUser({
+          ...form,
+          name: form.name,
+          email: form.email,
+          password: form.password,
+          profileType: form.profileType,
+          cep: removeSpecialChars(form.cep),
+          cellphone: removeSpecialChars(form.cellphone),
+        })
+      );
+    }
   };
 
   const onFormChange = (key: string, value: string | boolean) => {
@@ -152,6 +172,62 @@ const UserDetails: React.FC = () => {
                     placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={setConfirmPassword}
                     type="password"
+                  />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={4}>
+                  <AdvancedInput
+                    value={maskCEP(form.cep)}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CEP')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
+                    onChange={(value: string) => onFormChange('cep', value)}
+                  />
+                </Col>
+                <Col>
+                  <AdvancedInput
+                    value={form.address}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_ADDRESS')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
+                    onChange={(value: string) => onFormChange('address', value)}
+                  />
+                </Col>
+                <Col md={2}>
+                  <AdvancedInput
+                    value={form.number}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_NUMBER')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
+                    onChange={(value: string) => onFormChange('number', value)}
+                  />
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <AdvancedInput
+                    value={form.district}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_DISTRICT')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
+                    onChange={(value: string) =>
+                      onFormChange('district', value)
+                    }
+                  />
+                </Col>
+                <Col>
+                  <AdvancedInput
+                    value={form.city}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_CITY')}
+                    placeholder={translate('SHARED.PLACEHOLDER')}
+                    onChange={(value: string) => onFormChange('city', value)}
+                  />
+                </Col>
+                <Col md={3}>
+                  <AdvancedSelect
+                    value={form.uf}
+                    label={translate('PAGES.COMPANY_DETAILS.LABEL_UF')}
+                    onChange={(value: string) => onFormChange('uf', value)}
+                    options={states}
                   />
                 </Col>
               </Row>

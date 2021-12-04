@@ -21,6 +21,13 @@ const EmployeeApi = {
 
     return data;
   },
+
+  put: async (body: any) => {
+    const instance = getInstance();
+    const { data } = await instance.put(`/dashuser`, body);
+
+    return data;
+  },
 };
 
 export default EmployeeApi;
