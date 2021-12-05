@@ -42,7 +42,7 @@ export const getDetail = (id: string) => async (dispatch: Dispatch) => {
   }
 };
 
-export const create = (body: models.UserForm) => async (dispatch: Dispatch) => {
+export const create = (body: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
     await EmployeeApi.create(body);

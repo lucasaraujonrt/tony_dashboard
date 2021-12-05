@@ -16,7 +16,6 @@ const axiosInstance = Axios.create({
   timeout: 100000,
 });
 
-
 axiosInstance.interceptors.response.use(
   (response: AxiosResponse) => response,
   async (err) => {
@@ -47,7 +46,6 @@ export function getInstance() {
     StorageService.getItem('session-token') &&
     StorageService.getItem('session-token').accessToken
   ) {
-    console.log('asdasd')
     setAuthorizationHeader(StorageService.getItem('session-token').accessToken);
   } else {
     setAuthorizationHeader('undefined');

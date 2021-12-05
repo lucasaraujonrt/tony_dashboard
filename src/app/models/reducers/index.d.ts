@@ -27,6 +27,7 @@ export type CompanyReducer = {
   list: models.BaseReport | null;
   details: null;
   me: any;
+  listAll: any[] | null;
 };
 
 export type ServiceCallReducer = {
@@ -34,6 +35,10 @@ export type ServiceCallReducer = {
   details: null;
   me: any;
   kanbanList: any;
+};
+
+export type KpiReducer = {
+  list: any;
 };
 
 export type LoadingReducer = {
@@ -48,4 +53,5 @@ type rootReducer = {
   company: CompanyReducer;
   serviceCall: ServiceCallReducer;
   employee: EmployeeReducer;
+  kpi: KpiReducer;
 };

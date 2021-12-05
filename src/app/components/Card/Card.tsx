@@ -10,6 +10,12 @@ interface CardProps {
   onClick: () => void;
 }
 
+export const colorPriority = (text: string) => {
+  const color = priorityColors.find((o) => o.name === text)?.colors;
+
+  return color;
+};
+
 const Card = ({
   description,
   priority,
@@ -17,12 +23,6 @@ const Card = ({
   createdAt,
   onClick,
 }: CardProps) => {
-  const colorPriority = (text: string) => {
-    const color = priorityColors.find((o) => o.name === text)?.colors;
-
-    return color;
-  };
-
   return (
     <div className="card" onClick={onClick}>
       <div>

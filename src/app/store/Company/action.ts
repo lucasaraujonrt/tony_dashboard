@@ -1,7 +1,11 @@
 import { Dispatch } from '@reduxjs/toolkit';
 import CompanyApi from '@portal/controllers/company';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
-import { COMPANY_REPORT, COMPANY_DETAIL } from '../actionTypes';
+import {
+  COMPANY_REPORT,
+  COMPANY_DETAIL,
+  COMPANY_REPORT_ALL,
+} from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
@@ -35,6 +39,20 @@ export const getDetail = (id: string) => async (dispatch: Dispatch) => {
     dispatch({
       payload,
       type: COMPANY_DETAIL,
+    });
+  } catch (error) {
+  } finally {
+    dispatch(decreaseLoading());
+  }
+};
+
+export const getAll = () => async (dispatch: Dispatch) => {
+  dispatch(increaseLoading());
+  try {
+    const payload = await CompanyApi.getAll();
+    dispatch({
+      payload,
+      type: COMPANY_REPORT_ALL,
     });
   } catch (error) {
   } finally {

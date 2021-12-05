@@ -6,7 +6,6 @@ import PanelContentHeader from '@portal/components/PanelContentHeader/PanelConte
 import AdvancedForm from '@portal/components/AdvancedForm/AdvancedForm';
 import AdvancedInput from '@portal/components/AdvancedInput/AdvancedInput';
 import { maskCEP, maskPhone } from '@portal/services/masks';
-import AdvancedCheckbox from '@portal/components/AdvancedCheckbox/AdvancedCheckbox';
 import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { translate } from '@portal/services/i18n';
 import { getPageType } from '@portal/utils/page';
@@ -126,15 +125,6 @@ const UserDetails: React.FC = () => {
                     placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) =>
                       onFormChange('cellphone', value)
-                    }
-                  />
-                </Col>
-                <Col>
-                  <AdvancedCheckbox
-                    value={form.profileType}
-                    label={translate('PAGES.USER_DETAILS.LABEL_PROFILE_TYPE')}
-                    onChange={(value: boolean) =>
-                      onFormChange('profileType', value)
                     }
                   />
                 </Col>

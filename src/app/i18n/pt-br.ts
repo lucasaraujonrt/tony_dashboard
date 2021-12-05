@@ -90,7 +90,7 @@ const ptBr = {
       },
       SERVICE_CALL: {
         CREATED: {
-          LABEL: 'Realizados',
+          LABEL: 'Pendente',
         },
         IN_PROGRESS: {
           LABEL: 'Em andamento',

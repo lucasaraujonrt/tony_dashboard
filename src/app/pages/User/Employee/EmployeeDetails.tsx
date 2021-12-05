@@ -8,14 +8,16 @@ import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import { translate } from '@portal/services/i18n';
 import { Divider } from 'antd';
 import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
-import { profileType } from '@portal/utils/profileType';
+import { profileTypeEmployee } from '@portal/utils/profileType';
 import { SaveOutlined } from '@ant-design/icons';
 import * as EmployeeActions from '@portal/store/Employee/action';
+import * as CompanyActions from '@portal/store/Company/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { useLocation, useParams } from 'react-router-dom';
 import { getPageType } from '@portal/utils/page';
 import { useDispatch } from 'react-redux';
 import { PAGE_TYPE } from '@portal/enum/pageType';
+import { removeSpecialChars } from '@portal/services/strings';
 
 // import { Container } from './styles';
 
@@ -24,7 +26,7 @@ const initialValues: models.EmployeeForm = {
   email: '',
   password: '',
   cellphone: '',
-  company: '',
+  companyId: '',
   profileType: '',
 };
 
@@ -35,11 +37,18 @@ const EmployeeDetails: React.FC = () => {
   const [pageType] = useState(getPageType());
   const params = useParams() as { id: string };
   const { details } = useReduxState().employee;
-  console.log({ params });
+  const { listAll } = useReduxState().company;
 
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
-  const onFormSubmit = () => {};
+  const onFormSubmit = () => {
+    dispatch(
+      EmployeeActions.create({
+        ...form,
+        cellphone: removeSpecialChars(form.cellphone) as string,
+      })
+    );
+  };
 
   const onFormChange = (key: string, value: string | boolean) => {
     setForm((prevState: models.EmployeeForm) => ({
@@ -55,6 +64,10 @@ const EmployeeDetails: React.FC = () => {
       dispatch(EmployeeActions.cleanDetails());
     }
   }, [pathname, pageType, dispatch, params.id]);
+
+  useEffect(() => {
+    dispatch(CompanyActions.getAll());
+  }, [dispatch]);
 
   useEffect(() => {
     if (details) {
@@ -97,7 +110,7 @@ const EmployeeDetails: React.FC = () => {
                     onChange={(value: string) =>
                       onFormChange('profileType', value)
                     }
-                    options={profileType}
+                    options={profileTypeEmployee}
                   />
                 </Col>
                 <Col md={3}>
@@ -124,9 +137,17 @@ const EmployeeDetails: React.FC = () => {
 
                 <Col>
                   <AdvancedSelect
-                    value={form.company}
+                    value={form.companyId}
                     label={translate('PAGES.EMPLOYEE_DETAILS.LABEL_COMPANY')}
-                    onChange={(value: string) => onFormChange('company', value)}
+                    onChange={(value: string) =>
+                      onFormChange('companyId', value)
+                    }
+                    options={
+                      listAll?.map((item) => ({
+                        id: item.id,
+                        name: item.name,
+                      })) || []
+                    }
                   />
                 </Col>
               </Row>

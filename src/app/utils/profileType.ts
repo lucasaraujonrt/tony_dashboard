@@ -10,3 +10,8 @@ export const profileType: ProfileType[] = [
   { name: 'Administrador da empresa', value: ProfileTypeEnum.COMPANY_ADMIN },
   { name: 'Administrador', value: ProfileTypeEnum.ADMIN },
 ];
+
+export const profileTypeEmployee: ProfileType[] = [
+  { name: 'Colaborador', value: ProfileTypeEnum.EMPLOYEE },
+  { name: 'Administrador da empresa', value: ProfileTypeEnum.COMPANY_ADMIN },
+];

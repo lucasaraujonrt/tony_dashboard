@@ -21,6 +21,12 @@ const CompanyApi = {
     return data;
   },
 
+  getAll: async () => {
+    const { data } = await instance.get('/company');
+
+    return data;
+  },
+
   put: async (body: any) => {
     const { data } = await instance.put('/company', body);
 

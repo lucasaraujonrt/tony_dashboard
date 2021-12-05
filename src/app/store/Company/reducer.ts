@@ -1,9 +1,14 @@
-import { COMPANY_DETAIL, COMPANY_REPORT } from '@portal/store/actionTypes';
+import {
+  COMPANY_DETAIL,
+  COMPANY_REPORT,
+  COMPANY_REPORT_ALL,
+} from '@portal/store/actionTypes';
 
 const initialState: reducers.CompanyReducer = {
   list: null,
   details: null,
   me: null,
+  listAll: null,
 };
 
 const companyReducer = (state = initialState, action: any) => {
@@ -17,6 +22,11 @@ const companyReducer = (state = initialState, action: any) => {
       return {
         ...state,
         details: action.payload,
+      };
+    case COMPANY_REPORT_ALL:
+      return {
+        ...state,
+        listAll: action.payload,
       };
     default:
       return state;

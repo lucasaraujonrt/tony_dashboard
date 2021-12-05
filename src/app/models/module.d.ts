@@ -128,7 +128,7 @@ export interface EmployeeForm {
   email: string;
   password: string;
   cellphone: string;
-  company: string;
+  companyId: string;
   profileType: string;
 }
 

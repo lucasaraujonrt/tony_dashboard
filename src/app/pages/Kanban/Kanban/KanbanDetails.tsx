@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import {
@@ -21,7 +22,9 @@ import { Modal } from 'antd';
 import { getAll, updateCard } from '@portal/store/ServiceCall/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { StatusId } from '@portal/enum/statusId';
-import { priority } from '@portal/utils/priority';
+import { priority, priorityColors } from '@portal/utils/priority';
+import * as MessageService from '@portal/services/message';
+import { maskCEP } from '@portal/services/masks';
 
 enum KanbanColumns {
   PENDING = 'Em criação',
@@ -68,6 +71,7 @@ const KanbanDetails: React.FC = () => {
     if (kanbanList) {
       setInitialStates();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [kanbanList]);
 
   const [columnsFromBack, setColumnsFromBack] = useState({
@@ -97,7 +101,7 @@ const KanbanDetails: React.FC = () => {
     },
   });
   const [showModal, setShowModal] = useState(false);
-  const [itemSelected, setItemSelected] = useState();
+  const [itemSelected, setItemSelected] = useState<any>(null);
 
   const grid = 3;
 
@@ -124,6 +128,17 @@ const KanbanDetails: React.FC = () => {
     if (!result.destination) return undefined;
     const { source, destination } = result;
     if (source.droppableId !== destination.droppableId) {
+      if (
+        source.droppableId === KanbanColumns.PENDING ||
+        source.droppableId === KanbanColumns.DONE ||
+        destination.droppableId === KanbanColumns.PENDING
+      ) {
+        MessageService.warn(
+          `Os status ${KanbanColumns.PENDING} ou ${KanbanColumns.DONE} não podem ser trocados manualmente`
+        );
+        return;
+      }
+
       const sourceColumn = columns[source.droppableId];
       const destColumn = columns[destination.droppableId];
       const sourceItems = [...sourceColumn.items];
@@ -175,7 +190,6 @@ const KanbanDetails: React.FC = () => {
 
   const handlePressCard = (item: any) => {
     setShowModal(true);
-    console.log({ item });
 
     setItemSelected(item);
   };
@@ -236,7 +250,7 @@ const KanbanDetails: React.FC = () => {
               <div
                 key={id}
                 style={{
-                  width: '24%',
+                  width: '25%',
                 }}
               >
                 <Droppable droppableId={id}>
@@ -286,6 +300,11 @@ const KanbanDetails: React.FC = () => {
                               >
                                 <Card
                                   {...item}
+                                  description={
+                                    item?.description.length > 40
+                                      ? `${item?.description.substr(0, 40)}...`
+                                      : item?.description || ''
+                                  }
                                   priority={
                                     priority.find(
                                       (o) => o.value === item.priority
@@ -312,27 +331,90 @@ const KanbanDetails: React.FC = () => {
 
       <Modal
         // @ts-ignore
-        title={itemSelected?.description || ''}
+        title={
+          itemSelected?.description.length > 40
+            ? `${itemSelected?.description.substr(0, 40)}...`
+            : itemSelected?.description || ''
+        }
         visible={showModal}
         cancelText="Fechar"
         onOk={() => setShowModal(false)}
         onCancel={() => setShowModal(false)}
       >
         <div>
+          <span>{(itemSelected && itemSelected?.description) || ''}</span>
+
+          <div
+            style={{ display: 'flex', padding: '20px 0' }}
+            className="card__inner__tags"
+          >
+            <div
+              className="card__inner__priority"
+              style={{
+                backgroundColor:
+                  itemSelected &&
+                  priorityColors.find((o) => o.value === itemSelected.priority)
+                    ?.colors,
+                display: 'flex',
+                alignItems: 'center',
+                borderRadius: '15px',
+                padding: '1px 11px',
+                marginRight: '12px',
+              }}
+            >
+              <span
+                style={{ fontSize: ' 13px', color: 'white' }}
+                className="card__inner__priority__text"
+              >
+                {itemSelected &&
+                  priority.find((o) => o.value === itemSelected.priority)?.name}
+              </span>
+            </div>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                backgroundColor: ' teal',
+                borderRadius: '15px',
+                padding: ' 1px 11px',
+              }}
+              className="card__inner__sector"
+            >
+              <span
+                style={{ fontSize: ' 13px', color: 'white' }}
+                className="card__inner__sector__text"
+              >
+                {itemSelected && itemSelected.sector.name}
+              </span>
+            </div>
+          </div>
+
           <p>
-            descricao descricao descricao descricao descricao descricao
-            descricao descricao descricao descricao descricao descricao
+            Cliente:{' '}
+            <strong>
+              {itemSelected && itemSelected.client && itemSelected.client?.name}
+            </strong>{' '}
           </p>
-
-          <Divider />
-
-          <p>Nome do usuario</p>
-
           <Col>
-            <Row>Rua Carlos Machado 133</Row>
-            <Row>Barra da Tijuca</Row>
-            <Row>Rio de Janeiro - RJ</Row>
-            <Row>22775042</Row>
+            <Row>
+              {itemSelected &&
+                itemSelected.client &&
+                itemSelected.client?.address}
+            </Row>
+            <Row>
+              {itemSelected &&
+                itemSelected.client &&
+                itemSelected.client?.district}
+            </Row>
+            <Row>
+              {itemSelected && itemSelected.client && itemSelected.client?.city}{' '}
+              - {itemSelected && itemSelected.client && itemSelected.client?.uf}
+            </Row>
+            <Row>
+              {itemSelected && itemSelected.client && itemSelected.client.cep
+                ? maskCEP(itemSelected.client.cep)
+                : ''}
+            </Row>
           </Col>
         </div>
       </Modal>
