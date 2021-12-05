@@ -344,6 +344,33 @@ const KanbanDetails: React.FC = () => {
         <div>
           <span>{(itemSelected && itemSelected?.description) || ''}</span>
 
+          <p style={{ paddingTop: 10 }}>
+            Cliente:{' '}
+            <strong>
+              {itemSelected && itemSelected.client && itemSelected.client?.name}
+            </strong>{' '}
+          </p>
+          <Col>
+            <Row>
+              {itemSelected &&
+                itemSelected.client &&
+                itemSelected.client?.address}
+            </Row>
+            <Row>
+              {itemSelected &&
+                itemSelected.client &&
+                itemSelected.client?.district}
+            </Row>
+            <Row>
+              {itemSelected && itemSelected.client && itemSelected.client?.city}{' '}
+              - {itemSelected && itemSelected.client && itemSelected.client?.uf}
+            </Row>
+            <Row>
+              {itemSelected && itemSelected.client && itemSelected.client.cep
+                ? maskCEP(itemSelected.client.cep)
+                : ''}
+            </Row>
+          </Col>
           <div
             style={{ display: 'flex', padding: '20px 0' }}
             className="card__inner__tags"
@@ -358,7 +385,7 @@ const KanbanDetails: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 borderRadius: '15px',
-                padding: '1px 11px',
+                padding: '0px 11px',
                 marginRight: '12px',
               }}
             >
@@ -388,34 +415,6 @@ const KanbanDetails: React.FC = () => {
               </span>
             </div>
           </div>
-
-          <p>
-            Cliente:{' '}
-            <strong>
-              {itemSelected && itemSelected.client && itemSelected.client?.name}
-            </strong>{' '}
-          </p>
-          <Col>
-            <Row>
-              {itemSelected &&
-                itemSelected.client &&
-                itemSelected.client?.address}
-            </Row>
-            <Row>
-              {itemSelected &&
-                itemSelected.client &&
-                itemSelected.client?.district}
-            </Row>
-            <Row>
-              {itemSelected && itemSelected.client && itemSelected.client?.city}{' '}
-              - {itemSelected && itemSelected.client && itemSelected.client?.uf}
-            </Row>
-            <Row>
-              {itemSelected && itemSelected.client && itemSelected.client.cep
-                ? maskCEP(itemSelected.client.cep)
-                : ''}
-            </Row>
-          </Col>
         </div>
       </Modal>
     </Container>
