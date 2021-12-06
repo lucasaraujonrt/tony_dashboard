@@ -8,7 +8,7 @@ export function getPageType() {
   const pathSplitted: any = path.split('/');
   const lastPath: string = pathSplitted[pathSplitted.length - 1];
 
-  if (lastPath && lastPath !== translate('SHARED.ADD_ID')) {
+  if (lastPath && lastPath !== translate('PAGES.SHARED.ADD_ID')) {
     pageType = PAGE_TYPE.EDIT;
   }
 

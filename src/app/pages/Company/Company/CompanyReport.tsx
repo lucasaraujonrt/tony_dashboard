@@ -98,7 +98,11 @@ const CompanyReport: React.FC = () => {
           />
         </Col>
         <Col lg={6} className="text-right">
-          <Link to={getRouteStackPath('COMPANY', 'COMPANY_DETAILS')}>
+          <Link
+            to={`${getRouteStackPath('COMPANY', 'COMPANY_DETAILS')}/${translate(
+              'PAGES.SHARED.ADD_ID'
+            )}`}
+          >
             <AdvancedButton
               text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}

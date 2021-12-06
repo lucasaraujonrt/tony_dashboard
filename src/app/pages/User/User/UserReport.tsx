@@ -77,7 +77,11 @@ const UserReport: React.FC = () => {
           />
         </Col>
         <Col lg={6} className="text-right">
-          <Link to={getRouteStackPath('USER', 'USER_DETAILS')}>
+          <Link
+            to={`${getRouteStackPath('USER', 'USER_DETAILS')}/${translate(
+              'PAGES.SHARED.ADD_ID'
+            )}`}
+          >
             <AdvancedButton
               text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}

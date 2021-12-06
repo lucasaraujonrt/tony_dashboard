@@ -35,22 +35,6 @@ const UserStack: React.FC = () => {
           <UserDetails />
         </PanelContent>
       </Route>
-      <Route path={`${getRouteStackPath('USER', 'USER_DETAILS')}`}>
-        <PanelContent
-          pageTitle={translate(
-            `PAGES.PANEL.USER.DETAILS.TITLE.${
-              getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
-            }`
-          )}
-          pageDescription={translate(
-            `PAGES.PANEL.USER.DETAILS.DESCRIPTION.${
-              getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
-            }`
-          )}
-        >
-          <UserDetails />
-        </PanelContent>
-      </Route>
     </Switch>
   );
 };

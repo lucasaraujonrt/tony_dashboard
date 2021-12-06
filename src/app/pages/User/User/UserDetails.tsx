@@ -20,8 +20,6 @@ import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { states } from '@portal/utils/states';
 import * as MessageService from '@portal/services/message';
 
-// import { Container } from './styles';
-
 const initialValues: models.UserForm = {
   name: '',
   email: '',
@@ -45,6 +43,7 @@ const UserDetails: React.FC = () => {
   const { details } = useReduxState().user;
 
   const [confirmPassword, setConfirmPassword] = useState<string>('');
+  console.log({ pageType });
 
   useEffect(() => {
     if (pageType === PAGE_TYPE.EDIT) {

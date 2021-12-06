@@ -35,22 +35,6 @@ const CompanyStack: React.FC = () => {
           <CompanyDetails />
         </PanelContent>
       </Route>
-      <Route path={`${getRouteStackPath('COMPANY', 'COMPANY_DETAILS')}`}>
-        <PanelContent
-          pageTitle={translate(
-            `PAGES.PANEL.COMPANY.DETAILS.TITLE.${
-              getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
-            }`
-          )}
-          pageDescription={translate(
-            `PAGES.PANEL.COMPANY.DETAILS.DESCRIPTION.${
-              getPageType() === PAGE_TYPE.ADD ? 'ADD' : 'EDIT'
-            }`
-          )}
-        >
-          <CompanyDetails />
-        </PanelContent>
-      </Route>
     </Switch>
   );
 };

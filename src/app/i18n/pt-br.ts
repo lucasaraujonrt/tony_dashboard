@@ -278,6 +278,21 @@ const ptBr = {
       DESCRIPTION: 'Criar setor',
       LABEL_NAME: 'Nome do setor',
     },
+
+    SHARED: {
+      FORMAT_DATE: 'dd/MM/yyyy',
+      FORMAT_HOUR: 'HH:mm',
+      CURRENCY_SYMBOL: 'R$',
+      SELECT_SOMETHING: 'Selecione...',
+      ADD_NEW: 'Adicionar',
+      IMPORT_NEW: 'Importar CSV',
+      BACK: 'Voltar',
+      SAVE: 'Salvar',
+      SEND_PASSWORD: 'Enviar senha',
+      ADD_ID: 'adicionar',
+      CANCEL: 'Cancelar',
+      DAY: 'Dia',
+    },
   },
 };
 

@@ -100,7 +100,11 @@ const EmployeeReport: React.FC = () => {
           />
         </Col>
         <Col lg={6} className="text-right">
-          <Link to={getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}>
+          <Link
+            to={`${getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}/${translate(
+              'PAGES.SHARED.ADD_ID'
+            )}`}
+          >
             <AdvancedButton
               text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}

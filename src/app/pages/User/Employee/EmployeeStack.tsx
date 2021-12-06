@@ -33,16 +33,6 @@ const EmployeeStack: React.FC = () => {
           <EmployeeDetails />
         </PanelContent>
       </Route>
-      <Route path={`${getRouteStackPath('USER', 'EMPLOYEE_DETAILS')}`}>
-        <PanelContent
-          pageTitle={translate(`PAGES.PANEL.EMPLOYEE.DETAILS.TITLE.ADD`)}
-          pageDescription={translate(
-            `PAGES.PANEL.EMPLOYEE.DETAILS.DESCRIPTION.ADD`
-          )}
-        >
-          <EmployeeDetails />
-        </PanelContent>
-      </Route>
     </Switch>
   );
 };
