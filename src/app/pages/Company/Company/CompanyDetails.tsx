@@ -16,7 +16,8 @@ import * as CompanyActions from '@portal/store/Company/action';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { useDispatch } from 'react-redux';
 import { PAGE_TYPE } from '@portal/enum/pageType';
-import { removeSpecialChars } from '@portal/services/strings';
+import { cnpjValidation, removeSpecialChars } from '@portal/services/strings';
+import * as MessageService from '@portal/services/message';
 
 const initialValues: models.CompanyForm = {
   name: '',
@@ -42,6 +43,30 @@ const CompanyDetails: React.FC = () => {
   const { details } = useReduxState().company;
 
   const onFormSubmit = () => {
+    const formValues = Object.values(form);
+
+    if (!details) {
+      for (const index in formValues) {
+        if (
+          String(formValues[index]).trim() === '' ||
+          formValues[index] === null
+        ) {
+          return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
+        }
+      }
+      if (form.cellphone.length !== 16) {
+        return MessageService.error(
+          'Preencha o campo de telefone corretamente'
+        );
+      }
+      if (!cnpjValidation(removeSpecialChars(form.cnpj))) {
+        return MessageService.error('Preencha o campo de CNPJ corretamente');
+      }
+      if (form.cep.length !== 9) {
+        return MessageService.error('Preencha o campo de CEP corretamente');
+      }
+    }
+
     if (details) {
       dispatch(
         CompanyActions.put({

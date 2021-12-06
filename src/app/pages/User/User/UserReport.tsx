@@ -59,13 +59,13 @@ const UserReport: React.FC = () => {
     dispatch(UserActions.getReport(filters));
   };
 
-  const onRemove = (id: string) => {
-    const filter = NavigationService.getQuery();
-    onSearch({
-      ...advancedFilters,
-      ...filter,
-    });
-  };
+  // const onRemove = (id: string) => {
+  //   const filter = NavigationService.getQuery();
+  //   onSearch({
+  //     ...advancedFilters,
+  //     ...filter,
+  //   });
+  // };
 
   return (
     <div className="report">
@@ -147,7 +147,6 @@ const UserReport: React.FC = () => {
                       <DataTableActions
                         row={o.row}
                         basePath={getRouteStackPath('USER', 'USER_DETAILS')}
-                        onRemove={onRemove}
                       />
                     ),
                   },

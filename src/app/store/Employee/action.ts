@@ -3,6 +3,7 @@ import EmployeeApi from '@portal/controllers/employee';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { EMPLOYEE_REPORT, EMPLOYEE_DETAIL } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
+import * as MessageService from '@portal/services/message';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
   dispatch({
@@ -48,6 +49,9 @@ export const create = (body: any) => async (dispatch: Dispatch) => {
     await EmployeeApi.create(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error(
+      'Erro ao criar o colaborador. Verifique todos os campos'
+    );
   } finally {
     dispatch(decreaseLoading());
   }
@@ -59,6 +63,9 @@ export const put = (body: any) => async (dispatch: Dispatch) => {
     await EmployeeApi.put(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error(
+      'Erro ao editar o colaborador. Verifique todos os campos'
+    );
   } finally {
     dispatch(decreaseLoading());
   }

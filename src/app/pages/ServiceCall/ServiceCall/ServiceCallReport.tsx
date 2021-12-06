@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { PlusCircleOutlined } from '@ant-design/icons';
-import { Link } from 'react-router-dom';
+// import { PlusCircleOutlined } from '@ant-design/icons';
+// import { Link } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 import * as ServiceCallActions from '@portal/store/ServiceCall/action';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
 import { getRouteStackPath } from '@portal/config/routes';
-import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
+// import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import AdvancedFilter from '@portal/components/AdvancedFilter/AdvancedFilter';
 import { AdvancedFilterType } from '@portal/enum/advancedFilter';
 import DataTable from '@portal/components/DataTable/DataTable';
@@ -93,14 +93,14 @@ const ServiceCallReport: React.FC = () => {
             )}
           />
         </Col>
-        <Col lg={6} className="text-right">
+        {/* <Col lg={6} className="text-right">
           <Link to={getRouteStackPath('SERVICE_CALL', 'SERVICE_CALL_DETAILS')}>
             <AdvancedButton
               text={translate('SHARED.ADD')}
               startIcon={<PlusCircleOutlined />}
             />
           </Link>
-        </Col>
+        </Col> */}
       </Row>
       <Row>
         <Col>

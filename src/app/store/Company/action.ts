@@ -7,6 +7,7 @@ import {
   COMPANY_REPORT_ALL,
 } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
+import * as MessageService from '@portal/services/message';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
   dispatch({
@@ -66,6 +67,7 @@ export const create = (body: any) => async (dispatch: Dispatch) => {
     await CompanyApi.create(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error('Erro ao criar a empresa. Verifique todos os campos');
   } finally {
     dispatch(decreaseLoading());
   }
@@ -77,6 +79,7 @@ export const put = (body: any) => async (dispatch: Dispatch) => {
     await CompanyApi.put(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error('Erro ao editar a empresa. Verifique todos os campos');
   } finally {
     dispatch(decreaseLoading());
   }
