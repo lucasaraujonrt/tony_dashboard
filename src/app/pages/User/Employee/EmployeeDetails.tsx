@@ -18,6 +18,7 @@ import { getPageType } from '@portal/utils/page';
 import { useDispatch } from 'react-redux';
 import { PAGE_TYPE } from '@portal/enum/pageType';
 import { removeSpecialChars } from '@portal/services/strings';
+import * as MessageService from '@portal/services/message';
 
 // import { Container } from './styles';
 
@@ -42,6 +43,24 @@ const EmployeeDetails: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>('');
 
   const onFormSubmit = () => {
+    const formValues = Object.values(form);
+
+    if (!details) {
+      for (const index in formValues) {
+        if (
+          String(formValues[index]).trim() === '' ||
+          formValues[index] === null
+        ) {
+          return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
+        }
+      }
+      if (form.cellphone.length !== 16) {
+        return MessageService.error(
+          'Preencha o campo de telefone corretamente'
+        );
+      }
+    }
+
     dispatch(
       EmployeeActions.create({
         ...form,

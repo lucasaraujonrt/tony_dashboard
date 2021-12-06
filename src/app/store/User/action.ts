@@ -3,6 +3,7 @@ import UserRequests from '@portal/controllers/user';
 import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { USER_DETAIL, USER_REPORT, USER_ME } from '../actionTypes';
 import NavigationService from '@portal/services/navigation';
+import * as MessageService from '@portal/services/message';
 
 export const cleanDetails = () => async (dispatch: Dispatch) => {
   dispatch({
@@ -62,6 +63,7 @@ export const createUser = (body: any) => async (dispatch: Dispatch) => {
     await UserRequests.create(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error('Erro ao criar o usuário. Verifique todos os campos');
   } finally {
     dispatch(decreaseLoading());
   }
@@ -73,6 +75,7 @@ export const putUser = (body: any) => async (dispatch: Dispatch) => {
     await UserRequests.create(body);
     NavigationService.back();
   } catch (error) {
+    MessageService.error('Erro ao editar o usuário. Verifique todos os campos');
   } finally {
     dispatch(decreaseLoading());
   }

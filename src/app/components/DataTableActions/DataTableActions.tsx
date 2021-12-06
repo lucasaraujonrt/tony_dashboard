@@ -16,11 +16,7 @@ interface IProps {
 }
 
 const DataTableActions: React.FC<IProps> = (props) => {
-  const {
-    row,
-    basePath,
-    onRemove,
-  } = props;
+  const { row, basePath, onRemove } = props;
 
   const onEdit = (id: string) => {
     return `${basePath}/${id}`;
@@ -45,7 +41,7 @@ const DataTableActions: React.FC<IProps> = (props) => {
       <Popover
         placement="leftTop"
         trigger="click"
-        content={(
+        content={
           <div className="data-table-actions__items">
             <div className="data-table-actions__items__single">
               {basePath && (
@@ -54,10 +50,7 @@ const DataTableActions: React.FC<IProps> = (props) => {
                   to={onEdit(row.id)}
                 >
                   <span className="data-table-actions__items__single__link__icon">
-                    <img
-                      src={IconEdit}
-                      alt="icon"
-                    />
+                    <img src={IconEdit} alt="icon" />
                   </span>
                   <span className="data-table-actions__items__single__link__text">
                     {translate('COMPONENTS.DATA_TABLE_ACTIONS.EDIT.LABEL')}
@@ -65,31 +58,27 @@ const DataTableActions: React.FC<IProps> = (props) => {
                 </Link>
               )}
             </div>
-            <div className="data-table-actions__items__single">
-              <a
-                className="data-table-actions__items__single__link"
-                onClick={() => onDelete(row.id)}
-                href="aa"
-              >
-                <span className="data-table-actions__items__single__link__icon">
-                  <img
-                    src={IconDelete}
-                    alt="icon"
-                  />
-                </span>
-                <span className="data-table-actions__items__single__link__text">
-                  {translate('COMPONENTS.DATA_TABLE_ACTIONS.DELETE.LABEL')}
-                </span>
-              </a>
-            </div>
+            {onRemove && (
+              <div className="data-table-actions__items__single">
+                <a
+                  className="data-table-actions__items__single__link"
+                  onClick={() => onDelete(row.id)}
+                  href="aa"
+                >
+                  <span className="data-table-actions__items__single__link__icon">
+                    <img src={IconDelete} alt="icon" />
+                  </span>
+                  <span className="data-table-actions__items__single__link__text">
+                    {translate('COMPONENTS.DATA_TABLE_ACTIONS.DELETE.LABEL')}
+                  </span>
+                </a>
+              </div>
+            )}
           </div>
-        )}
+        }
       >
         <div className="data-table-actions__button">
-          <img
-            src={MoreDots}
-            alt="more"
-          />
+          <img src={MoreDots} alt="more" />
         </div>
       </Popover>
     </div>

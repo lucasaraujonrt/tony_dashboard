@@ -78,13 +78,13 @@ const CompanyReport: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [advancedFilters]);
 
-  const onRemove = (id: string) => {
-    const filter = NavigationService.getQuery();
-    onSearch({
-      ...advancedFilters,
-      ...filter,
-    });
-  };
+  // const onRemove = (id: string) => {
+  //   const filter = NavigationService.getQuery();
+  //   onSearch({
+  //     ...advancedFilters,
+  //     ...filter,
+  //   });
+  // };
 
   return (
     <div className="report">
@@ -175,7 +175,6 @@ const CompanyReport: React.FC = () => {
                             'COMPANY',
                             'COMPANY_DETAILS'
                           )}
-                          onRemove={onRemove}
                         />
                       );
                     },

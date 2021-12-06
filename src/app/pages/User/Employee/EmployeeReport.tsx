@@ -69,13 +69,13 @@ const EmployeeReport: React.FC = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [advancedFilters]);
 
-  const onRemove = (id: string) => {
-    const filter = NavigationService.getQuery();
-    onSearch({
-      ...advancedFilters,
-      ...filter,
-    });
-  };
+  // const onRemove = (id: string) => {
+  //   const filter = NavigationService.getQuery();
+  //   onSearch({
+  //     ...advancedFilters,
+  //     ...filter,
+  //   });
+  // };
 
   const handleCompanyName = (employee: any) => {
     let companyName = '';
@@ -179,7 +179,6 @@ const EmployeeReport: React.FC = () => {
                             'USER',
                             'EMPLOYEE_DETAILS'
                           )}
-                          onRemove={onRemove}
                         />
                       );
                     },

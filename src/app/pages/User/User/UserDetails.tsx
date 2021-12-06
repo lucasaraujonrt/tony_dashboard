@@ -18,6 +18,7 @@ import { SaveOutlined } from '@ant-design/icons';
 import { removeSpecialChars } from '@portal/services/strings';
 import AdvancedSelect from '@portal/components/AdvancedSelect/AdvancedSelect';
 import { states } from '@portal/utils/states';
+import * as MessageService from '@portal/services/message';
 
 // import { Container } from './styles';
 
@@ -63,6 +64,29 @@ const UserDetails: React.FC = () => {
   }, [details]);
 
   const onFormSubmit = () => {
+    const formValues = Object.values(form);
+
+    if (!details) {
+      for (const index in formValues) {
+        if (
+          String(formValues[index]).trim() === '' ||
+          formValues[index] === null
+        ) {
+          return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
+        }
+      }
+      if (form.cellphone.length !== 16) {
+        console.log(form.cellphone.length);
+        return MessageService.error(
+          'Preencha o campo de telefone corretamente'
+        );
+      }
+      console.log(form.cellphone.length);
+      if (form.cep.length !== 9) {
+        return MessageService.error('Preencha o campo de CEP corretamente');
+      }
+    }
+
     if (details) {
       dispatch(
         UserActions.putUser({
