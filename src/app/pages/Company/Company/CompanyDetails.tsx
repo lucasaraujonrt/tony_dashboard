@@ -62,7 +62,7 @@ const CompanyDetails: React.FC = () => {
       if (!cnpjValidation(removeSpecialChars(form.cnpj))) {
         return MessageService.error('Preencha o campo de CNPJ corretamente');
       }
-      if (form.cep.length !== 9) {
+      if (removeSpecialChars(form.cep as string).length !== 8) {
         return MessageService.error('Preencha o campo de CEP corretamente');
       }
     }
