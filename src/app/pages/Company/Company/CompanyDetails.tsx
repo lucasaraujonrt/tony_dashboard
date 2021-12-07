@@ -54,7 +54,7 @@ const CompanyDetails: React.FC = () => {
           return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
         }
       }
-      if (form.cellphone.length !== 16) {
+      if (removeSpecialChars(form.cellphone as string).length !== 12) {
         return MessageService.error(
           'Preencha o campo de telefone corretamente'
         );
@@ -200,6 +200,7 @@ const CompanyDetails: React.FC = () => {
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_NUMBER')}
                     placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('number', value)}
+                    type="number"
                   />
                 </Col>
               </Row>
