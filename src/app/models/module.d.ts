@@ -35,6 +35,7 @@ export type routeInner = {
   name: string;
   sidebarHidden?: boolean;
   accessType?: number;
+  permission?: number[];
 };
 
 export type route = {
@@ -46,6 +47,7 @@ export type route = {
   items: routeInner[];
   accessType?: number;
   hide?: boolean;
+  permission?: number[];
 };
 
 export type PaginationResponse<T> = {

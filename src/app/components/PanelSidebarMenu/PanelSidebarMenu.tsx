@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useReduxState } from '~/hooks/useReduxState';
+import { useReduxState } from '@portal/hooks/useReduxState';
 import { Link, useLocation } from 'react-router-dom';
 
 import { translate } from '~/services/i18n';
@@ -10,15 +10,21 @@ export interface IProps {
 
 const PanelSidebarMenu: React.FC<IProps> = (props: IProps) => {
   const location = useLocation();
-  // const { user } = useReduxState();
+  const { me } = useReduxState().user;
 
   const isActive = (path: string) => path === location.pathname;
+  console.log({ me });
 
   return (
     <div className="panel-sidebar-menu">
       <div className="panel-sidebar-menu__items">
         {props.routes
           .filter((o) => !o.hide)
+          .filter(
+            (o) =>
+              o.permission === undefined ||
+              (me && o.permission.includes(me.profileType))
+          )
           .map((item: models.route, itemKey: number) => (
             <div
               key={itemKey.toString()}
@@ -37,6 +43,11 @@ const PanelSidebarMenu: React.FC<IProps> = (props: IProps) => {
               <div className="panel-sidebar-menu__items__single__items">
                 {item.items
                   .filter((o) => !o.sidebarHidden)
+                  .filter(
+                    (o) =>
+                      o.permission === undefined ||
+                      (me && o.permission.includes(me.profileType))
+                  )
                   .map((subItem: models.routeInner, subItemKey: number) => (
                     <div
                       className="panel-sidebar-menu__items__single__items__single"

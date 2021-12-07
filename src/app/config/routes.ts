@@ -1,3 +1,5 @@
+import { ProfileTypeEnum } from '@portal/enum/profileType';
+
 const routes: models.route[] = [
   {
     id: 'SERVICE_CALL',
@@ -42,6 +44,7 @@ const routes: models.route[] = [
     hide: true,
     icon: '/assets/svg/panel-sidebar/ic_service_call.svg',
     iconAlt: 'KPI',
+    permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
     items: [
       {
         id: 'KPI_DETAILS',
@@ -57,28 +60,33 @@ const routes: models.route[] = [
     route: '/usuarios',
     icon: '/assets/svg/panel-sidebar/ic_users.svg',
     iconAlt: 'Usuários',
+    permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
     items: [
       {
         id: 'REPORT',
         name: 'Lista de usuários comuns',
         route: '/lista',
+        permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
       },
       {
         id: 'USER_DETAILS',
         name: 'Informações Gerais',
         route: '/detalhes',
         sidebarHidden: true,
+        permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
       },
       {
         id: 'EMPLOYEE_REPORT',
         name: 'Lista de colaboradores',
         route: '/colaboradores/lista',
+        permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
       },
       {
         id: 'EMPLOYEE_DETAILS',
         name: 'Informações Gerais',
         route: '/colaboradores/detalhes',
         sidebarHidden: true,
+        permission: [ProfileTypeEnum.ADMIN, ProfileTypeEnum.COMPANY_ADMIN],
       },
     ],
   },
@@ -88,11 +96,13 @@ const routes: models.route[] = [
     route: '/empresas',
     icon: '/assets/svg/panel-sidebar/ic_company.svg',
     iconAlt: 'Empresas',
+    permission: [ProfileTypeEnum.ADMIN],
     items: [
       {
         id: 'REPORT',
         name: 'Lista de empresas',
         route: '/lista',
+        permission: [ProfileTypeEnum.ADMIN],
       },
       {
         id: 'COMPANY_DETAILS',
