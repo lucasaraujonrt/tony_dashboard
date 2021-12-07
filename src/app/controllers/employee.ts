@@ -24,7 +24,7 @@ const EmployeeApi = {
 
   put: async (body: any) => {
     const instance = getInstance();
-    const { data } = await instance.put(`/dashuser`, body);
+    const { data } = await instance.put(`/dashuser/${body.id}`, body);
 
     return data;
   },

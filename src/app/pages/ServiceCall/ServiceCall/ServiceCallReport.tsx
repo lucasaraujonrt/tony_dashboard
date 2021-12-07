@@ -5,14 +5,12 @@ import { Row, Col } from 'react-bootstrap';
 
 import * as ServiceCallActions from '@portal/store/ServiceCall/action';
 import PanelContentHeader from '@portal/components/PanelContentHeader/PanelContentHeader';
-import { getRouteStackPath } from '@portal/config/routes';
 // import AdvancedButton from '@portal/components/AdvancedButton/AdvancedButton';
 import AdvancedFilter from '@portal/components/AdvancedFilter/AdvancedFilter';
 import { AdvancedFilterType } from '@portal/enum/advancedFilter';
 import DataTable from '@portal/components/DataTable/DataTable';
 import NavigationService from '@portal/services/navigation';
 import { CellParams } from '@material-ui/data-grid';
-import DataTableActions from '@portal/components/DataTableActions/DataTableActions';
 import { translate } from '@portal/services/i18n';
 import { getCurrentPriority, priority } from '@portal/utils/priority';
 import { getCurrentStatus, status } from '@portal/utils/status';
@@ -34,12 +32,6 @@ const searchFields: utils.SearchParams[] = [
     type: AdvancedFilterType.SELECT,
     defaultValue: '',
     options: priority,
-  },
-  {
-    name: 'sector',
-    placeholder: 'Setor',
-    type: AdvancedFilterType.SELECT,
-    defaultValue: '',
   },
   {
     name: 'startDate',
@@ -74,14 +66,6 @@ const ServiceCallReport: React.FC = () => {
     dispatch(ServiceCallActions.getReport(filters));
   };
 
-  const onRemove = (id: string) => {
-    const filter = NavigationService.getQuery();
-    onSearch({
-      ...advancedFilters,
-      ...filter,
-    });
-  };
-
   return (
     <div className="report">
       <Row>
@@ -93,14 +77,6 @@ const ServiceCallReport: React.FC = () => {
             )}
           />
         </Col>
-        {/* <Col lg={6} className="text-right">
-          <Link to={getRouteStackPath('SERVICE_CALL', 'SERVICE_CALL_DETAILS')}>
-            <AdvancedButton
-              text={translate('SHARED.ADD')}
-              startIcon={<PlusCircleOutlined />}
-            />
-          </Link>
-        </Col> */}
       </Row>
       <Row>
         <Col>
@@ -161,22 +137,6 @@ const ServiceCallReport: React.FC = () => {
                         </>
                       );
                     },
-                  },
-                  {
-                    align: 'center',
-                    field: 'actions',
-                    headerName: 'Ações',
-                    headerAlign: 'center',
-                    renderCell: (o: CellParams) => (
-                      <DataTableActions
-                        row={o.row}
-                        basePath={getRouteStackPath(
-                          'SERVICE_CALL',
-                          'SERVICE_CALL_DETAILS'
-                        )}
-                        onRemove={onRemove}
-                      />
-                    ),
                   },
                 ]}
                 page={advancedFilters.page}

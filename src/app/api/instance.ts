@@ -22,7 +22,7 @@ axiosInstance.interceptors.response.use(
     if (err.response.status === 401) {
       try {
         const payload = await StorageService.getItem('session-token');
-        await storeCreator.dispatch(refreshToken(payload));
+        await storeCreator.dispatch(refreshToken(payload.refreshToken));
         window.location.reload();
         await Axios(err.config);
       } catch (e) {

@@ -29,6 +29,13 @@ const UserApi = {
     return data;
   },
 
+  putDashUser: async (body: any) => {
+    const instance = getInstance();
+    const { data } = await instance.put(`/user/dash/${body.id}`, body);
+
+    return data;
+  },
+
   me: async () => {
     const instance = getInstance();
     const { data } = await instance.get('/dashUser/me');

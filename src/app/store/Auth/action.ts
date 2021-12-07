@@ -7,44 +7,45 @@ import { decreaseLoading, increaseLoading } from '../Loading/action';
 import { AUTH_CHECK_LOGGED, AUTH_LOGIN, AUTH_LOGOUT } from '../actionTypes';
 import { getMe } from '../User/action';
 
-export const authenticate = (userData: models.AuthRequest) => async (
-  dispatch: any
-) => {
-  dispatch(increaseLoading());
-  try {
-    const payload: models.AuthResponse = await AuthRequests.login(userData);
+export const authenticate =
+  (userData: models.AuthRequest) => async (dispatch: any) => {
+    dispatch(increaseLoading());
+    try {
+      const payload: models.AuthResponse = await AuthRequests.login(userData);
 
-    StorageService.removeItem('session-token');
+      StorageService.removeItem('session-token');
 
-    StorageService.setItem('session-token', payload);
+      StorageService.setItem('session-token', payload);
 
-    setAuthorizationHeader(payload.token as string);
+      setAuthorizationHeader(payload.token as string);
 
-    dispatch({
-      payload,
-      type: AUTH_LOGIN,
-    });
+      dispatch({
+        payload,
+        type: AUTH_LOGIN,
+      });
 
-    StorageService.setItem('auth', userData);
-    MessageService.success('PAGES.AUTH.LOGIN.MESSAGES.WELCOME');
+      StorageService.setItem('auth', userData);
+      MessageService.success('PAGES.AUTH.LOGIN.MESSAGES.WELCOME');
 
-    window.location.href = getRouteStackPath('USER', 'REPORT');
-    dispatch(getMe());
-  } catch (err) {
-    if (err && err.response) {
-      MessageService.error(err.response.message);
-    } else if (err && err.message) {
-      MessageService.error('PAGES.AUTH.LOGIN.MESSAGES.INVALID');
+      window.location.href = getRouteStackPath('USER', 'REPORT');
+      dispatch(getMe());
+    } catch (err) {
+      if (err && err.response) {
+        MessageService.error(err.response.message);
+      } else if (err && err.message) {
+        MessageService.error('PAGES.AUTH.LOGIN.MESSAGES.INVALID');
+      }
+    } finally {
+      dispatch(decreaseLoading());
     }
-  } finally {
-    dispatch(decreaseLoading());
-  }
-};
+  };
 
 export const refreshToken = (userData: any) => async (dispatch: any) => {
   dispatch(increaseLoading());
   try {
-    const payload: models.AuthResponse = await AuthRequests.refreshToken(userData);
+    const payload: models.AuthResponse = await AuthRequests.refreshToken(
+      userData
+    );
     StorageService.setItem('session-token', payload);
     setAuthorizationHeader(payload.accessToken as string);
 
@@ -53,7 +54,7 @@ export const refreshToken = (userData: any) => async (dispatch: any) => {
       type: AUTH_LOGIN,
     });
 
-    // dispatch(getMe());
+    dispatch(getMe());
   } catch (err) {
     StorageService.removeItem('session-token');
     window.location.href = '/';
@@ -66,7 +67,7 @@ export const logout = () => async (dispatch: any) => {
   dispatch(increaseLoading());
   try {
     const accessToken = await StorageService.getItem('session-token');
-    await AuthRequests.logout(accessToken)
+    await AuthRequests.logout(accessToken);
     StorageService.removeItem('session-token');
     dispatch({
       type: AUTH_LOGOUT,
@@ -84,7 +85,7 @@ export const checkIsLogged = () => (dispatch: any) => {
   dispatch(increaseLoading());
   try {
     const token = StorageService.getItem('session-token');
-    console.log('token', token)
+    console.log('token', token);
     if (token) {
       setAuthorizationHeader(token.accessToken as string);
       dispatch({

@@ -74,14 +74,13 @@ const UserDetails: React.FC = () => {
           return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
         }
       }
-      if (form.cellphone.length !== 16) {
-        console.log(form.cellphone.length);
+
+      if (removeSpecialChars(form.cellphone as string).length !== 12) {
         return MessageService.error(
           'Preencha o campo de telefone corretamente'
         );
       }
-      console.log(form.cellphone.length);
-      if (form.cep.length !== 9) {
+      if (removeSpecialChars(form.cep as string).length !== 8) {
         return MessageService.error('Preencha o campo de CEP corretamente');
       }
     }
@@ -212,6 +211,7 @@ const UserDetails: React.FC = () => {
                     label={translate('PAGES.COMPANY_DETAILS.LABEL_NUMBER')}
                     placeholder={translate('SHARED.PLACEHOLDER')}
                     onChange={(value: string) => onFormChange('number', value)}
+                    type="number"
                   />
                 </Col>
               </Row>

@@ -17,6 +17,7 @@ import DataTableActions from '@portal/components/DataTableActions/DataTableActio
 import { translate } from '@portal/services/i18n';
 import { useReduxState } from '@portal/hooks/useReduxState';
 import { DateTime } from 'luxon';
+import { maskPhone } from '@portal/services/masks';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -127,6 +128,9 @@ const UserReport: React.FC = () => {
                     field: 'cellphone',
                     headerName: 'Telefone',
                     flex: 1,
+                    renderCell: (o) => {
+                      return <>{o.value && maskPhone(o.value as string)}</>;
+                    },
                   },
                   {
                     field: 'createdAt',

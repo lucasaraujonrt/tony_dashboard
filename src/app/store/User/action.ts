@@ -72,7 +72,7 @@ export const createUser = (body: any) => async (dispatch: Dispatch) => {
 export const putUser = (body: any) => async (dispatch: Dispatch) => {
   dispatch(increaseLoading());
   try {
-    await UserRequests.create(body);
+    await UserRequests.putDashUser(body);
     NavigationService.back();
   } catch (error) {
     MessageService.error('Erro ao editar o usuário. Verifique todos os campos');

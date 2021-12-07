@@ -16,7 +16,7 @@ import DataTableActions from '@portal/components/DataTableActions/DataTableActio
 import { translate } from '@portal/services/i18n';
 import { useDispatch } from 'react-redux';
 import { useReduxState } from '@portal/hooks/useReduxState';
-import { maskCnpj } from '@portal/services/masks';
+import { maskCEP, maskCnpj, maskPhone } from '@portal/services/masks';
 
 const searchFields: utils.SearchParams[] = [
   {
@@ -145,6 +145,9 @@ const CompanyReport: React.FC = () => {
                     headerName: 'Celular',
                     flex: 1,
                     sortable: false,
+                    renderCell: (o) => {
+                      return <>{o.value && maskPhone(o.value as string)}</>;
+                    },
                   },
                   {
                     field: 'area',
@@ -155,6 +158,9 @@ const CompanyReport: React.FC = () => {
                     field: 'cep',
                     headerName: 'Cep',
                     flex: 1,
+                    renderCell: (o) => {
+                      return <>{o.value && maskCEP(o.value as string)}</>;
+                    },
                   },
                   {
                     field: 'cnpj',

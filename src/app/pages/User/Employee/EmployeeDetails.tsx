@@ -59,14 +59,20 @@ const EmployeeDetails: React.FC = () => {
           'Preencha o campo de telefone corretamente'
         );
       }
+      dispatch(
+        EmployeeActions.create({
+          ...form,
+          cellphone: removeSpecialChars(form.cellphone) as string,
+        })
+      );
+    } else {
+      dispatch(
+        EmployeeActions.put({
+          ...form,
+          cellphone: removeSpecialChars(form.cellphone) as string,
+        })
+      );
     }
-
-    dispatch(
-      EmployeeActions.create({
-        ...form,
-        cellphone: removeSpecialChars(form.cellphone) as string,
-      })
-    );
   };
 
   const onFormChange = (key: string, value: string | boolean) => {
@@ -89,13 +95,15 @@ const EmployeeDetails: React.FC = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    if (details) {
+    if (details && listAll && listAll.length > 0) {
       //@ts-ignore
       setForm(details);
+      //@ts-ignore
+      onFormChange('companyId', details.company.name ?? '');
     } else {
       setForm(initialValues);
     }
-  }, [details]);
+  }, [details, listAll]);
 
   return (
     <Container fluid className="details">
@@ -153,7 +161,7 @@ const EmployeeDetails: React.FC = () => {
                     onChange={(value: string) => onFormChange('email', value)}
                   />
                 </Col>
-
+                {console.log('asdasd', form.companyId)}
                 <Col>
                   <AdvancedSelect
                     value={form.companyId}
