@@ -75,11 +75,6 @@ const UserDetails: React.FC = () => {
         }
       }
 
-      if (removeSpecialChars(form.cellphone as string).length !== 12) {
-        return MessageService.error(
-          'Preencha o campo de telefone corretamente'
-        );
-      }
       if (removeSpecialChars(form.cep as string).length !== 8) {
         return MessageService.error('Preencha o campo de CEP corretamente');
       }
