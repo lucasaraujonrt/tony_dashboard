@@ -54,11 +54,6 @@ const CompanyDetails: React.FC = () => {
           return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
         }
       }
-      if (removeSpecialChars(form.cellphone as string).length !== 12) {
-        return MessageService.error(
-          'Preencha o campo de telefone corretamente'
-        );
-      }
       if (!cnpjValidation(removeSpecialChars(form.cnpj))) {
         return MessageService.error('Preencha o campo de CNPJ corretamente');
       }
