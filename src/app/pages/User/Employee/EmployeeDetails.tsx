@@ -54,11 +54,6 @@ const EmployeeDetails: React.FC = () => {
           return MessageService.error('APPLICATION.ERRORS.EMPTY_FORM');
         }
       }
-      if (form.cellphone.length !== 16) {
-        return MessageService.error(
-          'Preencha o campo de telefone corretamente'
-        );
-      }
       dispatch(
         EmployeeActions.create({
           ...form,
